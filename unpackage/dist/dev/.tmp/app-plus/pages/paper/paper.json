@@ -1,0 +1,30 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "小纸条",
+  "titleNView": {
+    "buttons": [
+      {
+        "float": "left",
+        "color": "#000",
+        "colorPressed": "#bbb",
+        "fontSize": "20px",
+        "fontSrc": "static/icon/icon.ttf",
+        "text": ""
+      },
+      {
+        "float": "right",
+        "color": "#000",
+        "colorPressed": "#bbb",
+        "fontSize": "24px",
+        "fontSrc": "static/icon/icon.ttf",
+        "text": ""
+      }
+    ]
+  },
+  "usingComponents": {
+    "bad-ge": "/components/uni-badge/uni-badge",
+    "paper-list": "/components/paper/paper-list",
+    "load-more": "/components/common/load-more",
+    "paper-popup": "/components/paper/paper-left-popup"
+  }
+}

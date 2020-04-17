@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "swiper-tab-head": "/components/index/swiper-tab-head",
+    "user-list": "/components/user-list/user-list"
+  }
+}

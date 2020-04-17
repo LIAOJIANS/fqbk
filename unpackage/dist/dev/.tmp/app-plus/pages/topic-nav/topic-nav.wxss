@@ -1,0 +1,10 @@
+
+.recent-updates.data-v-3297de52 {
+	padding: 25rpx 20rpx;
+}
+.recent-updates-list.data-v-3297de52 {
+	margin-top: 15rpx;
+	padding-bottom: 15rpx;
+	border-bottom: 1px solid #eee;
+}
+

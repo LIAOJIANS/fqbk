@@ -1,0 +1,19 @@
+{
+  "navigationBarTitleText": "聊天页",
+  "titleNView": {
+    "buttons": [
+      {
+        "float": "right",
+        "color": "#000",
+        "colorPressed": "#bbb",
+        "fontSize": "24px",
+        "fontSrc": "static/icon/icon.ttf",
+        "text": ""
+      }
+    ]
+  },
+  "usingComponents": {
+    "user-chat-bottom": "/components/user-chat/user-chat-bottom",
+    "user-chat-list": "/components/user-chat/user-chat-list"
+  }
+}

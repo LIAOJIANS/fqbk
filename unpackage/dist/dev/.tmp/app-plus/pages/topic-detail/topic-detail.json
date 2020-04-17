@@ -1,0 +1,21 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "话题详情",
+  "animationType": "slide-in-bottom",
+  "animationDuration": 200,
+  "scrollIndicator": "none",
+  "titleNView": {
+    "type": "transparent",
+    "buttons": [
+      {
+        "type": "menu"
+      }
+    ]
+  },
+  "usingComponents": {
+    "topic-info": "/components/topic/topic-info",
+    "swiper-tab-head": "/components/index/swiper-tab-head",
+    "load-more": "/components/common/load-more",
+    "new-list": "/components/common/common-list"
+  }
+}

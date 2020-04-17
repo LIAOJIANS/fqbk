@@ -1,0 +1,16 @@
+{
+  "navigationBarTitleText": "我的",
+  "titleNView": {
+    "buttons": [
+      {
+        "type": "menu"
+      }
+    ]
+  },
+  "usingComponents": {
+    "other-login": "/components/home/other-login",
+    "home-info": "/components/home/home-info",
+    "home-data": "/components/home/home-data",
+    "home-list-item": "/components/home/home-list-item"
+  }
+}

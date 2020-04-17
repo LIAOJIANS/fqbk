@@ -1,0 +1,10 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "话题详情",
+  "usingComponents": {
+    "topic-info": "/components/topic/topic-info",
+    "swiper-tab-head": "/components/index/swiper-tab-head",
+    "load-more": "/components/common/load-more",
+    "new-list": "/components/common/common-list"
+  }
+}

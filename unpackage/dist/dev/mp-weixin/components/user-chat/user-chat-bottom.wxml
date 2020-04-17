@@ -1,0 +1,1 @@
+<view class="user-chat-buttom u-f-ac"><input type="text" placeholder="请文明发言" data-event-opts="{{[['input',[['__set_model',['','text','$event',[]]]]]]}}" value="{{text}}" bindinput="__e"/><view data-event-opts="{{[['tap',[['submit',['$event']]]]]}}" class="icon iconfont icon-fabu" bindtap="__e"></view></view>
