@@ -186,11 +186,11 @@ var _time = _interopRequireDefault(__webpack_require__(/*! ../../common/time.js 
   data: function data() {
     return {
       sharedata: {
-        title: '',
-        url: '',
-        titlepic: '',
-        shareType: 0 },
-
+        // title: '',
+        // url: '',
+        // titlepic: '',
+        // shareType: 0
+      },
       shareshow: false,
       obj: {}, // 详情对象
       id: null,
@@ -232,6 +232,17 @@ var _time = _interopRequireDefault(__webpack_require__(/*! ../../common/time.js 
 
       this._getData(this.id);
       this._getComment();
+      this.__initShare(obj);
+    },
+
+    __initShare: function __initShare(obj) {
+      this.sharedata = {
+        title: obj.title,
+        content: obj.title,
+        url: "http://www.liaojs.cn:3000/public/myBlog/#/home",
+        titlepic: obj.titlepic ? obj.titlepic : 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/app/share-logo@3.png',
+        shareType: 0 };
+
     },
 
     _getData: function _getData(id) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$_this$$http$ge, _yield$_this$$http$ge2, err, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (

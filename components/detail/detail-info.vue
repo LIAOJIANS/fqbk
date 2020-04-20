@@ -62,10 +62,7 @@
 			tagSexAge
 		},
 		props:{
-			item:Object,
-		},
-		created() {
-			console.log(this.item)
+			item:Object
 		},
 		computed: {
 			getSex() {
@@ -81,58 +78,58 @@
 					url: '../../pages/user-space/user-space?userid=' + this.item.userid
 				});
 			},
-			// async guanzhu(){
-			// 	try{
-			// 		let [err,res] = await this.$http.post('/follow',{
-			// 			follow_id:this.item.userid
-			// 		},{
-			// 			token:true,
-			// 			checkToken:true,
-			// 			checkAuth:true
-			// 		});
-			// 		// 错误处理
-			// 		if (!this.$http.errorCheck(err,res)) return;
-			// 		// 通知首页修改数据
-			// 		uni.showToast({ title: '关注成功' });
-			// 		let resdata = {
-			// 		 	type:"guanzhu",
-			// 		 	userid:this.item.userid,
-			// 		 	data:true
-			// 		};
-			// 		// 通知父组件
-			// 		this.$emit('changeevent',resdata);
-			// 		// 全局通知
-			// 		uni.$emit('updateData',resdata);
-			// 	}catch(e){ return; }
-			// },
+			async guanzhu(){
+				// try{
+				// 	let [err,res] = await this.$http.post('/follow',{
+				// 		follow_id:this.item.userid
+				// 	},{
+				// 		token:true,
+				// 		checkToken:true,
+				// 		checkAuth:true
+				// 	});
+				// 	// 错误处理
+				// 	if (!this.$http.errorCheck(err,res)) return;
+				// 	// 通知首页修改数据
+				// 	uni.showToast({ title: '关注成功' });
+				// 	let resdata = {
+				// 	 	type:"guanzhu",
+				// 	 	userid:this.item.userid,
+				// 	 	data:true
+				// 	};
+				// 	// 通知父组件
+				// 	this.$emit('changeevent',resdata);
+				// 	// 全局通知
+				// 	uni.$emit('updateData',resdata);
+				// }catch(e){ return; }
+			},
 			imgdetail(index){
 				uni.previewImage({
 					current:index,
 					urls:this.item.morepic
 				})
 			},
-			// async caozuo(type){
-			// 	let index = (type === 'ding') ? 1 : 2; // 当前操作
-			// 	let [err,res] = await this.$http.post('/support',{
-			// 		post_id:this.item.id,
-			// 		type:index-1
-			// 	},{
-			// 		token:true,
-			// 		checkToken:true,
-			// 		checkAuth:true
-			// 	});
-			// 	if (!this.$http.errorCheck(err,res)) return;
-			// 	uni.showToast({ title: "顶成功" });
-			// 	// 通知父组件
-			// 	let resdata = {
-			// 		type:"support",
-			// 		post_id:this.item.id,
-			// 		do:type
-			// 	};
-			// 	this.$emit('changeevent',resdata);
-			// 	// 通知全局
-			// 	return uni.$emit("updateData",resdata);
-			// },
+			async caozuo(type){
+				// let index = (type === 'ding') ? 1 : 2; // 当前操作
+				// let [err,res] = await this.$http.post('/support',{
+				// 	post_id:this.item.id,
+				// 	type:index-1
+				// },{
+				// 	token:true,
+				// 	checkToken:true,
+				// 	checkAuth:true
+				// });
+				// if (!this.$http.errorCheck(err,res)) return;
+				// uni.showToast({ title: "顶成功" });
+				// // 通知父组件
+				// let resdata = {
+				// 	type:"support",
+				// 	post_id:this.item.id,
+				// 	do:type
+				// };
+				// this.$emit('changeevent',resdata);
+				// // 通知全局
+				// return uni.$emit("updateData",resdata);
+			},
 		}
 	}
 </script>

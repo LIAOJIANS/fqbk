@@ -15,12 +15,13 @@
 					<template v-if="items.lists.length > 0">
 						<!-- 图文列表 -->
 						<block v-for="(item,index1) in items.lists" :key="index1">
-							<indexList @changeevent="updateData" :item="item" :index="index1"/>
+							<indexList :item="item" :index="index1"/>
 						</block>
 						<loadMore :loadtext='items.context' />
 					</template>
-					<template v-else-if="!item.first">
-						<view>Loading.... {{ item.first }}</view>
+					<template v-else-if="!items.first">
+						<view style="font-size: 50upx;font-weight: bold;color: #CCCCCC;
+						padding-top: 100upx;" class="u-f-ajc">Loading ...</view>
 					</template>
 					<template v-else>
 						<noThing />
@@ -39,7 +40,7 @@
 	export default {
 		data() {
 			return {
-				getHeight: `height: ${ 500 }px`, // 默认高度
+				getHeight: `height: ${ 500 }px;`,
 				tabIndex: 0, // 默认显示第一个
 				tabBars: [],
 				newslist: []
@@ -47,9 +48,18 @@
 		},
 		
 		created() {
-			let height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100)
-			this.getHeight = `height: ${ height }px`
+			let height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100) - 44;
+			this.getHeight = `height: ${ height }px;`;
 			this._getLoadData()
+		},
+		
+		computed: {
+			// getHeight() {
+			// 	// #ifdef MP-ALIPAY
+			// 	let height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100) - 44;
+			// 	return `height: ${height}px;`;
+			// 	// #endif
+			// }
 		},
 		
 		onNavigationBarSearchInputClicked() {
@@ -69,7 +79,7 @@
 						id: item.id,
 						name: item.classname
 					})
-					arr.push({ // 分类对应的对象数组
+					arr.push({ // 分类对应的对象数
 						context: '下拉加载更多',
 						lists: [],
 						page: 1,
@@ -77,12 +87,17 @@
 					})
 				})
 				this.newslist = arr
-				this._getIndexData()
+				this.tabBars.length > 0 && this._getIndexData()
 			},
 			
 			async _getIndexData() {
 				const [err, res] = await this.$http.get(`/postclass/${ this.tabBars[this.tabIndex].id }/post/${ this.newslist[this.tabIndex].page }`, {}, { token: true })
-				if(!res) this.newslist[this.tabIndex].context = '加载中。。。。。'
+				let error = this.$http.errorCheck(err,res,()=>{
+					this.newslist[currentIndex].loadtext="上拉加载更多";
+				},()=>{
+					this.newslist[currentIndex].loadtext="上拉加载更多";
+				});
+				if (!error) return;
 				let arr = []
 				res.data.data.list.forEach(item => {
 					arr.push(this._fomat(item))
@@ -94,10 +109,10 @@
 				} else {
 					this.newslist[this.tabIndex].context = '下拉加载更多'
 				}
+				return
 			},
 			
 			_fomat(item) {
-				
 				return {
 					userid: item.user.id,
 					userpic: item.user.userpic,
@@ -108,7 +123,7 @@
 					type: 'img',
 					video: false,
 					path: item.path,
-					shar: !!item.share,
+					share: !!item.share,
 					titlepic: item.titlepic,
 					infonum: {
 						index: (item.support.length > 0) ? (item.support[0].type + 1) : 0,
@@ -126,6 +141,7 @@
 			
 			loadingDate(index) { // 下拉加载
 				if(this.newslist[index].context !== '下拉加载更多') return
+				this.newslist[index].context="加载中...";
 				this.newslist[this.tabIndex].page++
 				this._getIndexData()
 			},

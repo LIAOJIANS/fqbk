@@ -4,12 +4,12 @@
 		<view class="more-share">
 			<view class="more-share-title u-f-ajc">分享到</view>
 			<scroll-view scroll-x class="more-share-body">
-				<block v-for="(val,index) in providerList" :key="index">
+				<block v-for="(val, index) in providerList" :key="index">
 					<view class="more-share-item" 
 					hover-class="more-share-hover"
 					@tap="share(val)">
 						<view class="icon iconfont u-f-ajc"
-						:class="['icon-'+val.zicon,'more-share-'+val.zclass]"></view>
+						:class="['icon-' + val.zicon,'more-share-' + val.zclass]"></view>
 						<view>{{val.name}}</view>
 					</view>
 				</block>
@@ -23,31 +23,35 @@
 <script>
 	export default {
 		props:{
-			show:Boolean,
-			sharedata:Object
+			show: Boolean,
+			sharedata: Object
 		},
 		data() {
 			return {
-				title:"我是你爸爸",
-				shareText: '我是你爸爸  阿杰是我儿子',
-				href:"http://www.liaojs.cn:3000/public/myBlog/#/home",
-				image: 'https://s1.hdslb.com/bfs/static/jinkela/space/asserts/icon-auth.png',
+				title: '',
+				shareText: '',
+				href:"",
+				image: '',
 				shareType: 0, // 1文字 2图片 0图文 5小程序
 				providerList: []
 			}
 		},
+		
 		watch: {
 			sharedata(newValue, oldValue) {
 				this.title = newValue.title;
-				this.shareText = newValue.content;
+				this.shareText = newValue.title;
 				this.href = newValue.url;
 				this.image = newValue.titlepic;
 				this.shareType = newValue.shareType;
 			}
 		},
-		onReady() {
+		
+		created() {
+			
 			this.getProvider();
 		},
+		
 		methods:{
 			getProvider(){
 				uni.getProvider({

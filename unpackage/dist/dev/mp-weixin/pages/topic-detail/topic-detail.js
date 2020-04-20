@@ -129,7 +129,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var topicInfo = function topicInfo() {__webpack_require__.e(/*! require.ensure | components/topic/topic-info */ "components/topic/topic-info").then((function () {return resolve(__webpack_require__(/*! ../../components/topic/topic-info.vue */ 292));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var swiperTabHead = function swiperTabHead() {__webpack_require__.e(/*! require.ensure | components/index/swiper-tab-head */ "components/index/swiper-tab-head").then((function () {return resolve(__webpack_require__(/*! ../../components/index/swiper-tab-head.vue */ 173));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 180));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var newList = function newList() {__webpack_require__.e(/*! require.ensure | components/common/common-list */ "components/common/common-list").then((function () {return resolve(__webpack_require__(/*! ../../components/common/common-list.vue */ 215));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var topicInfo = function topicInfo() {__webpack_require__.e(/*! require.ensure | components/topic/topic-info */ "components/topic/topic-info").then((function () {return resolve(__webpack_require__(/*! ../../components/topic/topic-info.vue */ 292));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var swiperTabHead = function swiperTabHead() {__webpack_require__.e(/*! require.ensure | components/index/swiper-tab-head */ "components/index/swiper-tab-head").then((function () {return resolve(__webpack_require__(/*! ../../components/index/swiper-tab-head.vue */ 173));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 180));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var newList = function newList() {__webpack_require__.e(/*! require.ensure | components/common/common-list */ "components/common/common-list").then((function () {return resolve(__webpack_require__(/*! ../../components/common/common-list.vue */ 215));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -165,167 +165,29 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       tabBars: [
-      { name: '默认', id: 'dangqian' },
-      { name: '最新', id: 'zuixin' }],
+      { name: "默认", id: "moren" },
+      { name: "最新", id: "zuixin" }],
 
       tabIndex: 0,
       topicInfo: {
         titlepic: '../../static/banner/item1.jpg',
         title: '#忆往事，敬余生#',
         desc: '面试官：在电梯里巧遇马云你会做什么？90后女孩的回答当场被踹死',
-        totlanum: 1000,
+        totalnum: 1000,
         todaynum: 1000 },
 
       topicList: [
       {
         context: '下拉加载更多',
-        list: [
-        {
-          // 文字
-          userpic: '../../static/common/loginhead.png',
-          username: 'shanJ',
-          sex: 1, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题我是标题我是标题我是标题我是标题我是标题',
-          titlepic: false,
-          video: false,
-          share: false,
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 },
-
-        {
-          // 图文
-          userpic: '../../static/shou.jpg',
-          username: 'shanJ',
-          sex: 0, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题',
-          titlepic: '../../static/shou.jpg',
-          video: false,
-          share: false,
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 },
-
-        {
-          // 视频
-          userpic: '../../static/shou.jpg',
-          username: 'shanJ',
-          sex: 0, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题',
-          titlepic: '../../static/shou.jpg',
-          video: {
-            looknum: '20W',
-            long: '2: 47' },
-
-          share: false,
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 },
-
-        {
-          // 分享
-          userpic: '../../static/shou.jpg',
-          username: 'shanJ',
-          sex: 0, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题',
-          titlepic: '',
-          video: false,
-          share: {
-            title: '我是标题',
-            titlepic: '../../static/shou.jpg' },
-
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 }] },
-
-
+        list: [],
+        first: false,
+        page: 1 },
 
       {
         context: '下拉加载更多',
-        list: [
-        {
-          // 图文
-          userpic: '../../static/shou.jpg',
-          username: 'shanJ',
-          sex: 0, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题',
-          titlepic: '../../static/shou.jpg',
-          video: false,
-          share: false,
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 },
-
-        {
-          // 文字
-          userpic: '../../static/common/loginhead.png',
-          username: 'shanJ',
-          sex: 1, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题我是标题我是标题我是标题我是标题我是标题',
-          titlepic: false,
-          video: false,
-          share: false,
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 },
-
-        {
-          // 视频
-          userpic: '../../static/shou.jpg',
-          username: 'shanJ',
-          sex: 0, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题',
-          titlepic: '../../static/shou.jpg',
-          video: {
-            looknum: '20W',
-            long: '2: 47' },
-
-          share: false,
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 },
-
-        {
-          // 分享
-          userpic: '../../static/shou.jpg',
-          username: 'shanJ',
-          sex: 0, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题',
-          titlepic: '',
-          video: false,
-          share: {
-            title: '我是标题',
-            titlepic: '../../static/shou.jpg' },
-
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 }] }] };
-
-
+        list: [],
+        first: false,
+        page: 1 }] };
 
 
 
@@ -337,23 +199,77 @@ __webpack_require__.r(__webpack_exports__);
     }, 1000);
   },
 
+  onLoad: function onLoad(e) {
+    // 获取路由参数
+    this._initData(JSON.parse(e.detail));
+  },
+
   onReachBottom: function onReachBottom() {
     this.loadingDate();
   },
 
   methods: {
-    loadingDate: function loadingDate() {var _this = this;
-      // 下拉加载
-      if (this.topicList[this.tabIndex].context !== '下拉加载更多') return;
-      setTimeout(function () {
-        _this.topicList[_this.tabIndex].context = '正在加载中.......';
-      }, 1000);
+    _initData: function _initData(obj) {
+      console.log(obj);
+      uni.setNavigationBarTitle({
+        // 修改头部标题
+        title: obj.title });
 
-      this.topicList[this.tabIndex].context = '没有更多数据';
+      this.topicInfo = obj;
+      this._getData();
+    },
+
+    _getData: function _getData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$_this$$http$ge, _yield$_this$$http$ge2, err, res, arr;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _this.$http.get("/topic/".concat(_this.topicInfo.id, "/post/").concat(_this.topicList[_this.tabIndex].page), {}, { token: true }));case 2:_yield$_this$$http$ge = _context.sent;_yield$_this$$http$ge2 = _slicedToArray(_yield$_this$$http$ge, 2);err = _yield$_this$$http$ge2[0];res = _yield$_this$$http$ge2[1];if (
+                _this.$http.errorCheck(err, res)) {_context.next = 8;break;}return _context.abrupt("return", _this.topicList[_this.tabIndex].context = '下拉加载更多');case 8:
+                arr = [];
+                res.data.data.list.forEach(function (item) {
+                  arr.push(_this._fomat(item));
+                });
+                _this.topicList[_this.tabIndex].list = _this.topicList[_this.tabIndex].page > 1 ? _this.topicList[_this.tabIndex].list.concat(arr) : arr;
+                _this.topicList[_this.tabIndex].first = true;
+                if (res.data.data.list.length < 10) {
+                  _this.topicList[_this.tabIndex].context = '没有更多数据了';
+                } else {
+                  _this.topicList[_this.tabIndex].context = '下拉加载更多';
+                }return _context.abrupt("return");case 14:case "end":return _context.stop();}}}, _callee);}))();
+
+    },
+
+    _fomat: function _fomat(item) {
+      return {
+        userid: item.user.id,
+        userpic: item.user.userpic,
+        username: item.user.username,
+        isguanzhu: !!item.user.fens.length,
+        id: item.id,
+        title: item.title,
+        type: 'img',
+        video: false,
+        path: item.path,
+        share: !!item.share,
+        titlepic: item.titlepic,
+        infonum: {
+          index: item.support.length > 0 ? item.support[0].type + 1 : 0,
+          dingnum: item.ding_count,
+          cainum: item.cai_count },
+
+        goodnum: item.ding_count,
+        commentnum: item.comment_count,
+        sharenum: item.sharenum };
+
+    },
+
+    loadingDate: function loadingDate() {
+      if (this.topicList[this.tabIndex].context !== '下拉加载更多') return;
+      this.topicList[this.tabIndex].context = "加载中...";
+      this.topicList[this.tabIndex].page++;
+      this._getData();
     },
 
     tabtap: function tabtap(index) {
       this.tabIndex = index;
+      this._getData();
     } },
 
   components: {

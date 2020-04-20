@@ -4,10 +4,10 @@
 	padding: 2rpx 10rpx;
 	margin-left: 10rpx;
 	border-radius: 20rpx;
-	font-size: 21rpx;
-	background-color: #007aff;
-	color: #fff;
-	line-height: 25rpx;
+	font-size: 21rpx!important;
+	background-color: #007aff!important;
+	color: #fff!important;
+	line-height: 25rpx!important;
 }
 .icon-nv.data-v-0e32c418{
 	background: #FF698D!important;

@@ -24,10 +24,10 @@ export default {
 	data() {
 		return {
 			sharedata: {
-				title: '',
-				url: '',
-				titlepic: '',
-				shareType: 0
+				// title: '',
+				// url: '',
+				// titlepic: '',
+				// shareType: 0
 			},
 			shareshow: false,
 			obj: {}, // 详情对象
@@ -70,6 +70,17 @@ export default {
 			});
 			this._getData(this.id)
 			this._getComment()
+			this.__initShare(obj)
+		},
+		
+		__initShare(obj){
+			this.sharedata = {
+				title: obj.title,
+				content: obj.title,
+				url: "http://www.liaojs.cn:3000/public/myBlog/#/home",
+				titlepic: obj.titlepic ? obj.titlepic : 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/app/share-logo@3.png',
+				shareType: 0,
+			}
 		},
 		
 		async _getData(id) {

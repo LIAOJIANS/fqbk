@@ -34,167 +34,29 @@
 		data() {
 			return {
 				tabBars: [
-					{ name: '默认', id: 'dangqian' },
-					{ name: '最新', id: 'zuixin' },
+					{ name: "默认", id: "moren" },
+					{ name: "最新", id: "zuixin" }
 				],
 				tabIndex: 0,
 				topicInfo: {
 					titlepic: '../../static/banner/item1.jpg',
 					title: '#忆往事，敬余生#',
 					desc: '面试官：在电梯里巧遇马云你会做什么？90后女孩的回答当场被踹死',
-					totlanum: 1000,
+					totalnum: 1000,
 					todaynum: 1000
 				},
 				topicList: [
 					{
 						context: '下拉加载更多',
-						list: [
-							{
-								// 文字
-								userpic: '../../static/common/loginhead.png',
-								username: 'shanJ',
-								sex: 1, // 0男 1女
-								age: 25,
-								isguanzhu: false,
-								title: '我是标题我是标题我是标题我是标题我是标题我是标题',
-								titlepic: false,
-								video: false,
-								share: false,
-								path: '广州 仓头',
-								sharenum: 20,
-								commentnum: 30,
-								goodnum: 40
-							},
-							{
-								// 图文
-								userpic: '../../static/shou.jpg',
-								username: 'shanJ',
-								sex: 0, // 0男 1女
-								age: 25,
-								isguanzhu: false,
-								title: '我是标题',
-								titlepic: '../../static/shou.jpg',
-								video: false,
-								share: false,
-								path: '广州 仓头',
-								sharenum: 20,
-								commentnum: 30,
-								goodnum: 40
-							},
-							{
-								// 视频
-								userpic: '../../static/shou.jpg',
-								username: 'shanJ',
-								sex: 0, // 0男 1女
-								age: 25,
-								isguanzhu: false,
-								title: '我是标题',
-								titlepic: '../../static/shou.jpg',
-								video: {
-									looknum: '20W',
-									long: '2: 47'
-								},
-								share: false,
-								path: '广州 仓头',
-								sharenum: 20,
-								commentnum: 30,
-								goodnum: 40
-							},
-							{
-								// 分享
-								userpic: '../../static/shou.jpg',
-								username: 'shanJ',
-								sex: 0, // 0男 1女
-								age: 25,
-								isguanzhu: false,
-								title: '我是标题',
-								titlepic: '',
-								video: false,
-								share: {
-									title: '我是标题',
-									titlepic: '../../static/shou.jpg'
-								},
-								path: '广州 仓头',
-								sharenum: 20,
-								commentnum: 30,
-								goodnum: 40
-							}
-						]
+						list: [],
+						first: false,
+						page: 1
 					},
 					{
 						context: '下拉加载更多',
-						list: [
-							{
-								// 图文
-								userpic: '../../static/shou.jpg',
-								username: 'shanJ',
-								sex: 0, // 0男 1女
-								age: 25,
-								isguanzhu: false,
-								title: '我是标题',
-								titlepic: '../../static/shou.jpg',
-								video: false,
-								share: false,
-								path: '广州 仓头',
-								sharenum: 20,
-								commentnum: 30,
-								goodnum: 40
-							},
-							{
-								// 文字
-								userpic: '../../static/common/loginhead.png',
-								username: 'shanJ',
-								sex: 1, // 0男 1女
-								age: 25,
-								isguanzhu: false,
-								title: '我是标题我是标题我是标题我是标题我是标题我是标题',
-								titlepic: false,
-								video: false,
-								share: false,
-								path: '广州 仓头',
-								sharenum: 20,
-								commentnum: 30,
-								goodnum: 40
-							},
-							{
-								// 视频
-								userpic: '../../static/shou.jpg',
-								username: 'shanJ',
-								sex: 0, // 0男 1女
-								age: 25,
-								isguanzhu: false,
-								title: '我是标题',
-								titlepic: '../../static/shou.jpg',
-								video: {
-									looknum: '20W',
-									long: '2: 47'
-								},
-								share: false,
-								path: '广州 仓头',
-								sharenum: 20,
-								commentnum: 30,
-								goodnum: 40
-							},
-							{
-								// 分享
-								userpic: '../../static/shou.jpg',
-								username: 'shanJ',
-								sex: 0, // 0男 1女
-								age: 25,
-								isguanzhu: false,
-								title: '我是标题',
-								titlepic: '',
-								video: false,
-								share: {
-									title: '我是标题',
-									titlepic: '../../static/shou.jpg'
-								},
-								path: '广州 仓头',
-								sharenum: 20,
-								commentnum: 30,
-								goodnum: 40
-							}
-						]
+						list: [],
+						first: false,
+						page: 1
 					}
 				]
 			}
@@ -206,23 +68,77 @@
 			}, 1000)
 		},
 		
+		onLoad(e) {
+			// 获取路由参数
+			this._initData(JSON.parse(e.detail))
+		},
+		
 		onReachBottom() {
 			this.loadingDate()
 		},
 		
 		methods: {
-			loadingDate() {
-				// 下拉加载
-				if (this.topicList[this.tabIndex].context !== '下拉加载更多') return;
-				setTimeout(() => {
-					this.topicList[this.tabIndex].context = '正在加载中.......';
-				}, 1000);
+			_initData(obj) {
+				console.log(obj)
+				uni.setNavigationBarTitle({
+					// 修改头部标题
+					title: obj.title
+				});
+				this.topicInfo = obj
+				this._getData()
+			},
 			
-				this.topicList[this.tabIndex].context = '没有更多数据';
+			async _getData() {
+				const [err, res] = await this.$http.get(`/topic/${ this.topicInfo.id }/post/${this.topicList[ this.tabIndex ].page}`, {}, {token:true})
+				if(!this.$http.errorCheck(err, res)) return this.topicList[this.tabIndex].context = '下拉加载更多'
+				let arr = []
+				res.data.data.list.forEach(item => {
+					arr.push(this._fomat(item))
+				})
+				this.topicList[this.tabIndex].list = this.topicList[this.tabIndex].page > 1 ? this.topicList[this.tabIndex].list.concat(arr) : arr
+				this.topicList[this.tabIndex].first = true
+				if(res.data.data.list.length < 10) {
+					this.topicList[this.tabIndex].context = '没有更多数据了'
+				} else {
+					this.topicList[this.tabIndex].context = '下拉加载更多'
+				}
+				return
+			},
+			
+			_fomat(item) {
+				return {
+					userid: item.user.id,
+					userpic: item.user.userpic,
+					username: item.user.username,
+					isguanzhu: !!item.user.fens.length,
+					id: item.id,
+					title: item.title,
+					type: 'img',
+					video: false,
+					path: item.path,
+					share: !!item.share,
+					titlepic: item.titlepic,
+					infonum: {
+						index: (item.support.length > 0) ? (item.support[0].type + 1) : 0,
+						dingnum: item.ding_count,
+						cainum: item.cai_count
+					},
+					goodnum: item.ding_count,
+					commentnum: item.comment_count,
+					sharenum: item.sharenum
+				}
+			},
+			
+			loadingDate() {
+				if(this.topicList[this.tabIndex].context !== '下拉加载更多') return
+				this.topicList[this.tabIndex].context="加载中...";
+				this.topicList[this.tabIndex].page++
+				this._getData()
 			},
 			
 			tabtap(index) {
 				this.tabIndex = index
+				this._getData()
 			},
 		},
 		components: {

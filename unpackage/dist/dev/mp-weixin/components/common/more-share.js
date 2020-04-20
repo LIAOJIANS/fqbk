@@ -144,26 +144,30 @@ var _default =
 
   data: function data() {
     return {
-      title: "我是你爸爸",
-      shareText: '我是你爸爸  阿杰是我儿子',
-      href: "http://www.liaojs.cn:3000/public/myBlog/#/home",
-      image: 'https://s1.hdslb.com/bfs/static/jinkela/space/asserts/icon-auth.png',
+      title: '',
+      shareText: '',
+      href: "",
+      image: '',
       shareType: 0, // 1文字 2图片 0图文 5小程序
       providerList: [] };
 
   },
+
   watch: {
     sharedata: function sharedata(newValue, oldValue) {
       this.title = newValue.title;
-      this.shareText = newValue.content;
+      this.shareText = newValue.title;
       this.href = newValue.url;
       this.image = newValue.titlepic;
       this.shareType = newValue.shareType;
     } },
 
-  onReady: function onReady() {
+
+  created: function created() {
+
     this.getProvider();
   },
+
   methods: {
     getProvider: function getProvider() {var _this = this;
       uni.getProvider({

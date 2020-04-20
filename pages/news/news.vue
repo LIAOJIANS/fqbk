@@ -15,7 +15,7 @@
 				<scroll-view scroll-y class="list" :style="getHeight">
 					<view class="search-input">
 						<!-- 搜索框 -->
-						<input class="uni-input" placeholder-class="icon iconfont icon-sousuo topic-search" placeholder="搜索内容">
+						<input class="uni-input" placeholder-class="icon iconfont icon-sousuo topic-search" placeholder="搜索话题" disabled @click="goSearch" />
 						<!-- 轮播图 -->
 						<swiper class="topic-swiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
 							<block v-for="(item, index) in topic.swipers" :key='index'>
@@ -133,42 +133,9 @@ export default {
 				]
 			},
 			topic: {
-				swipers: [
-					{ src: '../../static/banner/item1.jpg' },
-					{ src: '../../static/banner/item2.jpg' },
-					{ src: '../../static/banner/item3.jpg' },
-				],
-				nav: [
-					{ name: '最新' },
-					{ name: '游戏' },
-					{ name: '情感' },
-					{ name: '打卡' },
-					{ name: '故事' },
-					{ name: '喜爱' }
-				],
-				list: [
-					{
-						titlepic: '../../static/logo.png',
-						title: '#淘宝记录铺#',
-						desc: '120斤到85斤 我的反转人生',
-						totalnum: 50,
-						todaynum: 10
-					},
-					{
-						titlepic: '../../static/logo.png',
-						title: '#淘宝记录铺#',
-						desc: '120斤到85斤 我的反转人生',
-						totalnum: 50,
-						todaynum: 10
-					},
-					{
-						titlepic: '../../static/logo.png',
-						title: '#淘宝记录铺#',
-						desc: '120斤到85斤 我的反转人生',
-						totalnum: 50,
-						todaynum: 10
-					}
-				]
+				swipers: [],
+				nav: [],
+				list: []
 			}
 		};
 	},
@@ -176,9 +143,54 @@ export default {
 	created() {
 		let height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100) - 25;
 		this.getHeight = `height: ${height}px`;
+		this._loadData()
 	},
 
 	methods: {
+		_loadData() {
+			this._getAdvertising()
+			this._getHotClass()
+			this._getHotH()
+		},
+		
+		async _getAdvertising() {
+			const [err, res] = await this.$http.get('/adsense/0')
+			res.data.data.list.forEach(item => {
+				this.topic.swipers.push({
+					src: item.src,
+					url: item.url
+				})
+			})
+		},
+		
+		async _getHotClass() {
+			const [err, res] = await this.$http.get('/topicclass')
+			res.data.data.list.forEach(item => {
+				this.topic.nav.push({
+					id: item.id,
+					name: item.classname
+				})
+			})
+		},
+		
+		async _getHotH() {
+			const [err, res] = await this.$http.get('/hottopic')
+			res.data.data.list.forEach(item => {
+				this.topic.list.push({
+					id: item.id,
+					title: item.title,
+					titlepic: item.titlepic,
+					desc: item.desc,
+					totalnum: item.post_count,
+					todaynum: item.todaypost_count
+				})
+			})
+		},
+		
+		goSearch() { // 跳转搜索页
+			uni.navigateTo({ url: '../search/search?searchType=topic' })
+		},
+		
 		openAdd() {
 			uni.navigateTo({ url: '../add-input/add-input' });
 		},

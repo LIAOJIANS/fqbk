@@ -27,10 +27,10 @@
 	padding: 2upx 10upx;
 	margin-left: 10upx;
 	border-radius: 20upx;
-	font-size: 21upx;
-	background-color: #007aff;
-	color: #fff;
-	line-height: 25upx;
+	font-size: 21upx!important;
+	background-color: #007aff!important;
+	color: #fff!important;
+	line-height: 25upx!important;
 }
 .icon-nv{
 	background: #FF698D!important;

@@ -2,7 +2,7 @@
 	<view class="u-f" @click="openTopicDetail">
 		<image :src="item.titlepic" mode="widthFix"></image>
 		<view class="content-r">
-			<view class="content-title">{{ item.title }}</view>
+			<view class="content-title">#{{ item.title }}#</view>
 			<view class="content-title-text">{{ item.desc }}</view>
 			<view>动态 {{ item.totalnum }} 今日 {{ item.todaynum }}</view>
 		</view>
@@ -19,7 +19,7 @@ export default {
 	methods: {
 		openTopicDetail() {
 			uni.navigateTo({
-				url: '../../pages/topic-detail/topic-detail',
+				url: '../../pages/topic-detail/topic-detail?detail=' + JSON.stringify(this.item),
 			});
 		}
 	}

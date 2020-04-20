@@ -18,10 +18,12 @@ var _config = _interopRequireDefault(__webpack_require__(/*! ./common/config.js 
 
 var _lib = _interopRequireDefault(__webpack_require__(/*! ./common/lib.js */ 16));
 
+var _user = _interopRequireDefault(__webpack_require__(/*! common/user.js */ 18));
+
 
 
 var _request = _interopRequireDefault(__webpack_require__(/*! ./common/request.js */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}_vue.default.config.productionTip = false; // 全局引入配置文件
-_vue.default.prototype.config = _config.default;_vue.default.prototype.lib = _lib.default; // 引入全局
+_vue.default.prototype.config = _config.default;_vue.default.prototype.lib = _lib.default;_vue.default.prototype.user = _user.default; // 引入全局
 _vue.default.prototype.$http = _request.default;
 _App.default.mpType = 'app';
 
@@ -110,7 +112,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   onLaunch: function onLaunch() {
     // 监听用户是否断网
     this.lib.NetWork.On();
-    console.log(this.lib);
+    // 监听用户是否登录
+    this.user.__init();
 
   },
   onShow: function onShow() {

@@ -23,6 +23,7 @@
   "usingComponents": {
     "load-more": "/components/common/load-more",
     "no-thing": "/components/common/no-thing",
-    "index-list": "/components/index/index-list"
+    "index-list": "/components/index/index-list",
+    "topic-list": "/components/news/topic-list"
   }
 }

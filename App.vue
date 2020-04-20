@@ -4,7 +4,8 @@
 		onLaunch: function() {
 			// 监听用户是否断网
 			this.lib.NetWork.On()
-			console.log(this.lib)
+			// 监听用户是否登录
+			this.user.__init()
 			
 		},
 		onShow: function() {

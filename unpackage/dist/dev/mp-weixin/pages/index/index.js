@@ -129,7 +129,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var indexList = function indexList() {Promise.all(/*! require.ensure | components/index/index-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/index/index-list")]).then((function () {return resolve(__webpack_require__(/*! ../../components/index/index-list.vue */ 166));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var swiperTabHead = function swiperTabHead() {__webpack_require__.e(/*! require.ensure | components/index/swiper-tab-head */ "components/index/swiper-tab-head").then((function () {return resolve(__webpack_require__(/*! ../../components/index/swiper-tab-head.vue */ 173));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 180));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var noThing = function noThing() {__webpack_require__.e(/*! require.ensure | components/common/no-thing */ "components/common/no-thing").then((function () {return resolve(__webpack_require__(/*! ../../components/common/no-thing.vue */ 187));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var indexList = function indexList() {__webpack_require__.e(/*! require.ensure | components/index/index-list */ "components/index/index-list").then((function () {return resolve(__webpack_require__(/*! ../../components/index/index-list.vue */ 166));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var swiperTabHead = function swiperTabHead() {__webpack_require__.e(/*! require.ensure | components/index/swiper-tab-head */ "components/index/swiper-tab-head").then((function () {return resolve(__webpack_require__(/*! ../../components/index/swiper-tab-head.vue */ 173));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 180));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var noThing = function noThing() {__webpack_require__.e(/*! require.ensure | components/common/no-thing */ "components/common/no-thing").then((function () {return resolve(__webpack_require__(/*! ../../components/common/no-thing.vue */ 187));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 
 
 
@@ -170,7 +171,7 @@ __webpack_require__.r(__webpack_exports__);
 {
   data: function data() {
     return {
-      getHeight: "height: ".concat(500, "px"), // 默认高度
+      getHeight: "height: ".concat(500, "px;"),
       tabIndex: 0, // 默认显示第一个
       tabBars: [],
       newslist: [] };
@@ -178,9 +179,18 @@ __webpack_require__.r(__webpack_exports__);
   },
 
   created: function created() {
-    var height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100);
-    this.getHeight = "height: ".concat(height, "px");
+    var height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100) - 44;
+    this.getHeight = "height: ".concat(height, "px;");
     this._getLoadData();
+  },
+
+  computed: {
+    // getHeight() {
+    //
+
+
+
+    // }
   },
 
   onNavigationBarSearchInputClicked: function onNavigationBarSearchInputClicked() {
@@ -200,7 +210,7 @@ __webpack_require__.r(__webpack_exports__);
                     id: item.id,
                     name: item.classname });
 
-                  arr.push({ // 分类对应的对象数组
+                  arr.push({ // 分类对应的对象数
                     context: '下拉加载更多',
                     lists: [],
                     page: 1,
@@ -208,12 +218,17 @@ __webpack_require__.r(__webpack_exports__);
 
                 });
                 _this.newslist = arr;
-                _this._getIndexData();case 10:case "end":return _context.stop();}}}, _callee);}))();
+                _this.tabBars.length > 0 && _this._getIndexData();case 10:case "end":return _context.stop();}}}, _callee);}))();
     },
 
-    _getIndexData: function _getIndexData() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _yield$_this2$$http$g, _yield$_this2$$http$g2, err, res, arr;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+    _getIndexData: function _getIndexData() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _yield$_this2$$http$g, _yield$_this2$$http$g2, err, res, error, arr;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
                   _this2.$http.get("/postclass/".concat(_this2.tabBars[_this2.tabIndex].id, "/post/").concat(_this2.newslist[_this2.tabIndex].page), {}, { token: true }));case 2:_yield$_this2$$http$g = _context2.sent;_yield$_this2$$http$g2 = _slicedToArray(_yield$_this2$$http$g, 2);err = _yield$_this2$$http$g2[0];res = _yield$_this2$$http$g2[1];
-                if (!res) _this2.newslist[_this2.tabIndex].context = '加载中。。。。。';
+                error = _this2.$http.errorCheck(err, res, function () {
+                  _this2.newslist[currentIndex].loadtext = "上拉加载更多";
+                }, function () {
+                  _this2.newslist[currentIndex].loadtext = "上拉加载更多";
+                });if (
+                error) {_context2.next = 9;break;}return _context2.abrupt("return");case 9:
                 arr = [];
                 res.data.data.list.forEach(function (item) {
                   arr.push(_this2._fomat(item));
@@ -224,11 +239,11 @@ __webpack_require__.r(__webpack_exports__);
                   _this2.newslist[_this2.tabIndex].context = '没有更多数据了';
                 } else {
                   _this2.newslist[_this2.tabIndex].context = '下拉加载更多';
-                }case 12:case "end":return _context2.stop();}}}, _callee2);}))();
+                }return _context2.abrupt("return");case 15:case "end":return _context2.stop();}}}, _callee2);}))();
+
     },
 
     _fomat: function _fomat(item) {
-
       return {
         userid: item.user.id,
         userpic: item.user.userpic,
@@ -239,7 +254,7 @@ __webpack_require__.r(__webpack_exports__);
         type: 'img',
         video: false,
         path: item.path,
-        shar: !!item.share,
+        share: !!item.share,
         titlepic: item.titlepic,
         infonum: {
           index: item.support.length > 0 ? item.support[0].type + 1 : 0,
@@ -257,6 +272,7 @@ __webpack_require__.r(__webpack_exports__);
 
     loadingDate: function loadingDate(index) {// 下拉加载
       if (this.newslist[index].context !== '下拉加载更多') return;
+      this.newslist[index].context = "加载中...";
       this.newslist[this.tabIndex].page++;
       this._getIndexData();
     },

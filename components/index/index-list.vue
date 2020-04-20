@@ -57,7 +57,7 @@
 <script>
 	export default {
 		props:{
-			item:Object,
+			item: Object,
 			index:Number
 		},
 		methods:{

@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var newNav = function newNav() {__webpack_require__.e(/*! require.ensure | components/news/news-nav-bar */ "components/news/news-nav-bar").then((function () {return resolve(__webpack_require__(/*! ../../components/news/news-nav-bar.vue */ 194));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var topicNav = function topicNav() {__webpack_require__.e(/*! require.ensure | components/news/topic-nav */ "components/news/topic-nav").then((function () {return resolve(__webpack_require__(/*! ../../components/news/topic-nav.vue */ 201));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var topicList = function topicList() {__webpack_require__.e(/*! require.ensure | components/news/topic-list */ "components/news/topic-list").then((function () {return resolve(__webpack_require__(/*! ../../components/news/topic-list.vue */ 208));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var newList = function newList() {__webpack_require__.e(/*! require.ensure | components/common/common-list */ "components/common/common-list").then((function () {return resolve(__webpack_require__(/*! ../../components/common/common-list.vue */ 215));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 180));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var newNav = function newNav() {__webpack_require__.e(/*! require.ensure | components/news/news-nav-bar */ "components/news/news-nav-bar").then((function () {return resolve(__webpack_require__(/*! ../../components/news/news-nav-bar.vue */ 194));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var topicNav = function topicNav() {__webpack_require__.e(/*! require.ensure | components/news/topic-nav */ "components/news/topic-nav").then((function () {return resolve(__webpack_require__(/*! ../../components/news/topic-nav.vue */ 201));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var topicList = function topicList() {__webpack_require__.e(/*! require.ensure | components/news/topic-list */ "components/news/topic-list").then((function () {return resolve(__webpack_require__(/*! ../../components/news/topic-list.vue */ 208));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var newList = function newList() {__webpack_require__.e(/*! require.ensure | components/common/common-list */ "components/common/common-list").then((function () {return resolve(__webpack_require__(/*! ../../components/common/common-list.vue */ 215));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 180));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -266,42 +266,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
       topic: {
-        swipers: [
-        { src: '../../static/banner/item1.jpg' },
-        { src: '../../static/banner/item2.jpg' },
-        { src: '../../static/banner/item3.jpg' }],
-
-        nav: [
-        { name: '最新' },
-        { name: '游戏' },
-        { name: '情感' },
-        { name: '打卡' },
-        { name: '故事' },
-        { name: '喜爱' }],
-
-        list: [
-        {
-          titlepic: '../../static/logo.png',
-          title: '#淘宝记录铺#',
-          desc: '120斤到85斤 我的反转人生',
-          totalnum: 50,
-          todaynum: 10 },
-
-        {
-          titlepic: '../../static/logo.png',
-          title: '#淘宝记录铺#',
-          desc: '120斤到85斤 我的反转人生',
-          totalnum: 50,
-          todaynum: 10 },
-
-        {
-          titlepic: '../../static/logo.png',
-          title: '#淘宝记录铺#',
-          desc: '120斤到85斤 我的反转人生',
-          totalnum: 50,
-          todaynum: 10 }] } };
-
-
+        swipers: [],
+        nav: [],
+        list: [] } };
 
 
   },
@@ -309,9 +276,54 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100) - 25;
     this.getHeight = "height: ".concat(height, "px");
+    this._loadData();
   },
 
   methods: {
+    _loadData: function _loadData() {
+      this._getAdvertising();
+      this._getHotClass();
+      this._getHotH();
+    },
+
+    _getAdvertising: function _getAdvertising() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$_this$$http$ge, _yield$_this$$http$ge2, err, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  _this.$http.get('/adsense/0'));case 2:_yield$_this$$http$ge = _context.sent;_yield$_this$$http$ge2 = _slicedToArray(_yield$_this$$http$ge, 2);err = _yield$_this$$http$ge2[0];res = _yield$_this$$http$ge2[1];
+                res.data.data.list.forEach(function (item) {
+                  _this.topic.swipers.push({
+                    src: item.src,
+                    url: item.url });
+
+                });case 7:case "end":return _context.stop();}}}, _callee);}))();
+    },
+
+    _getHotClass: function _getHotClass() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _yield$_this2$$http$g, _yield$_this2$$http$g2, err, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _this2.$http.get('/topicclass'));case 2:_yield$_this2$$http$g = _context2.sent;_yield$_this2$$http$g2 = _slicedToArray(_yield$_this2$$http$g, 2);err = _yield$_this2$$http$g2[0];res = _yield$_this2$$http$g2[1];
+                res.data.data.list.forEach(function (item) {
+                  _this2.topic.nav.push({
+                    id: item.id,
+                    name: item.classname });
+
+                });case 7:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
+
+    _getHotH: function _getHotH() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var _yield$_this3$$http$g, _yield$_this3$$http$g2, err, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+                  _this3.$http.get('/hottopic'));case 2:_yield$_this3$$http$g = _context3.sent;_yield$_this3$$http$g2 = _slicedToArray(_yield$_this3$$http$g, 2);err = _yield$_this3$$http$g2[0];res = _yield$_this3$$http$g2[1];
+                res.data.data.list.forEach(function (item) {
+                  _this3.topic.list.push({
+                    id: item.id,
+                    title: item.title,
+                    titlepic: item.titlepic,
+                    desc: item.desc,
+                    totalnum: item.post_count,
+                    todaynum: item.todaypost_count });
+
+                });case 7:case "end":return _context3.stop();}}}, _callee3);}))();
+    },
+
+    goSearch: function goSearch() {// 跳转搜索页
+      uni.navigateTo({ url: '../search/search?searchType=topic' });
+    },
+
     openAdd: function openAdd() {
       uni.navigateTo({ url: '../add-input/add-input' });
     },
@@ -325,11 +337,11 @@ __webpack_require__.r(__webpack_exports__);
       // 拉去数据
     },
 
-    loadingDate: function loadingDate() {var _this = this;
+    loadingDate: function loadingDate() {var _this4 = this;
       // 下拉加载
       if (this.guangzhu.context !== '下拉加载更多') return;
       setTimeout(function () {
-        _this.guangzhu.context = '正在加载中.......';
+        _this4.guangzhu.context = '正在加载中.......';
       }, 1000);
 
       this.guangzhu.context = '没有更多数据';

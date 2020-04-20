@@ -23,6 +23,10 @@
 						</view>
 						<loadMore :loadtext='items.context' />
 					</template>
+					<template v-else-if="!items.first">
+						<view style="font-size: 50upx;font-weight: bold;color: #CCCCCC;
+						padding-top: 100upx;" class="u-f-ajc">Loading ...</view>
+					</template>
 					<template v-else>
 						<noThing />
 					</template>
@@ -42,128 +46,84 @@
 			return {
 				getHeight: `height: ${ 500 }px`, // 默认高度
 				tabIndex: 0, // 默认显示第一个
-				tabBars: [
-					{ name: '关注', id: 'guanzhu' },
-					{ name: '推荐', id: 'tuijian' },
-					{ name: '体育', id: 'tiyu' },
-					{ name: '热点', id: 'redian' },
-					{ name: '财经', id: 'caijing' },
-					{ name: '娱乐', id: 'yule' },
-				],
-				newslist: [
-					{
-						context: '下拉加载更多',
-						lists:[
-							{
-								titlepic: '../../static/logo.png',
-								title: '#淘宝记录铺#',
-								desc: '120斤到85斤 我的反转人生',
-								totalnum: 50,
-								todaynum: 10
-							},
-							{
-								titlepic: '../../static/logo.png',
-								title: '#淘宝记录铺#',
-								desc: '120斤到85斤 我的反转人生',
-								totalnum: 50,
-								todaynum: 10
-							},
-							{
-								titlepic: '../../static/logo.png',
-								title: '#淘宝记录铺#',
-								desc: '120斤到85斤 我的反转人生',
-								totalnum: 50,
-								todaynum: 10
-							},
-							{
-								titlepic: '../../static/logo.png',
-								title: '#淘宝记录铺#',
-								desc: '120斤到85斤 我的反转人生',
-								totalnum: 50,
-								todaynum: 10
-							},
-							{
-								titlepic: '../../static/logo.png',
-								title: '#淘宝记录铺#',
-								desc: '120斤到85斤 我的反转人生',
-								totalnum: 50,
-								todaynum: 10
-							},{
-								titlepic: '../../static/logo.png',
-								title: '#淘宝记录铺#',
-								desc: '120斤到85斤 我的反转人生',
-								totalnum: 50,
-								todaynum: 10
-							}
-						]
-					},
-					{
-						context: '下拉加载更多',
-						lists:[]
-					},
-					{
-						context: '下拉加载更多',
-						lists:[]
-					},
-					{
-						context: '下拉加载更多',
-						lists:[
-							{
-								titlepic: '../../static/logo.png',
-								title: '#淘宝记录铺#',
-								desc: '120斤到85斤 我的反转人生',
-								totalnum: 50,
-								todaynum: 10
-							},
-							{
-								titlepic: '../../static/logo.png',
-								title: '#淘宝记录铺#',
-								desc: '120斤到85斤 我的反转人生',
-								totalnum: 50,
-								todaynum: 10
-							},
-							{
-								titlepic: '../../static/logo.png',
-								title: '#淘宝记录铺#',
-								desc: '120斤到85斤 我的反转人生',
-								totalnum: 50,
-								todaynum: 10
-							}
-						]
-					},
-					{
-						context: '下拉加载更多',
-						lists:[]
-					},
-					{
-						context: '下拉加载更多',
-						lists:[]
-					}	 
-				]
+				tabBars: [],
+				newslist: []
 			}
 		},
 		
 		created() {
 			let height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100)
 			this.getHeight = `height: ${ height }px`
+			this._getLoadData()
 		},
 		
 		methods: {
+			async _getLoadData() { // 请求数据
+				const [err, res] = await this.$http.get('/topicclass')
+				let arr = []
+				res.data.data.list.forEach(item => {
+					this.tabBars.push({
+						id: item.id,
+						name: item.classname
+					})
+					arr.push({ // 分类对应的对象数
+						context: '下拉加载更多',
+						lists: [],
+						page: 1,
+						first: false
+					})
+				})
+				this.newslist = arr
+				this.tabBars.length > 0 && this._getIndexData()
+			},
+			
+			async _getIndexData() {
+				const [err, res] = await this.$http.get(`/topicclass/${ this.tabBars[this.tabIndex].id }/topic/${ this.newslist[this.tabIndex].page }`)
+				let error = this.$http.errorCheck(err,res,()=>{
+					this.newslist[currentIndex].loadtext="上拉加载更多";
+				},()=>{
+					this.newslist[currentIndex].loadtext="上拉加载更多";
+				});
+				if (!error) return;
+				let arr = []
+				res.data.data.list.forEach(item => {
+					arr.push(this._fomat(item))
+				})
+				this.newslist[this.tabIndex].lists = this.newslist[this.tabIndex].page > 1 ? this.newslist[this.tabIndex].lists.concat(arr) : arr
+				this.newslist[this.tabIndex].first = true
+				if(res.data.data.list.length < 10) {
+					this.newslist[this.tabIndex].context = '没有更多数据了'
+				} else {
+					this.newslist[this.tabIndex].context = '下拉加载更多'
+				}
+				return
+			},
+			
+			_fomat(item) {
+				return {
+					id: item.id,
+					title: item.title,
+					titlepic: item.titlepic,
+					desc: item.desc,
+					totalnum: item.post_count,
+					todaynum: item.todaypost_count
+				}
+			},
+			
 			tabtap(index) { 
 				this.tabIndex = index
 			},
 			
 			loadingDate(index) { // 下拉加载
 				if(this.newslist[index].context !== '下拉加载更多') return
-				setTimeout(() => {
-					this.newslist[index].context = '正在加载中.......'
-				}, 1000)
-				
-				this.newslist[index].context = '没有更多数据'
+				this.newslist[index].context="加载中...";
+				this.newslist[this.tabIndex].page++
+				this._getIndexData()
 			},
 			
 			tabChange(e) { // 改变显示索引
 				this.tabIndex = e.detail.current
+				this._getIndexData()
 			}
 		},
 		

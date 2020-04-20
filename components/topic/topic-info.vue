@@ -7,7 +7,7 @@
 				<view>{{ topicInfo.title }}</view>
 			</view>
 			<view class="dongtai u-f-ac">
-				<view>动态 {{ topicInfo.totlanum }}</view>
+				<view>动态 {{ topicInfo.totalnum }}</view>
 				<view>今日 {{ topicInfo.todaynum }}</view>
 			</view>
 			<view class="topic-introduction">{{ topicInfo.desc }}</view>

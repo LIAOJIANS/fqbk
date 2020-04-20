@@ -114,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var tagSexAge = function tagSexAge() {__webpack_require__.e(/*! require.ensure | components/common/tag-sex-age */ "components/common/tag-sex-age").then((function () {return resolve(__webpack_require__(/*! ../common/tag-sex-age.vue */ 393));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var tagSexAge = function tagSexAge() {__webpack_require__.e(/*! require.ensure | components/common/tag-sex-age */ "components/common/tag-sex-age").then((function () {return resolve(__webpack_require__(/*! ../common/tag-sex-age.vue */ 393));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -180,9 +180,6 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     item: Object },
 
-  created: function created() {
-    console.log(this.item);
-  },
   computed: {
     getSex: function getSex() {
       return this.item.sex;
@@ -197,59 +194,58 @@ __webpack_require__.r(__webpack_exports__);
         url: '../../pages/user-space/user-space?userid=' + this.item.userid });
 
     },
-    // async guanzhu(){
-    // 	try{
-    // 		let [err,res] = await this.$http.post('/follow',{
-    // 			follow_id:this.item.userid
-    // 		},{
-    // 			token:true,
-    // 			checkToken:true,
-    // 			checkAuth:true
-    // 		});
-    // 		// 错误处理
-    // 		if (!this.$http.errorCheck(err,res)) return;
-    // 		// 通知首页修改数据
-    // 		uni.showToast({ title: '关注成功' });
-    // 		let resdata = {
-    // 		 	type:"guanzhu",
-    // 		 	userid:this.item.userid,
-    // 		 	data:true
-    // 		};
-    // 		// 通知父组件
-    // 		this.$emit('changeevent',resdata);
-    // 		// 全局通知
-    // 		uni.$emit('updateData',resdata);
-    // 	}catch(e){ return; }
-    // },
+    guanzhu: function guanzhu() {
+      // try{
+      // 	let [err,res] = await this.$http.post('/follow',{
+      // 		follow_id:this.item.userid
+      // 	},{
+      // 		token:true,
+      // 		checkToken:true,
+      // 		checkAuth:true
+      // 	});
+      // 	// 错误处理
+      // 	if (!this.$http.errorCheck(err,res)) return;
+      // 	// 通知首页修改数据
+      // 	uni.showToast({ title: '关注成功' });
+      // 	let resdata = {
+      // 	 	type:"guanzhu",
+      // 	 	userid:this.item.userid,
+      // 	 	data:true
+      // 	};
+      // 	// 通知父组件
+      // 	this.$emit('changeevent',resdata);
+      // 	// 全局通知
+      // 	uni.$emit('updateData',resdata);
+      // }catch(e){ return; }
+      return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:case "end":return _context.stop();}}}, _callee);}))();},
     imgdetail: function imgdetail(index) {
       uni.previewImage({
         current: index,
         urls: this.item.morepic });
 
-    }
-    // async caozuo(type){
-    // 	let index = (type === 'ding') ? 1 : 2; // 当前操作
-    // 	let [err,res] = await this.$http.post('/support',{
-    // 		post_id:this.item.id,
-    // 		type:index-1
-    // 	},{
-    // 		token:true,
-    // 		checkToken:true,
-    // 		checkAuth:true
-    // 	});
-    // 	if (!this.$http.errorCheck(err,res)) return;
-    // 	uni.showToast({ title: "顶成功" });
-    // 	// 通知父组件
-    // 	let resdata = {
-    // 		type:"support",
-    // 		post_id:this.item.id,
-    // 		do:type
-    // 	};
-    // 	this.$emit('changeevent',resdata);
-    // 	// 通知全局
-    // 	return uni.$emit("updateData",resdata);
-    // },
-  } };exports.default = _default;
+    },
+    caozuo: function caozuo(type) {
+      // let index = (type === 'ding') ? 1 : 2; // 当前操作
+      // let [err,res] = await this.$http.post('/support',{
+      // 	post_id:this.item.id,
+      // 	type:index-1
+      // },{
+      // 	token:true,
+      // 	checkToken:true,
+      // 	checkAuth:true
+      // });
+      // if (!this.$http.errorCheck(err,res)) return;
+      // uni.showToast({ title: "顶成功" });
+      // // 通知父组件
+      // let resdata = {
+      // 	type:"support",
+      // 	post_id:this.item.id,
+      // 	do:type
+      // };
+      // this.$emit('changeevent',resdata);
+      // // 通知全局
+      // return uni.$emit("updateData",resdata);
+      return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:case "end":return _context2.stop();}}}, _callee2);}))();} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

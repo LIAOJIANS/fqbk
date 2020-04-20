@@ -8,6 +8,8 @@ import config from './common/config.js'
 Vue.prototype.config = config
 import lib from './common/lib.js'
 Vue.prototype.lib = lib
+import user from 'common/user.js'
+Vue.prototype.user = user
 
 // 引入全局
 import $http from './common/request.js'
