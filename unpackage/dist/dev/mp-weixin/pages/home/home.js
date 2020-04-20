@@ -129,7 +129,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var otherLogin = function otherLogin() {Promise.all(/*! require.ensure | components/home/other-login */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/home/other-login")]).then((function () {return resolve(__webpack_require__(/*! ../../components/home/other-login.vue */ 243));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var homeInfo = function homeInfo() {__webpack_require__.e(/*! require.ensure | components/home/home-info */ "components/home/home-info").then((function () {return resolve(__webpack_require__(/*! ../../components/home/home-info.vue */ 250));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var homeData = function homeData() {__webpack_require__.e(/*! require.ensure | components/home/home-data */ "components/home/home-data").then((function () {return resolve(__webpack_require__(/*! ../../components/home/home-data.vue */ 257));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var homeListItem = function homeListItem() {Promise.all(/*! require.ensure | components/home/home-list-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/home/home-list-item")]).then((function () {return resolve(__webpack_require__(/*! ../../components/home/home-list-item.vue */ 264));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var otherLogin = function otherLogin() {Promise.all(/*! require.ensure | components/home/other-login */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/home/other-login")]).then((function () {return resolve(__webpack_require__(/*! ../../components/home/other-login.vue */ 243));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var homeInfo = function homeInfo() {__webpack_require__.e(/*! require.ensure | components/home/home-info */ "components/home/home-info").then((function () {return resolve(__webpack_require__(/*! ../../components/home/home-info.vue */ 250));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var homeData = function homeData() {__webpack_require__.e(/*! require.ensure | components/home/home-data */ "components/home/home-data").then((function () {return resolve(__webpack_require__(/*! ../../components/home/home-data.vue */ 257));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var homeListItem = function homeListItem() {Promise.all(/*! require.ensure | components/home/home-list-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/home/home-list-item")]).then((function () {return resolve(__webpack_require__(/*! ../../components/home/home-list-item.vue */ 264));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -183,14 +183,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
   },
-  onLoad: function onLoad() {
-    this.getData();
-  },
+
   components: {
     otherLogin: otherLogin,
     homeInfo: homeInfo,
     homeData: homeData,
     homeListItem: homeListItem },
+
+
+  onShow: function onShow() {
+    this.isULogin();
+  },
 
   onNavigationBarButtonTap: function onNavigationBarButtonTap(e) {
     if (e.index === 0) {
@@ -200,13 +203,30 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    // isLogin() {
+    isULogin: function isULogin() {
+      if (!this.user.token) {
+        this.isLogin = false;
+        this.homeinfo = {
+          userpic: "",
+          username: "",
+          totalnum: 0,
+          todaynum: 0 };
 
-    // },
+        return;
+      }
+      this.format();
+    },
 
-    getData: function getData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$_this$$http$ge, _yield$_this$$http$ge2, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                  _this.$http.get('/post/1'));case 2:_yield$_this$$http$ge = _context.sent;_yield$_this$$http$ge2 = _slicedToArray(_yield$_this$$http$ge, 1);res = _yield$_this$$http$ge2[0];
-                console.log(res);case 6:case "end":return _context.stop();}}}, _callee);}))();
+    format: function format() {
+      this.homeinfo.userpic = this.user.userinfo.userpic;
+      this.homeinfo.username = this.user.userinfo.username;
+      // this.homeinfo.totalnum = this.user.counts.post_count || 0
+      // this.homeinfo.todaynum = this.user.counts.today_posts_count || 0
+      // this.homedata[0].num =  this.user.counts.post_count || 0
+      // this.homedata[1].num =  this.user.counts.post_count || 0
+      // this.homedata[2].num =  this.user.counts.comments_count || 0
+      // this.homedata[3].num =  this.user.counts.withfen_count || 0
+      this.isLogin = true;
     },
 
     openLogin: function openLogin() {

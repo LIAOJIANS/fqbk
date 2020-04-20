@@ -79,6 +79,7 @@ export default{
 	// 验证用户是否登录
 	checkToken(checkToken){
 		if (checkToken && !User.token) {
+			console.log(1)
 			uni.showToast({ title: '请先登录', icon:"none" })
 			uni.navigateTo({
 				url: '/pages/login/login'

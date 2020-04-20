@@ -47,8 +47,11 @@ export default {
 				break;
 		}
 	},
-	// 登录
-	async login(options ={}){
+	/* 
+		登录
+		@param { object } 登录的配置对象
+	 */
+	async login(options = {}){
 		uni.showLoading({ title: '登录中...', mask: true });
 		// 请求登录
 		let [err,res] = await $http.post(options.url,options.data);
@@ -78,6 +81,7 @@ export default {
 		}
 		return true;
 	},
+	
 	// 退出登录
 	async logout(showToast = true){
 		// 退出登录

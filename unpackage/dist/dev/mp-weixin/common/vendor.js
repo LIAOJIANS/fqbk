@@ -1906,6 +1906,7 @@ var _user = _interopRequireDefault(__webpack_require__(/*! ./user.js */ 18));fun
   // 验证用户是否登录
   checkToken: function checkToken(_checkToken) {
     if (_checkToken && !_user.default.token) {
+      console.log(1);
       uni.showToast({ title: '请先登录', icon: "none" });
       uni.navigateTo({
         url: '/pages/login/login' });
@@ -1986,7 +1987,10 @@ var _chat = _interopRequireDefault(__webpack_require__(/*! ./chat.js */ 22));fun
         break;}
 
   },
-  // 登录
+  /* 
+     	登录
+     	@param { object } 登录的配置对象
+      */
   login: function login() {var _arguments = arguments,_this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var options, _yield$$http$post, _yield$$http$post2, err, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:options = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : {};
               uni.showLoading({ title: '登录中...', mask: true });
               // 请求登录
@@ -2017,6 +2021,7 @@ var _chat = _interopRequireDefault(__webpack_require__(/*! ./chat.js */ 22));fun
               }return _context.abrupt("return",
               true);case 22:case "end":return _context.stop();}}}, _callee);}))();
   },
+
   // 退出登录
   logout: function logout() {var _arguments2 = arguments,_this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var showToast;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:showToast = _arguments2.length > 0 && _arguments2[0] !== undefined ? _arguments2[0] : true;_context2.next = 3;return (
 

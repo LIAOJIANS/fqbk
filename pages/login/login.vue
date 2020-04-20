@@ -23,7 +23,7 @@
 					<view class="yzm" @click="countDown">{{ countVal }}</view>
 				</view>
 			</template>
-			<button type="primary" class="user-set-btn" :disabled='isOk' :class="[ isOk ? 'user-set-btn-disable' : '']">登录</button>
+			<button type="primary" class="user-set-btn" :disabled='isOk' :class="[ isOk ? 'user-set-btn-disable' : '']" @click="submit">登录</button>
 			<view class="login-type u-f-ajc" @click="loginType">
 				{{ isPassWord ? '验证码登录' : '账号密码登录' }}
 				<view class="icon iconfont icon-jinru"></view>
@@ -109,6 +109,26 @@
 				if(( username && password  ) || ( phone && yzm )) this.isOk = false
 			},
 			
+			submit() { // 登录提交
+				if(this.isPassWord) { // 密码登录
+					return this.user.login({
+						url: '/user/login',
+						data: {
+							username: this.username,
+							password: this.password
+						}
+					})
+				}
+				if(!this.phone || !/^1\d{10}$/.test(this.phone)) return uni.showToast({ title: '手机号为空，或者不正确', icon: 'none' })
+				return this.user.login({
+					url: '/user/phonelogin',
+					data: {
+						phone: this.phone,
+						code: this.yzm
+					}
+				})
+			},
+			
 			back() {
 				uni.navigateBack({
 					delta: 1
@@ -128,9 +148,14 @@
 				this.yzm = ''
 			},
 			
-			countDown() { //  倒计时发送验证码
+			async countDown() { //  倒计时发送验证码
 				if(!this.phone || !/^1\d{10}$/.test(this.phone)) return uni.showToast({ title: '手机号为空，或者不正确', icon: 'none' })
 				if(this.countVal !== '获取验证码') return uni.showToast({ title: '正在发送，请勿重复点击' })
+				let [err, res] = await this.$http.post('/user/sendcode', { // 请求验证码
+					phone: this.phone
+				})
+				if(res.data.errorCode !== 30005) return uni.showToast({ title: res.data.msg, icon: 'none' })
+				uni.showToast({ title: res.data.msg })
 				let timer = 60
 				this.down(timer)
 			},

@@ -52,15 +52,18 @@
 				]
 			}
 		},
-		onLoad() {
-			this.getData()
-		},
+		
 		components: {
 			otherLogin,
 			homeInfo,
 			homeData,
 			homeListItem
 		},
+		
+		onShow() {
+			this.isULogin()
+		},
+		
 		onNavigationBarButtonTap(e) {
 			if(e.index === 0) {
 				uni.navigateTo({
@@ -69,13 +72,30 @@
 			}
 		},
 		methods: {
-			// isLogin() {
-				
-			// },
+			isULogin() {
+				if(!this.user.token) {
+					this.isLogin = false
+					this.homeinfo = {
+						userpic:"",
+						username:"",
+						totalnum:0,
+						todaynum:0
+					}
+					return
+				}
+				this.format()
+			},
 			
-			async getData() {
-				const [res] = await this.$http.get('/post/1')
-				console.log(res)
+			format() {
+				this.homeinfo.userpic = this.user.userinfo.userpic
+				this.homeinfo.username = this.user.userinfo.username
+				// this.homeinfo.totalnum = this.user.counts.post_count || 0
+				// this.homeinfo.todaynum = this.user.counts.today_posts_count || 0
+				// this.homedata[0].num =  this.user.counts.post_count || 0
+				// this.homedata[1].num =  this.user.counts.post_count || 0
+				// this.homedata[2].num =  this.user.counts.comments_count || 0
+				// this.homedata[3].num =  this.user.counts.withfen_count || 0
+				this.isLogin = true
 			},
 			
 			openLogin() {
