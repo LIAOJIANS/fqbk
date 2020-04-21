@@ -199,17 +199,17 @@ var _default =
         }
         console.log(res2.data.data);
         // 登录成功 保存状态
-        _this2.User.token = res2.data.data.token;
-        _this2.User.userinfo = _this2.User.__formatUserinfo(res2.data.data);
+        _this2.user.token = res2.data.data.token;
+        _this2.user.userinfo = _this2.user.__formatUserinfo(res2.data.data);
         // 本地存储
-        uni.setStorageSync("userinfo", _this2.User.userinfo);
-        uni.setStorageSync("token", _this2.User.token);
+        uni.setStorageSync("userinfo", _this2.user.userinfo);
+        uni.setStorageSync("token", _this2.user.token);
         // 获取用户相关统计
-        if (_this2.User.userinfo.id) {
-          _this2.User.getCounts();
+        if (_this2.user.userinfo.id) {
+          _this2.user.getCounts();
         }
         // 连接socket
-        if (_this2.User.userinfo.id) {
+        if (_this2.user.userinfo.id) {
           _this2.$chat.Open();
         }
         // 成功提示
@@ -318,7 +318,7 @@ var _default =
               // app登录
 
               console.log(JSON.stringify(infoRes.userInfo));
-              var data = _this4.User.__formatOtherLogin(provider.id, Object.assign(infoRes, res));
+              var data = _this4.user.__formatOtherLogin(provider.id, Object.assign(infoRes, res));
               _this4.loginEvent(data);
 
             } });
@@ -336,7 +336,7 @@ var _default =
 
     },
     loginEvent: function loginEvent(data) {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
-                  _this5.User.login({
+                  _this5.user.login({
                     url: '/user/otherlogin',
                     data: data,
                     Noback: _this5.noback }));case 2:res = _context.sent;

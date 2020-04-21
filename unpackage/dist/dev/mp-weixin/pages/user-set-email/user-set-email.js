@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -149,10 +149,14 @@ var _default =
 {
   data: function data() {
     return {
+      hasEmail: false,
       isOk: true,
       email: '',
       password: '' };
 
+  },
+  onLoad: function onLoad(e) {
+    this.hasEmail = !!(e.email && e.email !== "false");
   },
   watch: {
     email: function email() {
@@ -176,21 +180,29 @@ var _default =
       return /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/.test(email);
     },
 
-    submit: function submit() {var
-      email = this.email,password = this.password;
+    submit: function submit() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var email, password, _yield$_this$$http$po, _yield$_this$$http$po2, err, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                email = _this.email, password = _this.password;if (
+                _this._isEmail(email)) {_context.next = 3;break;}return _context.abrupt("return", uni.showToast({ title: '请输入正确的邮箱' }));case 3:_context.next = 5;return (
+                  _this.$http.post('/user/bindemail', {
+                    email: _this.email },
+                  {
+                    token: true,
+                    checkToken: true }));case 5:_yield$_this$$http$po = _context.sent;_yield$_this$$http$po2 = _slicedToArray(_yield$_this$$http$po, 2);err = _yield$_this$$http$po2[0];res = _yield$_this$$http$po2[1];if (
 
-      if (!this._isEmail(email)) return uni.showToast({ title: '请输入正确的邮箱' });
-      uni.showLoading({
-        title: '正在提交',
-        mask: false });
+                _this.$http.errorCheck(err, res)) {_context.next = 11;break;}return _context.abrupt("return",
+                _this.loading = _this.disabled = false);case 11:
 
-      setTimeout(function () {
-        uni.hideLoading();
-        uni.showToast({
-          title: '提交成功',
-          icon: 'success' });
+                _this.isbind = true;
+                _this.loading = _this.disabled = false;
+                // 修改状态，缓存
+                _this.User.userinfo.email = _this.email;
+                uni.setStorageSync("userinfo", _this.user.userinfo);return _context.abrupt("return",
+                uni.showToast({
+                  title: '绑定成功！',
+                  success: function success() {
+                    uni.navigateBack({ delta: 1 });
+                  } }));case 16:case "end":return _context.stop();}}}, _callee);}))();
 
-      }, 1000);
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

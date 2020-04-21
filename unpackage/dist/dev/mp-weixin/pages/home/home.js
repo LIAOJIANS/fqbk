@@ -212,6 +212,10 @@ __webpack_require__.r(__webpack_exports__);
           totalnum: 0,
           todaynum: 0 };
 
+        this.homedata[0].num = 0;
+        this.homedata[1].num = 0;
+        this.homedata[2].num = 0;
+        this.homedata[3].num = 0;
         return;
       }
       this.format();
@@ -220,12 +224,12 @@ __webpack_require__.r(__webpack_exports__);
     format: function format() {
       this.homeinfo.userpic = this.user.userinfo.userpic;
       this.homeinfo.username = this.user.userinfo.username;
-      // this.homeinfo.totalnum = this.user.counts.post_count || 0
-      // this.homeinfo.todaynum = this.user.counts.today_posts_count || 0
-      // this.homedata[0].num =  this.user.counts.post_count || 0
-      // this.homedata[1].num =  this.user.counts.post_count || 0
-      // this.homedata[2].num =  this.user.counts.comments_count || 0
-      // this.homedata[3].num =  this.user.counts.withfen_count || 0
+      this.homeinfo.totalnum = this.user.counts.post_count || 0;
+      this.homeinfo.todaynum = this.user.counts.today_posts_count || 0;
+      this.homedata[0].num = this.user.counts.post_count || 0;
+      this.homedata[1].num = this.user.counts.post_count || 0;
+      this.homedata[2].num = this.user.counts.comments_count || 0;
+      this.homedata[3].num = this.user.counts.withfen_count || 0;
       this.isLogin = true;
     },
 

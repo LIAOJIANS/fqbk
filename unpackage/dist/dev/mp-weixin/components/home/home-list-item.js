@@ -135,16 +135,16 @@ var _default =
     index: Number },
 
   methods: {
-    clickevent: function clickevent() {
+    clickevent: function clickevent() {var _this = this;
       switch (this.item.clicktype) {
         case "navigateTo":
           if (this.item.url) {
             var option = { url: this.item.url };
             if (this.item.auth) {
               if (this.item.NoCheck) {
-                return this.User.navigate(option, true);
+                return this.user.navigate(option, true);
               }
-              return this.User.navigate(option);
+              return this.user.navigate(option);
             }
             uni.navigateTo(option);
           }
@@ -161,13 +161,13 @@ var _default =
               if (res.confirm) {
                 uni.clearStorage();
                 uni.showToast({ title: '清除缓存成功！' });
-                // this.User.logout(false)
+                _this.user.logout(false);
               }
             } });
 
           break;
         case "bind":
-          if (this.User.userbind[this.item.provider]) return;
+          if (this.user.userbind[this.item.provider]) return;
           this.bindother();
           break;
         case "nothing":
@@ -179,7 +179,8 @@ var _default =
 
     },
     // 绑定第三方登录
-    bindother: function bindother() {var _this = this;
+    bindother: function bindother() {var _this2 = this;
+      console.log(this.item.provider);
       uni.login({
         provider: this.item.provider,
 
@@ -187,10 +188,10 @@ var _default =
 
         success: function success(res) {
           uni.getUserInfo({
-            provider: _this.item.provider,
+            provider: _this2.item.provider,
             success: function success(infoRes) {
               var options = Object.assign(infoRes, res);
-              _this.bindEvent(_this.User.__formatOtherLogin(_this.item.provider, options));
+              _this2.bindEvent(_this2.user.__formatOtherLogin(_this2.item.provider, options));
             } });
 
         },
@@ -200,22 +201,22 @@ var _default =
         } });
 
     },
-    bindEvent: function bindEvent(data) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$_this2$$http$p, _yield$_this2$$http$p2, err, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    bindEvent: function bindEvent(data) {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$_this3$$http$p, _yield$_this3$$http$p2, err, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 uni.showLoading({ title: '绑定中...', mask: false });_context.next = 3;return (
-                  _this2.$http.post("/user/bindother", data, {
+                  _this3.$http.post("/user/bindother", data, {
                     token: true,
-                    checkToken: true }));case 3:_yield$_this2$$http$p = _context.sent;_yield$_this2$$http$p2 = _slicedToArray(_yield$_this2$$http$p, 2);err = _yield$_this2$$http$p2[0];res = _yield$_this2$$http$p2[1];if (
+                    checkToken: true }));case 3:_yield$_this3$$http$p = _context.sent;_yield$_this3$$http$p2 = _slicedToArray(_yield$_this3$$http$p, 2);err = _yield$_this3$$http$p2[0];res = _yield$_this3$$http$p2[1];if (
 
-                _this2.$http.errorCheck(err, res)) {_context.next = 9;break;}return _context.abrupt("return", uni.hideLoading());case 9:
+                _this3.$http.errorCheck(err, res)) {_context.next = 9;break;}return _context.abrupt("return", uni.hideLoading());case 9:
                 // 绑定成功
                 uni.hideLoading();
                 uni.showToast({ title: '绑定成功！' });
                 // 修改状态，缓存
-                _this2.User.userbind[_this2.item.provider] = {
+                _this3.user.userbind[_this3.item.provider] = {
                   nickname: data.nickName };
 
-                uni.setStorageSync("userbind", _this2.User.userbind);
-                _this2.$emit('updateuserbind');case 14:case "end":return _context.stop();}}}, _callee);}))();
+                uni.setStorageSync("userbind", _this3.user.userbind);
+                _this3.$emit('updateuserbind');case 14:case "end":return _context.stop();}}}, _callee);}))();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

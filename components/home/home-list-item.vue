@@ -8,7 +8,7 @@
 			:class="['icon-'+item.icon]"></view>
 			{{item.name}}
 		</view>
-		<view class="icon iconfont" :class="{'icon-jinru':!item.data}">{{item.data || ''}}</view>
+		<view class="icon iconfont" :class="{'icon-jinru':!item.data}">{{ item.data || '' }}</view>
 	</view>
 </template>
 
@@ -26,9 +26,9 @@
 						let option = { url:this.item.url};
 						if (this.item.auth) {
 							if (this.item.NoCheck) {
-								return this.User.navigate(option,true);
+								return this.user.navigate(option,true);
 							}
-							return this.User.navigate(option);
+							return this.user.navigate(option);
 						}
 						uni.navigateTo(option);
 					}
@@ -45,13 +45,13 @@
 							if(res.confirm){
 								uni.clearStorage();
 								uni.showToast({ title: '清除缓存成功！'});
-								// this.User.logout(false)
+								this.user.logout(false)
 							}
 						},
 					});
 						break;
 					case "bind":
-					if (this.User.userbind[this.item.provider]) return;
+					if (this.user.userbind[this.item.provider]) return;
 					this.bindother();
 						break;
 					case "nothing":
@@ -64,6 +64,7 @@
 			},
 			// 绑定第三方登录
 			bindother(){
+				console.log( this.item.provider)
 				uni.login({
 					provider: this.item.provider,
 					// #ifdef MP-ALIPAY
@@ -71,10 +72,10 @@
 					// #endif
 					success: (res) => {
 						uni.getUserInfo({
-						  provider:this.item.provider,
+						  provider: this.item.provider,
 						  success: (infoRes)=> {
 							let options = Object.assign(infoRes,res);
-							this.bindEvent(this.User.__formatOtherLogin(this.item.provider,options));
+							this.bindEvent(this.user.__formatOtherLogin(this.item.provider,options));
 						  }
 						});
 					},
@@ -95,10 +96,10 @@
 				uni.hideLoading();
 				uni.showToast({ title: '绑定成功！' });
 				// 修改状态，缓存
-				this.User.userbind[this.item.provider] = {
+				this.user.userbind[this.item.provider] = {
 					nickname:data.nickName
 				}
-				uni.setStorageSync("userbind", this.User.userbind);
+				uni.setStorageSync("userbind", this.user.userbind);
 				this.$emit('updateuserbind');
 			}
 		}

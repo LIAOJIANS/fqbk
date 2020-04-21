@@ -131,129 +131,165 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var sexArr = ['不限', '男', '女'];
-var qgArr = ['秘密', '未婚', '已婚'];
-var job = ['秘密', '前端工程师', '切图仔'];var mpvueCityPicker = function mpvueCityPicker() {Promise.all(/*! require.ensure | components/mpvue-citypicker/mpvueCityPicker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/mpvue-citypicker/mpvueCityPicker")]).then((function () {return resolve(__webpack_require__(/*! ../../components/mpvue-citypicker/mpvueCityPicker.vue */ 341));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-{
-  data: function data() {
-    return {
-      userpic: '../../static/shou.jpg',
-      username: '彭昕杰的爸爸',
-      sex: '男',
-      qg: '已婚',
-      job: "切图仔",
-      birthday: "",
-      cityPickerValueDefault: [0, 0, 1],
-      pickerText: '' // 三级联动选出的数据
-    };
-  },
-
-  components: {
-    mpvueCityPicker: mpvueCityPicker },
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));
 
 
-  onBackPress: function onBackPress() {
-    if (this.$refs.mpvueCityPicker.showPicker) {
-      this.$refs.mpvueCityPicker.pickerCancel();
-      return true;
-    }
-  },
-
-  onUnload: function onUnload() {
-    if (this.$refs.mpvueCityPicker.showPicker) {
-      this.$refs.mpvueCityPicker.pickerCancel();
-    }
-  },
-
-  computed: {
-    startDate: function startDate() {
-      return this.getDate('start');
-    },
-
-    endDate: function endDate() {
-      return this.getDate('end');
-    } },
 
 
-  methods: {
-    showMulLinkageThreePicker: function showMulLinkageThreePicker() {// 三级联动
-      this.$refs.mpvueCityPicker.show();
-    },
 
-    onConfirm: function onConfirm(e) {// 联动后触发的事件
-      this.pickerText = e.label;
-    },
 
-    changeImg: function changeImg() {var _this = this; // 更换头像
-      uni.chooseImage({
-        count: 1,
-        sizeType: ['compressed'],
-        success: function success(res) {
-          _this.userpic = res.tempFilePaths;
-        } });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _time = _interopRequireDefault(__webpack_require__(/*! ../../common/time.js */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var sexArr = ['不限', '男', '女'];var qgArr = ['秘密', '未婚', '已婚'];var jobArr = ['秘密', '前端工程师', '切图仔'];var mpvueCityPicker = function mpvueCityPicker() {Promise.all(/*! require.ensure | components/mpvue-citypicker/mpvueCityPicker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/mpvue-citypicker/mpvueCityPicker")]).then((function () {return resolve(__webpack_require__(/*! ../../components/mpvue-citypicker/mpvueCityPicker.vue */ 341));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { sexArr: sexArr, qgArr: qgArr, userpic: '', username: '', sex: 0, qg: 0, job: "", birthday: "", cityPickerValueDefault: [0, 0, 1], pickerText: '' // 三级联动选出的数据
+    };}, components: { mpvueCityPicker: mpvueCityPicker }, onBackPress: function onBackPress() {if (this.$refs.mpvueCityPicker.showPicker) {this.$refs.mpvueCityPicker.pickerCancel();return true;}}, onUnload: function onUnload() {if (this.$refs.mpvueCityPicker.showPicker) {this.$refs.mpvueCityPicker.pickerCancel();}}, created: function created() {this.userpic = this.user.userinfo.userpic;this.username = this.user.userinfo.username;this.sex = this.user.userinfo.userinfo.sex || 0;this.qg = this.user.userinfo.userinfo.qg || 0;this.job = this.user.userinfo.userinfo.job || "请填写";this.birthday = this.user.userinfo.userinfo.birthday || "请填写";this.pickerText = this.user.userinfo.userinfo.path || "请填写";}, computed: { startDate: function startDate() {return this.getDate('start');}, endDate: function endDate() {return this.getDate('end');} }, methods: { showMulLinkageThreePicker: function showMulLinkageThreePicker() {// 三级联动
+      this.$refs.mpvueCityPicker.show();}, onConfirm: function onConfirm(e) {// 联动后触发的事件
+      this.pickerText = e.label;}, changeImg: function changeImg() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$uni$chooseImag, _yield$uni$chooseImag2, err, res, _yield$_this$$http$up, _yield$_this$$http$up2, err1, res1, data;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0: // 更换头像
+                console.log(1);_context.next = 3;return uni.chooseImage({
+                  count: 1,
+                  sizeType: ['compressed'] });case 3:_yield$uni$chooseImag = _context.sent;_yield$uni$chooseImag2 = _slicedToArray(_yield$uni$chooseImag, 2);err = _yield$uni$chooseImag2[0];res = _yield$uni$chooseImag2[1];if (
+
+                res) {_context.next = 9;break;}return _context.abrupt("return");case 9:
+                uni.showToast({ title: '上传者', icon: 'loading' });_context.next = 12;return (
+                  _this.$http.upload('/edituserpic', {
+                    name: 'userpic',
+                    filePath: res.tempFilePaths[0],
+                    token: true,
+                    checkToken: true }));case 12:_yield$_this$$http$up = _context.sent;_yield$_this$$http$up2 = _slicedToArray(_yield$_this$$http$up, 2);err1 = _yield$_this$$http$up2[0];res1 = _yield$_this$$http$up2[1];
+
+                data = JSON.parse(res1.data);if (!(
+                err1 || data.checkCode)) {_context.next = 21;break;}
+                uni.showToast({
+                  title: data.msg,
+                  icon: 'none' });
+
+                uni.hideLoading();return _context.abrupt("return",
+                false);case 21:
+
+                // 成功
+                uni.hideLoading();
+                uni.showToast({ title: '修改头像成功!' });
+                _this.userpic = data.data;
+                // 修改状态，存储
+                _this.user.userinfo.userpic = _this.userpic;
+                uni.setStorageSync("userinfo", _this.user.userinfo);case 26:case "end":return _context.stop();}}}, _callee);}))();
 
     },
 
@@ -267,7 +303,7 @@ var job = ['秘密', '前端工程师', '切图仔'];var mpvueCityPicker = funct
           arr = qgArr;
           break;
         case 'job':
-          arr = job;
+          arr = jobArr;
           break;}
 
       uni.showActionSheet({ // 选择的内置组件
@@ -275,13 +311,13 @@ var job = ['秘密', '前端工程师', '切图仔'];var mpvueCityPicker = funct
         success: function success(res) {
           switch (type) {
             case 'sex':
-              _this2.sex = arr[res.tapIndex];
+              _this2.sex = res.tapIndex;
               break;
             case 'qg':
-              _this2.qg = arr[res.tapIndex];
+              _this2.qg = res.tapIndex;
               break;
             case 'job':
-              _this2.jop = arr[res.tapIndex];
+              _this2.job = arr[res.tapIndex];
               break;}
 
         } });
@@ -306,6 +342,33 @@ var job = ['秘密', '前端工程师', '切图仔'];var mpvueCityPicker = funct
       month = month > 9 ? month : '0' + month;;
       day = day > 9 ? day : '0' + day;
       return "".concat(year, "-").concat(month, "-").concat(day);
+    },
+
+    submit: function submit() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var data, _yield$_this3$$http$p, _yield$_this3$$http$p2, err, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                data = {
+                  name: _this3.username,
+                  sex: _this3.sex === '男' ? 1 : 0,
+                  qg: _this3.qg,
+                  job: _this3.job,
+                  birthday: _this3.birthday,
+                  path: _this3.pickerText,
+                  age: _time.default.gettime.getAgeByBirthday(_this3.birthday) };_context2.next = 3;return (
+
+                  _this3.$http.post('/edituserinfo', data, {
+                    token: true,
+                    checkToken: true }));case 3:_yield$_this3$$http$p = _context2.sent;_yield$_this3$$http$p2 = _slicedToArray(_yield$_this3$$http$p, 2);err = _yield$_this3$$http$p2[0];res = _yield$_this3$$http$p2[1];if (
+
+
+                _this3.$http.errorCheck(err, res)) {_context2.next = 9;break;}return _context2.abrupt("return");case 9:
+                // 成功
+                uni.showToast({ title: '修改成功！' });
+                // 修改状态，缓存
+                _this3.user.userinfo.username = _this3.username;
+                _this3.user.userinfo.userinfo = data;
+                uni.setStorageSync('userinfo', _this3.user.userinfo);
+                uni.navigateBack({
+                  data: 1 });case 14:case "end":return _context2.stop();}}}, _callee2);}))();
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

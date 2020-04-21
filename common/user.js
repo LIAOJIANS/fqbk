@@ -177,7 +177,7 @@ export default {
 		// 手机/邮箱/账号登录
 		if (obj.logintype == "username" || obj.logintype == "email" || obj.logintype == "phone") {
 			// 设置默认头像
-			obj.userpic = obj.userpic || "https://krplus-pic.b0.upaiyun.com/avatar/201812/28095646/fde0v5pcswzft2s8!120";
+			obj.userpic = obj.userpic || "https://www.baidu.com/link?url=CbfU5lIJFBIOYA9nR4aCiPiGu_rq7MXotkvvAKliTUhsqagaa0UC1bvAuazkET8ePSC_M1DN8eqGzMauO0kCj2yWP2UKvjLBAtNqbyiOHIesRw7O7hFqE8PDw9ddjCtUvQ3R-pPVKV18jSAdsHZh62H2YZ_24y9G_iDo_yn_TN9i8-rlEIHQgZEppFIzuK6dqTnxcF_aQmDuzLAoLW4D-2am4WK1zZca2dQcZ10240_2ShsQeQsIoPx_6nUKHWNpQkd5RjQT_a2AYSf4aWwretREQzXaAY-3YLxzaaVIsVfsgrawEKchFzYm9M75BpPHYD1CufKCvezR6VWDv6RZKlnNZMZyy2cQNfYqH3VzrsOHqgljgSptFeVn24jC48G22wF6NrC4uX356BLVaURp1AyIPNWYb3GDICM8NEB0y8KNUy5r7w4OYf29Vy0eNaT0epZat-tb5Sug4gv9bIjeFUx9q9z_RmXc8FhU6Cx6jukxpsJZvd2OY2l7TVPQDCpEhaMAc0vpjGNAFpvktddwDf-E-YtsS_FVRFImnITFB4KV04MgqGE4UAok8mT2JNhaIB1fUdYX1sZUWExaXIY_IWu31dnVcv1yyxVKNG1OMSNHZpT8PJcgHUI7-iHQRQ8-YZcsZnRjJ2ixShlKi-MmCK&timg=&click_t=1587432690915&s_info=2543_1281&wd=&eqid=ce4537870003d947000000065e9e4cf1";
 			return obj;
 		}
 		// 第三方登录（已绑定）

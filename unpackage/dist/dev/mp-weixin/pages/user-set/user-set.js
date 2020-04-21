@@ -149,8 +149,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   data: function data() {
     return {
       list: [
-      { icon: "", name: "账号与安全", clicktype: "navigateTo", url: "../user-set-repassword/user-set-repassword" },
-      { icon: "", name: "绑定邮箱", clicktype: "navigateTo", url: "../user-set-email/user-set-email" },
+      { icon: "", name: "账号与安全", clicktype: "navigateTo", url: "../user-safe/user-safe" },
       { icon: "", name: "编辑资料", clicktype: "navigateTo", url: "../user-set-userinfo/user-set-userinfo" },
       { icon: "", name: "小纸条", clicktype: "nothing", url: "" },
       { icon: "", name: "清除缓存", clicktype: "clear", url: "" },
@@ -159,7 +158,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    logout: function logout() {
+      this.user.logout();
+    } } };exports.default = _default;
 
 /***/ }),
 

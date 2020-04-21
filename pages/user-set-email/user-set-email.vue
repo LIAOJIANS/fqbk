@@ -1,7 +1,7 @@
 <template>
 	<view class="body">
 		<input type="text" class="uni-input common-input" placeholder="请输入邮箱" v-model="email">
-		<input type="text" password class="uni-input common-input" placeholder="请输入密码" v-model="passWord">
+		<input type="text" password class="uni-input common-input" placeholder="请输入密码" v-model="password">
 		<button 
 		type="primary" 
 		class="user-set-btn" 
@@ -16,10 +16,14 @@
 	export default {
 		data() {
 			return {
+				hasEmail: false,
 				isOk: true,
 				email: '',
 				password: ''
 			}
+		},
+		onLoad(e) {
+			this.hasEmail = !!(e.email && e.email!== "false");
 		},
 		watch: {
 			email() {
@@ -43,21 +47,29 @@
 			    return /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/.test(email)
 			},
 			
-			submit() {
+			async submit() {
 				const { email, password } = this
-				
 				if(!this._isEmail(email)) return uni.showToast({ title: '请输入正确的邮箱' });
-				uni.showLoading({
-					title: '正在提交',
-					mask: false
+				let [err,res] = await this.$http.post('/user/bindemail',{
+					email:this.email
+				},{
+					token:true,
+					checkToken:true
 				});
-				setTimeout(() => {
-					uni.hideLoading()
-					uni.showToast({
-						title: '提交成功',
-						icon: 'success'
-					});
-				}, 1000)
+				if (!this.$http.errorCheck(err,res)){
+					return this.loading = this.disabled = false;
+				}
+				this.isbind = true;
+				this.loading = this.disabled = false;
+				// 修改状态，缓存
+				this.User.userinfo.email = this.email;
+				uni.setStorageSync("userinfo", this.user.userinfo);
+				return uni.showToast({
+					title: '绑定成功！',
+					success: () => {
+						uni.navigateBack({ delta: 1 });
+					}
+				});
 			}
 		}
 	}

@@ -18,7 +18,7 @@
 		<view class="user-set-userinfo-list u-f-ac u-f-jsb">
 			<view>性别</view>
 			<view class="u-f-ac" @click="changeOne('sex')">
-				<view>{{ sex }}</view>
+				<view>{{ sexArr[sex] }}</view>
 				<view class="icon iconfont icon-bianji1"></view>
 			</view>
 		</view>
@@ -34,7 +34,7 @@
 		<view class="user-set-userinfo-list u-f-ac u-f-jsb">
 			<view>情感</view>
 			<view class="u-f-ac" @click="changeOne('qg')">
-				<view>{{ qg }}</view>
+				<view>{{ qgArr[qg] }}</view>
 				<view class="icon iconfont icon-bianji1"></view>
 			</view>
 		</view>
@@ -62,16 +62,19 @@
 <script>
 	let sexArr = ['不限','男','女']
 	let qgArr = ['秘密','未婚','已婚']
-	let job = ['秘密', '前端工程师', '切图仔']
+	let jobArr = ['秘密', '前端工程师', '切图仔']
 	import mpvueCityPicker from "../../components/mpvue-citypicker/mpvueCityPicker.vue"
+	import Time from '../../common/time.js';
 	export default {
 		data() {
 			return {
-				userpic: '../../static/shou.jpg',
-				username: '彭昕杰的爸爸',
-				sex: '男',
-				qg: '已婚',
-				job: "切图仔",
+				sexArr:sexArr,
+				qgArr:qgArr,
+				userpic: '',
+				username: '',
+				sex: 0,
+				qg: 0,
+				job: "",
 				birthday: "",
 				cityPickerValueDefault: [0, 0, 1],
 				pickerText: '', // 三级联动选出的数据
@@ -95,6 +98,16 @@
 			}
 		},
 		
+		created() {
+			this.userpic = this.user.userinfo.userpic;
+			this.username = this.user.userinfo.username;
+			this.sex = this.user.userinfo.userinfo.sex || 0;
+			this.qg = this.user.userinfo.userinfo.qg || 0;
+			this.job = this.user.userinfo.userinfo.job || "请填写";
+			this.birthday = this.user.userinfo.userinfo.birthday || "请填写";
+			this.pickerText = this.user.userinfo.userinfo.path || "请填写";
+		},
+		
 		computed: {
 			startDate() {
 				return this.getDate('start');
@@ -114,14 +127,37 @@
 				this.pickerText = e.label;
 			},
 			
-			changeImg() { // 更换头像
-				uni.chooseImage({
+			async changeImg() { // 更换头像
+			console.log(1)
+				const [err, res] = await uni.chooseImage({
 					count:1,
 					sizeType:['compressed'],
-					success: res => {
-						this.userpic = res.tempFilePaths
-					}
 				})
+				if(!res) return
+				uni.showToast({ title: '上传者', icon: 'loading' })
+				let [err1, res1] = await this.$http.upload('/edituserpic',{
+					name: 'userpic',
+					filePath: res.tempFilePaths[0],
+					token:true,
+					checkToken:true
+				});
+				let data = JSON.parse(res1.data)
+				if(err1 || data.checkCode) {
+					uni.showToast({
+						title: data.msg,
+						icon: 'none'
+					})
+					uni.hideLoading()
+					return false
+				}
+				// 成功
+				uni.hideLoading();
+				uni.showToast({ title: '修改头像成功!' });
+				this.userpic = data.data;
+				// 修改状态，存储
+				this.user.userinfo.userpic = this.userpic;
+				uni.setStorageSync("userinfo",this.user.userinfo);
+				
 			},
 			
 			changeOne(type) { // 选择性别
@@ -134,7 +170,7 @@
 						arr = qgArr
 						break
 					case 'job':
-						arr = job
+						arr = jobArr
 						break
 				}
 				uni.showActionSheet({ // 选择的内置组件
@@ -142,13 +178,13 @@
 					success: res => {
 						switch(type) {
 							case 'sex' :
-								this.sex = arr[res.tapIndex]
+								this.sex = res.tapIndex
 								break
 							case 'qg' :
-								this.qg = arr[res.tapIndex]
+								this.qg = res.tapIndex
 								break
 							case 'job' :
-								this.jop = arr[res.tapIndex]
+								this.job = arr[res.tapIndex]
 								break
 						}
 					}
@@ -173,6 +209,33 @@
 				month = month > 9 ? month : '0' + month;;
 				day = day > 9 ? day : '0' + day;
 				return `${year}-${month}-${day}`;
+			},
+			
+			async submit() {
+				let data = {
+					name: this.username,
+					sex: this.sex === '男' ? 1 : 0,
+					qg: this.qg,
+					job: this.job,
+					birthday: this.birthday,
+					path: this.pickerText,
+					age: Time.gettime.getAgeByBirthday(this.birthday),
+				}
+				let [err,res] = await this.$http.post('/edituserinfo', data, {
+					token:true,
+					checkToken:true
+				})
+				// 请求失败处理
+				if (!this.$http.errorCheck(err,res)) return;
+				// 成功
+				uni.showToast({ title: '修改成功！' });
+				// 修改状态，缓存
+				this.user.userinfo.username = this.username;
+				this.user.userinfo.userinfo = data;
+				uni.setStorageSync('userinfo',this.user.userinfo);
+				uni.navigateBack({
+					data: 1
+				})
 			}
 		}
 	}

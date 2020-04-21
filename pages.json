@@ -267,6 +267,16 @@
 				}
 			}
         }
+        ,{
+            "path" : "pages/user-bind-phone/user-bind-phone",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user-safe/user-safe",
+            "style" : {
+				"navigationBarTitleText": "账号与安全"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

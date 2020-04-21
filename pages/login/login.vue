@@ -167,7 +167,7 @@
 						this.countVal = '获取验证码'
 						clearInterval(timeId)
 					}
-				}, 100)
+				}, 1000)
 			}
 		}
 	}

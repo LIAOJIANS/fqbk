@@ -131,13 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -150,11 +144,16 @@ var _default =
 {
   data: function data() {
     return {
+      hasPassword: false,
       isOk: true,
       newPassWord: '',
       password: '',
-      oldPassWord: '' };
+      oldPassWord: '',
+      loading: false };
 
+  },
+  onLoad: function onLoad(e) {
+    this.hasPassword = !!(e.password && e.password !== "false");
   },
   watch: {
     newPassWord: function newPassWord() {
@@ -177,19 +176,32 @@ var _default =
       }
     },
 
-    submit: function submit() {var
-      newPassWord = this.newPassWord,password = this.password,oldPassWord = this.oldPassWord;
-      uni.showLoading({
-        title: '正在提交',
-        mask: false });
+    submit: function submit() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var newPassWord, password, oldPassWord, _yield$_this$$http$po, _yield$_this$$http$po2, err, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                newPassWord = _this.newPassWord, password = _this.password, oldPassWord = _this.oldPassWord;if (
+                _this.check()) {_context.next = 3;break;}return _context.abrupt("return");case 3:
+                _this.loading = _this.disabled = true;_context.next = 6;return (
+                  _this.$http.post('/repassword', {
+                    oldpassword: oldpassword || 0,
+                    newpassword: newpassword,
+                    renewpassword: renewpassword },
+                  {
+                    token: true,
+                    checkToken: true }));case 6:_yield$_this$$http$po = _context.sent;_yield$_this$$http$po2 = _slicedToArray(_yield$_this$$http$po, 2);err = _yield$_this$$http$po2[0];res = _yield$_this$$http$po2[1];if (
 
-      setTimeout(function () {
-        uni.hideLoading();
-        uni.showToast({
-          title: '提交成功',
-          icon: 'success' });
+                _this.$http.errorCheck(err, res)) {_context.next = 13;break;}
+                _this.loading = _this.disabled = false;return _context.abrupt("return");case 13:
 
-      }, 1000);
+
+                // 修改状态，缓存
+                _this.user.userinfo.password = true;
+                uni.setStorageSync('userinfo', _this.user.userinfo);
+                _this.loading = _this.disabled = false;return _context.abrupt("return",
+                uni.showToast({
+                  title: '修改密码成功！',
+                  success: function success() {
+                    uni.navigateBack({ delta: 1 });
+                  } }));case 17:case "end":return _context.stop();}}}, _callee);}))();
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

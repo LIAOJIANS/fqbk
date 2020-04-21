@@ -83,17 +83,17 @@
 					}
 					console.log(res2.data.data)
 					// 登录成功 保存状态
-					this.User.token = res2.data.data.token;
-					this.User.userinfo = this.User.__formatUserinfo(res2.data.data);
+					this.user.token = res2.data.data.token;
+					this.user.userinfo = this.user.__formatUserinfo(res2.data.data);
 					// 本地存储
-					uni.setStorageSync("userinfo",this.User.userinfo);
-					uni.setStorageSync("token", this.User.token);
+					uni.setStorageSync("userinfo",this.user.userinfo);
+					uni.setStorageSync("token", this.user.token);
 					// 获取用户相关统计
-					if (this.User.userinfo.id) {
-						this.User.getCounts();
+					if (this.user.userinfo.id) {
+						this.user.getCounts();
 					}
 					// 连接socket
-					if (this.User.userinfo.id) {
+					if (this.user.userinfo.id) {
 						this.$chat.Open();
 					}
 					// 成功提示
@@ -202,7 +202,7 @@
 							// app登录
 							// #ifndef MP-ALIPAY
 							console.log(JSON.stringify(infoRes.userInfo))
-							let data = this.User.__formatOtherLogin(provider.id,Object.assign(infoRes,res));
+							let data = this.user.__formatOtherLogin(provider.id,Object.assign(infoRes,res));
 							this.loginEvent(data);
 							// #endif
 						  }
@@ -220,7 +220,7 @@
 				});
 			},
 			async loginEvent(data){
-				let res = await this.User.login({
+				let res = await this.user.login({
 					url:'/user/otherlogin',
 					data:data,
 					Noback:this.noback

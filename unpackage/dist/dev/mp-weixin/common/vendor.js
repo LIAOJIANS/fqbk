@@ -757,7 +757,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2117,7 +2117,7 @@ var _chat = _interopRequireDefault(__webpack_require__(/*! ./chat.js */ 22));fun
     // 手机/邮箱/账号登录
     if (obj.logintype == "username" || obj.logintype == "email" || obj.logintype == "phone") {
       // 设置默认头像
-      obj.userpic = obj.userpic || "https://krplus-pic.b0.upaiyun.com/avatar/201812/28095646/fde0v5pcswzft2s8!120";
+      obj.userpic = obj.userpic || "https://www.baidu.com/link?url=CbfU5lIJFBIOYA9nR4aCiPiGu_rq7MXotkvvAKliTUhsqagaa0UC1bvAuazkET8ePSC_M1DN8eqGzMauO0kCj2yWP2UKvjLBAtNqbyiOHIesRw7O7hFqE8PDw9ddjCtUvQ3R-pPVKV18jSAdsHZh62H2YZ_24y9G_iDo_yn_TN9i8-rlEIHQgZEppFIzuK6dqTnxcF_aQmDuzLAoLW4D-2am4WK1zZca2dQcZ10240_2ShsQeQsIoPx_6nUKHWNpQkd5RjQT_a2AYSf4aWwretREQzXaAY-3YLxzaaVIsVfsgrawEKchFzYm9M75BpPHYD1CufKCvezR6VWDv6RZKlnNZMZyy2cQNfYqH3VzrsOHqgljgSptFeVn24jC48G22wF6NrC4uX356BLVaURp1AyIPNWYb3GDICM8NEB0y8KNUy5r7w4OYf29Vy0eNaT0epZat-tb5Sug4gv9bIjeFUx9q9z_RmXc8FhU6Cx6jukxpsJZvd2OY2l7TVPQDCpEhaMAc0vpjGNAFpvktddwDf-E-YtsS_FVRFImnITFB4KV04MgqGE4UAok8mT2JNhaIB1fUdYX1sZUWExaXIY_IWu31dnVcv1yyxVKNG1OMSNHZpT8PJcgHUI7-iHQRQ8-YZcsZnRjJ2ixShlKi-MmCK&timg=&click_t=1587432690915&s_info=2543_1281&wd=&eqid=ce4537870003d947000000065e9e4cf1";
       return obj;
     }
     // 第三方登录（已绑定）
@@ -7801,7 +7801,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7822,14 +7822,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7905,7 +7905,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -24783,7 +24783,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": {}, "pages/news/news": {}, "pages/paper/paper": { "enablePullDownRefresh": true, "navigationBarTitleText": "小纸条" }, "pages/home/home": { "navigationBarTitleText": "我的" }, "pages/search/search": { "enablePullDownRefresh": true, "titleNView": { "autoBackButton": false, "searchInput": { "align": "left", "backgroundColor": "#F7F7F7", "borderRadius": "4px", "placeholder": "搜索糗事", "placeholderColor": "#ccc", "disabled": false }, "buttons": [{ "float": "right", "color": "#000", "colorPressed": "#bbb", "fontSize": "16px", "text": "取消" }] } }, "pages/add-input/add-input": {}, "pages/topic-nav/topic-nav": { "navigationBarTitleText": "话题分类" }, "pages/topic-detail/topic-detail": { "enablePullDownRefresh": true, "navigationBarTitleText": "话题详情" }, "pages/user-list/user-list": {}, "pages/user-chat/user-chat": { "navigationBarTitleText": "聊天页" }, "pages/detail/detail": { "navigationBarTitleText": "内容页" }, "pages/user-set/user-set": { "navigationBarTitleText": "设置" }, "pages/user-set-repassword/user-set-repassword": { "navigationBarTitleText": "修改密码" }, "pages/user-set-email/user-set-email": { "navigationBarTitleText": "修改邮箱" }, "pages/user-set-userinfo/user-set-userinfo": { "navigationBarTitleText": "编辑资料" }, "pages/user-set-help/user-set-help": { "navigationBarTitleText": "意见反馈" }, "pages/user-set-about/user-set-about": { "navigationBarTitleText": "关于糗百" }, "pages/login/login": {}, "pages/user-space/user-space": { "navigationBarTitleText": "个人空间" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "糗事百科", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "usingComponents": { "index-list": "/components/index/index-list", "swiper-tab-head": "/components/index/swiper-tab-head", "load-more": "/components/common/load-more", "no-thing": "/components/common/no-thing" }, "usingAutoImportComponents": {} }, "pages/news/news": { "usingComponents": { "new-list": "/components/common/common-list", "load-more": "/components/common/load-more", "new-nav": "/components/news/news-nav-bar", "topic-nav": "/components/news/topic-nav", "topic-list": "/components/news/topic-list" }, "usingAutoImportComponents": {} }, "pages/paper/paper": { "enablePullDownRefresh": true, "navigationBarTitleText": "小纸条", "usingComponents": { "bad-ge": "/components/uni-badge/uni-badge", "paper-list": "/components/paper/paper-list", "load-more": "/components/common/load-more", "paper-popup": "/components/paper/paper-left-popup" }, "usingAutoImportComponents": {} }, "pages/home/home": { "navigationBarTitleText": "我的", "usingComponents": { "other-login": "/components/home/other-login", "home-info": "/components/home/home-info", "home-data": "/components/home/home-data", "home-list-item": "/components/home/home-list-item" }, "usingAutoImportComponents": {} }, "pages/search/search": { "enablePullDownRefresh": true, "titleNView": { "autoBackButton": false, "searchInput": { "align": "left", "backgroundColor": "#F7F7F7", "borderRadius": "4px", "placeholder": "搜索糗事", "placeholderColor": "#ccc", "disabled": false }, "buttons": [{ "float": "right", "color": "#000", "colorPressed": "#bbb", "fontSize": "16px", "text": "取消" }] }, "usingComponents": { "load-more": "/components/common/load-more", "no-thing": "/components/common/no-thing", "index-list": "/components/index/index-list", "topic-list": "/components/news/topic-list" }, "usingAutoImportComponents": {} }, "pages/add-input/add-input": { "usingComponents": { "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar", "uploud-images": "/components/common/uploud-images", "uni-popup": "/components/uni-popup/uni-popup" }, "usingAutoImportComponents": {} }, "pages/topic-nav/topic-nav": { "navigationBarTitleText": "话题分类", "usingComponents": { "swiper-tab-head": "/components/index/swiper-tab-head", "load-more": "/components/common/load-more", "no-thing": "/components/common/no-thing", "topic-list": "/components/news/topic-list" }, "usingAutoImportComponents": {} }, "pages/topic-detail/topic-detail": { "enablePullDownRefresh": true, "navigationBarTitleText": "话题详情", "usingComponents": { "topic-info": "/components/topic/topic-info", "swiper-tab-head": "/components/index/swiper-tab-head", "load-more": "/components/common/load-more", "new-list": "/components/common/common-list" }, "usingAutoImportComponents": {} }, "pages/user-list/user-list": { "usingComponents": { "swiper-tab-head": "/components/index/swiper-tab-head", "user-list": "/components/user-list/user-list" }, "usingAutoImportComponents": {} }, "pages/user-chat/user-chat": { "navigationBarTitleText": "聊天页", "usingComponents": { "user-chat-bottom": "/components/user-chat/user-chat-bottom", "user-chat-list": "/components/user-chat/user-chat-list" }, "usingAutoImportComponents": {} }, "pages/detail/detail": { "navigationBarTitleText": "内容页", "usingComponents": { "detail-info": "/components/detail/detail-info", "comment-list": "/components/detail/comment-list", "user-chat-bottom": "/components/user-chat/user-chat-bottom", "more-share": "/components/common/more-share" }, "usingAutoImportComponents": {} }, "pages/user-set/user-set": { "navigationBarTitleText": "设置", "usingComponents": { "home-list-item": "/components/home/home-list-item" }, "usingAutoImportComponents": {} }, "pages/user-set-repassword/user-set-repassword": { "navigationBarTitleText": "修改密码", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user-set-email/user-set-email": { "navigationBarTitleText": "修改邮箱", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user-set-userinfo/user-set-userinfo": { "navigationBarTitleText": "编辑资料", "usingComponents": { "mpvue-city-picker": "/components/mpvue-citypicker/mpvueCityPicker" }, "usingAutoImportComponents": {} }, "pages/user-set-help/user-set-help": { "navigationBarTitleText": "意见反馈", "usingComponents": { "uni-collapse": "/components/uni-collapse/uni-collapse", "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item" }, "usingAutoImportComponents": { "uni-collapse": "/components/uni-collapse/uni-collapse", "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item" } }, "pages/user-set-about/user-set-about": { "navigationBarTitleText": "关于糗百", "usingComponents": { "home-list-item": "/components/home/home-list-item" }, "usingAutoImportComponents": {} }, "pages/login/login": { "usingComponents": { "uni-status-bar": "/components/uni-status-bar/uni-status-bar", "other-login": "/components/home/other-login" }, "usingAutoImportComponents": {} }, "pages/user-space/user-space": { "navigationBarTitleText": "个人空间", "usingComponents": { "user-space-head": "/components/user-space/user-space-head", "home-data": "/components/home/home-data", "swiper-tab-head": "/components/index/swiper-tab-head", "userspace-userinfo": "/components/user-space/user-space-userinfo", "user-space-popup": "/components/user-space/user-space-popup", "new-list": "/components/common/common-list", "load-more": "/components/common/load-more" }, "usingAutoImportComponents": {} }, "pages/user-bind-phone/user-bind-phone": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user-safe/user-safe": { "navigationBarTitleText": "账号与安全", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "糗事百科", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
 
 /***/ }),
 
