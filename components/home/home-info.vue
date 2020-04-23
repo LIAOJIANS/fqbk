@@ -12,12 +12,12 @@
 <script>
 	export default {
 		props:{
-			homeinfo:Object
+			homeinfo: Object
 		},
 		methods:{
 			ToUserSpace(){
 				uni.navigateTo({
-					url: '../../pages/user-space/user-space'
+					url: '../../pages/user-space/user-space?userid=' + this.homeinfo.id
 				})
 			}
 		}

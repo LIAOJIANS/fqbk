@@ -91,6 +91,7 @@
 			},
 			
 			format() {
+				this.homeinfo.id = this.user.userinfo.id
 				this.homeinfo.userpic = this.user.userinfo.userpic
 				this.homeinfo.username = this.user.userinfo.username
 				this.homeinfo.totalnum = this.user.counts.post_count || 0

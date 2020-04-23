@@ -1,6 +1,6 @@
 <template>
 	<view class="user-space-head u-f-ajc">
-		<image :src="getBgImg" mode="widthFix" lazy-load @tap.stop="changBgImg"></image>
+		<image :src="getBgImg" mode="aspectFill" lazy-load @tap.stop="changBgImg"></image>
 		<view class="user-space-head-info u-f-ajc u-f-column">
 			<image :src="userinfo.userpic" mode="widthFix" lazy-load></image>
 			<view class="user-space-margin u-f-ac">
@@ -8,7 +8,7 @@
 				<tag-sex-age :sex="getSex" :age="getAge"></tag-sex-age> 
 			</view>
 			<view v-if="!userinfo.isme" class="icon iconfont user-space-head-btn user-space-margin" :class="getGuanZhuClass" @tap.stop="guanzhu">
-				{{userinfo.isguanzhu?'已关注':'关注'}}
+				{{userinfo.isguanzhu ? '已关注' : '关注'}}
 			</view>
 		</view>
 	</view>

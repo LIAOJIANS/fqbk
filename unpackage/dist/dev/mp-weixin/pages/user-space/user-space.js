@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var userSpaceHead = function userSpaceHead() {__webpack_require__.e(/*! require.ensure | components/user-space/user-space-head */ "components/user-space/user-space-head").then((function () {return resolve(__webpack_require__(/*! ../../components/user-space/user-space-head.vue */ 372));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var swiperTabHead = function swiperTabHead() {__webpack_require__.e(/*! require.ensure | components/index/swiper-tab-head */ "components/index/swiper-tab-head").then((function () {return resolve(__webpack_require__(/*! ../../components/index/swiper-tab-head.vue */ 173));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var homeData = function homeData() {__webpack_require__.e(/*! require.ensure | components/home/home-data */ "components/home/home-data").then((function () {return resolve(__webpack_require__(/*! ../../components/home/home-data.vue */ 257));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var userspaceUserinfo = function userspaceUserinfo() {Promise.all(/*! require.ensure | components/user-space/user-space-userinfo */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/user-space/user-space-userinfo")]).then((function () {return resolve(__webpack_require__(/*! ../../components/user-space/user-space-userinfo.vue */ 379));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var newList = function newList() {__webpack_require__.e(/*! require.ensure | components/common/common-list */ "components/common/common-list").then((function () {return resolve(__webpack_require__(/*! ../../components/common/common-list.vue */ 215));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var userSpacePopup = function userSpacePopup() {__webpack_require__.e(/*! require.ensure | components/user-space/user-space-popup */ "components/user-space/user-space-popup").then((function () {return resolve(__webpack_require__(/*! ../../components/user-space/user-space-popup.vue */ 386));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 180));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));
 
 
 
@@ -172,6 +172,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+var _time = _interopRequireDefault(__webpack_require__(/*! ../../common/time.js */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var userSpaceHead = function userSpaceHead() {__webpack_require__.e(/*! require.ensure | components/user-space/user-space-head */ "components/user-space/user-space-head").then((function () {return resolve(__webpack_require__(/*! ../../components/user-space/user-space-head.vue */ 388));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var swiperTabHead = function swiperTabHead() {__webpack_require__.e(/*! require.ensure | components/index/swiper-tab-head */ "components/index/swiper-tab-head").then((function () {return resolve(__webpack_require__(/*! ../../components/index/swiper-tab-head.vue */ 189));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var homeData = function homeData() {__webpack_require__.e(/*! require.ensure | components/home/home-data */ "components/home/home-data").then((function () {return resolve(__webpack_require__(/*! ../../components/home/home-data.vue */ 273));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var userspaceUserinfo = function userspaceUserinfo() {__webpack_require__.e(/*! require.ensure | components/user-space/user-space-userinfo */ "components/user-space/user-space-userinfo").then((function () {return resolve(__webpack_require__(/*! ../../components/user-space/user-space-userinfo.vue */ 395));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var newList = function newList() {__webpack_require__.e(/*! require.ensure | components/common/common-list */ "components/common/common-list").then((function () {return resolve(__webpack_require__(/*! ../../components/common/common-list.vue */ 231));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var userSpacePopup = function userSpacePopup() {__webpack_require__.e(/*! require.ensure | components/user-space/user-space-popup */ "components/user-space/user-space-popup").then((function () {return resolve(__webpack_require__(/*! ../../components/user-space/user-space-popup.vue */ 402));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 196));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var noThing = function noThing() {__webpack_require__.e(/*! require.ensure | components/common/no-thing */ "components/common/no-thing").then((function () {return resolve(__webpack_require__(/*! ../../components/common/no-thing.vue */ 203));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 {
@@ -180,104 +182,36 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       tabIndex: 0,
       showMeuo: false,
       userinfo: {
-        userpic: '../../static/shou.jpg',
-        username: '我是你爸爸',
+        userpic: '',
+        username: '',
         isme: false,
         sex: 0,
-        age: 18,
-        bgimg: '2',
+        age: 0,
+        bgimg: '1',
         isguanzhu: false,
-        job: '切图仔',
-        path: '北京伤害',
-        qg: '已婚',
-        birthday: '未知',
+        job: '',
+        path: '',
+        qg: '',
+        birthday: '',
         regtime: '',
-        id: 12138 },
+        id: 0 },
 
-
-      homedata: [
-      { name: "获赞", num: '12K' },
-      { name: "关注", num: 24 },
-      { name: "粉丝", num: 100 }],
-
-      tabBars: [
-      { name: '主页', id: 'dangqian' },
-      { name: '糗事', id: 'zuixin' },
-      { name: '动态', id: 'dongtai' }],
-
-      qiushi: {
+      homedata: [{ name: '获赞', num: '12K' }, { name: '关注', num: 24 }, { name: '粉丝', num: 100 }],
+      tabBars: [{ name: '主页', id: 'dangqian' }, { name: '糗事', id: 'zuixin' }, { name: '动态', id: 'dongtai' }],
+      qiushi: {},
+      tablist: [
+      {},
+      {
         context: '下拉加载更多',
-        list: [
-        {
-          // 文字
-          userpic: '../../static/common/loginhead.png',
-          username: 'shanJ',
-          sex: 1, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题我是标题我是标题我是标题我是标题我是标题',
-          titlepic: false,
-          video: false,
-          share: false,
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 },
+        list: [],
+        page: 1,
+        firstload: false },
 
-        {
-          // 图文
-          userpic: '../../static/shou.jpg',
-          username: 'shanJ',
-          sex: 0, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题',
-          titlepic: '../../static/shou.jpg',
-          video: false,
-          share: false,
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 },
-
-        {
-          // 视频
-          userpic: '../../static/shou.jpg',
-          username: 'shanJ',
-          sex: 0, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题',
-          titlepic: '../../static/shou.jpg',
-          video: {
-            looknum: '20W',
-            long: '2: 47' },
-
-          share: false,
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 },
-
-        {
-          // 分享
-          userpic: '../../static/shou.jpg',
-          username: 'shanJ',
-          sex: 0, // 0男 1女
-          age: 25,
-          isguanzhu: false,
-          title: '我是标题',
-          titlepic: '',
-          video: false,
-          share: {
-            title: '我是标题',
-            titlepic: '../../static/shou.jpg' },
-
-          path: '广州 仓头',
-          sharenum: 20,
-          commentnum: 30,
-          goodnum: 40 }] } };
-
+      {
+        context: '下拉加载更多',
+        list: [],
+        page: 1,
+        firstload: false }] };
 
 
 
@@ -290,7 +224,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     userspaceUserinfo: userspaceUserinfo,
     userSpacePopup: userSpacePopup,
     newList: newList,
-    loadMore: loadMore },
+    loadMore: loadMore,
+    noThing: noThing },
 
 
   onReachBottom: function onReachBottom() {
@@ -304,23 +239,127 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     }
   },
 
+  onLoad: function onLoad(e) {
+    console.log(e.userid);
+    this._loadDate(e.userid);
+  },
+
   methods: {
-    tabtap: function tabtap(index) {
-      this.tabIndex = index;
+    _loadDate: function _loadDate(userid) {
+      this._getUserInfo(userid);
     },
 
-    hide: function hide() {// 隐藏菜单栏
+    _getUserInfo: function _getUserInfo(userid) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var sexArr, qgArr, isme, info, isguanzhu, isblack, _this$$http$post, _this$$http$post2, err, res, timer;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                sexArr = ['不限', '男', '女'];
+                qgArr = ['秘密', '未婚', '已婚'];if (!(
+
+                userid == _this.user.userinfo.id)) {_context.next = 9;break;}
+                info = _this.user.userinfo;
+                isme = true;
+                isguanzhu = false;
+                isblack = false;_context.next = 16;break;case 9:_this$$http$post =
+
+                _this.$http.post(
+                '/getuserinfo',
+                {
+                  user_id: userid },
+
+                { token: true }), _this$$http$post2 = _slicedToArray(_this$$http$post, 2), err = _this$$http$post2[0], res = _this$$http$post2[1];
+
+                // 错误处理
+                if (_this.$http.errorCheck(err, res)) {_context.next = 12;break;}return _context.abrupt("return");case 12:
+                info = res.data.data;
+                isme = false;
+                isguanzhu = !!res.data.data.fens.length;
+                isblack = !!res.data.data.blacklist.length;case 16:
+
+                timer = info.create_time ? _time.default.gettime.dateFormat(new Date(info.create_time * 1000), '{Y}-{MM}-{DD}') : '未知';
+                _this.userinfo = {
+                  isme: isme,
+                  bgimg: '1',
+                  userpic: info.userpic,
+                  username: info.username,
+                  sex: sexArr[info.userinfo.sex] || '不限',
+                  age: info.userinfo.age,
+                  isguanzhu: isguanzhu,
+                  isblack: isblack,
+                  regtime: timer,
+                  id: info.id,
+                  birthday: info.userinfo.birthday || '未知',
+                  job: info.userinfo.job || '未知',
+                  path: info.userinfo.path || '未知',
+                  qg: qgArr[info.userinfo.qg] || '秘密' };case 18:case "end":return _context.stop();}}}, _callee);}))();
+
+    },
+
+    tabtap: function tabtap(index) {
+      this.tabIndex = index;
+      this._getData();
+    },
+
+    _getData: function _getData() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var page, url, index, _yield$_this2$$http$g, _yield$_this2$$http$g2, err, res, arr, list, i;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:if (
+                _this2.tablist[_this2.tabIndex].page) {_context2.next = 2;break;}return _context2.abrupt("return");case 2:
+                page = _this2.tablist[_this2.tabIndex].page;
+                console.log(page);
+                url = _this2.userinfo.isme ? "/user/post/".concat(page) : "/user/".concat(_this2.userinfo.id, "/post/").concat(page);
+                index = _this2.tabIndex;_context2.next = 8;return (
+                  _this2.$http.get(url, {}, { token: true }));case 8:_yield$_this2$$http$g = _context2.sent;_yield$_this2$$http$g2 = _slicedToArray(_yield$_this2$$http$g, 2);err = _yield$_this2$$http$g2[0];res = _yield$_this2$$http$g2[1];if (
+                _this2.$http.errorCheck(err, res)) {_context2.next = 15;break;}
+                _this2.tablist[index].firstload = true;return _context2.abrupt("return",
+                _this2.tablist[index].context = '上拉加载更多');case 15:
+
+                arr = [];
+                list = res.data.data.list;
+                for (i = 0; i < list.length; i++) {
+                  arr.push(_this2._fomat(list[i]));
+                }
+                _this2.tablist[index].list = page > 1 ? _this2.tablist[index].list.concat(arr) : arr;
+                _this2.tablist[index].firstload = true;
+                _this2.tablist[index].context = list.length < 10 ? '没有更多数据了' : '上拉加载更多';return _context2.abrupt("return");case 22:case "end":return _context2.stop();}}}, _callee2);}))();
+
+    },
+
+    _fomat: function _fomat(item) {
+      var obj = {
+        userid: item.user.id,
+        userpic: item.user.userpic,
+        username: item.user.username,
+        isguanzhu: !!item.user.fens.length,
+        id: item.id,
+        title: item.title,
+        type: 'img', // img:图文,video:视频
+        titlepic: item.titlepic,
+        video: false,
+        path: item.path,
+        share: !!item.share,
+        infonum: {
+          index: item.support.length > 0 ? item.support[0].type + 1 : 0, //0:没有操作，1:顶,2:踩；
+          dingnum: item.ding_count,
+          cainum: item.cai_count },
+
+        goodnum: item.ding_count,
+        commentnum: item.comment_count,
+        sharenum: item.sharenum,
+        sex: item.user.userinfo.sex,
+        age: item.user.userinfo.age };
+
+      if (item.user_id === this.User.userinfo.id) {
+        obj.isguanzhu = true;
+      }
+      return obj;
+    },
+
+    hide: function hide() {
+      // 隐藏菜单栏
       this.showMeuo = false;
     },
 
-    loadingDate: function loadingDate() {var _this = this;
-      // 下拉加载
-      if (this.guangzhu.context !== '下拉加载更多') return;
-      setTimeout(function () {
-        _this.guangzhu.context = '正在加载中.......';
-      }, 1000);
-
-      this.guangzhu.context = '没有更多数据';
+    loadingDate: function loadingDate() {
+      if (this.tablist[this.tabIndex].context != "上拉加载更多") return;
+      // 修改状态
+      this.tablist[this.tabIndex].context = "加载中...";
+      this.tablist[this.tabIndex].page++;
+      this._getData();
     } } };exports.default = _default;
 
 /***/ }),

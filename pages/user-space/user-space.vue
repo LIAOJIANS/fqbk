@@ -1,205 +1,244 @@
 <template>
 	<view>
-		<userSpaceHead :userinfo='userinfo' />
-		<view class="user-space-data">
-			<homeData :homedata='homedata' />
-		</view>
-		<swiperTabHead
-		:tabBars="tabBars" 
-		:tabIndex="tabIndex"
-		@tabtap="tabtap"
-		scrollStyle='border-bottom: none'
-		scrollItemStyle='width: 33.33%'>
-		</swiperTabHead>
-		<view class="list animated fadeIn more-share">
-			<template v-if="tabIndex === 0">
-				<userspaceUserinfo :userinfo='userinfo' />
+		<userSpaceHead :userinfo="userinfo" />
+		<view class="user-space-data"><homeData :homedata="homedata" /></view>
+		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap" scrollStyle="border-bottom: none" scrollItemStyle="width: 33.33%"></swiperTabHead>
+		<block v-for="(item,index) in tablist" :key="index">
+			<template v-if="tabIndex===0 && tabIndex === index">
+				<!-- 主页 -->
+				<userspaceUserinfo :userinfo="userinfo"></userspaceUserinfo>
 			</template>
-			<template v-if="tabIndex === 1">
-				<block v-for="(item, index) in qiushi.list" :key="index">
-					<newList :item="item" :index="index"></newList>
-				</block>
-				<loadMore :loadtext="qiushi.context" />
+			<template v-else-if="tabIndex==index">
+				<template v-if="item.list.length > 0">
+					<!-- 列表 -->
+					<block v-for="(list,listindex) in item.list" :key="listindex">
+						<newList nonavigate :item="list" :index="listindex"></newList>
+					</block>
+					<!-- 上拉加载 -->
+					<load-more :loadtext="item.loadtext"></load-more>
+				</template>
+				<template v-else-if="!item.firstload">
+					<view style="font-size: 50upx;font-weight: bold;color: #CCCCCC;
+					padding-top: 100upx;" class="u-f-ajc">Loading ...</view>
+				</template>
+				<template v-else>
+					<!-- 无内容默认 -->
+					<view style="font-size: 50upx;font-weight: bold;color: #CCCCCC;
+					padding-top: 100upx;" class="u-f-ajc">No content~</view>
+				</template>
 			</template>
-			<template v-if="tabIndex === 2">
-				<block v-for="(item, index) in qiushi.list" :key="index">
-					<newList :item="item" :index="index"></newList>
-				</block>
-				<loadMore :loadtext="qiushi.context" />
-			</template>
-		</view>
-		<userSpacePopup :show='showMeuo' :isblack='false' @hide='hide' ></userSpacePopup>
+		</block>
+		<userSpacePopup :show="showMeuo" :isblack="false" @hide="hide"></userSpacePopup>
 	</view>
 </template>
 
 <script>
-	import userSpaceHead from '../../components/user-space/user-space-head.vue'
-	import swiperTabHead from '../../components/index/swiper-tab-head.vue'
-	import homeData from '../../components/home/home-data.vue'
-	import userspaceUserinfo from '../../components/user-space/user-space-userinfo.vue'
-	import newList from '../../components/common/common-list.vue'
-	import userSpacePopup from '../../components/user-space/user-space-popup.vue'
-	import loadMore from '../../components/common/load-more.vue'
-	
-	export default {
-		data() {
-			return {
-				tabIndex: 0,
-				showMeuo: false,
-				userinfo: {
-					userpic: '../../static/shou.jpg',
-					username: '我是你爸爸',
-					isme: false,
-					sex: 0,
-					age: 18,
-					bgimg: '2',
-					isguanzhu: false,
-					job: '切图仔',
-					path: '北京伤害',
-					qg: '已婚',
-					birthday: '未知',
-					regtime: '',
-					id: 12138
-					
-				},
-				homedata:[
-					{ name:"获赞", num: '12K' },
-					{ name:"关注", num: 24 },
-					{ name:"粉丝", num: 100 }
-				],
-				tabBars: [
-					{ name: '主页', id: 'dangqian' },
-					{ name: '糗事', id: 'zuixin' },
-					{ name: '动态', id: 'dongtai' }
-				],
-				qiushi: {
+import userSpaceHead from '../../components/user-space/user-space-head.vue';
+import swiperTabHead from '../../components/index/swiper-tab-head.vue';
+import homeData from '../../components/home/home-data.vue';
+import userspaceUserinfo from '../../components/user-space/user-space-userinfo.vue';
+import newList from '../../components/common/common-list.vue';
+import userSpacePopup from '../../components/user-space/user-space-popup.vue';
+import loadMore from '../../components/common/load-more.vue';
+import Time from '../../common/time.js';
+import noThing from '../../components/common/no-thing.vue';
+
+export default {
+	data() {
+		return {
+			tabIndex: 0,
+			showMeuo: false,
+			userinfo: {
+				userpic: '',
+				username: '',
+				isme: false,
+				sex: 0,
+				age: 0,
+				bgimg: '1',
+				isguanzhu: false,
+				job: '',
+				path: '',
+				qg: '',
+				birthday: '',
+				regtime: '',
+				id: 0
+			},
+			homedata: [{ name: '获赞', num: '12K' }, { name: '关注', num: 24 }, { name: '粉丝', num: 100 }],
+			tabBars: [{ name: '主页', id: 'dangqian' }, { name: '糗事', id: 'zuixin' }, { name: '动态', id: 'dongtai' }],
+			qiushi: {},
+			tablist: [
+				{},
+				{
 					context: '下拉加载更多',
-					list: [
-						{
-							// 文字
-							userpic: '../../static/common/loginhead.png',
-							username: 'shanJ',
-							sex: 1, // 0男 1女
-							age: 25,
-							isguanzhu: false,
-							title: '我是标题我是标题我是标题我是标题我是标题我是标题',
-							titlepic: false,
-							video: false,
-							share: false,
-							path: '广州 仓头',
-							sharenum: 20,
-							commentnum: 30,
-							goodnum: 40
-						},
-						{
-							// 图文
-							userpic: '../../static/shou.jpg',
-							username: 'shanJ',
-							sex: 0, // 0男 1女
-							age: 25,
-							isguanzhu: false,
-							title: '我是标题',
-							titlepic: '../../static/shou.jpg',
-							video: false,
-							share: false,
-							path: '广州 仓头',
-							sharenum: 20,
-							commentnum: 30,
-							goodnum: 40
-						},
-						{
-							// 视频
-							userpic: '../../static/shou.jpg',
-							username: 'shanJ',
-							sex: 0, // 0男 1女
-							age: 25,
-							isguanzhu: false,
-							title: '我是标题',
-							titlepic: '../../static/shou.jpg',
-							video: {
-								looknum: '20W',
-								long: '2: 47'
-							},
-							share: false,
-							path: '广州 仓头',
-							sharenum: 20,
-							commentnum: 30,
-							goodnum: 40
-						},
-						{
-							// 分享
-							userpic: '../../static/shou.jpg',
-							username: 'shanJ',
-							sex: 0, // 0男 1女
-							age: 25,
-							isguanzhu: false,
-							title: '我是标题',
-							titlepic: '',
-							video: false,
-							share: {
-								title: '我是标题',
-								titlepic: '../../static/shou.jpg'
-							},
-							path: '广州 仓头',
-							sharenum: 20,
-							commentnum: 30,
-							goodnum: 40
-						}
-					]
+					list: [],
+					page: 1,
+					firstload: false
 				},
+				{
+					context: '下拉加载更多',
+					list: [],
+					page: 1,
+					firstload: false
+				}
+			]
+		};
+	},
+
+	components: {
+		userSpaceHead,
+		homeData,
+		swiperTabHead,
+		userspaceUserinfo,
+		userSpacePopup,
+		newList,
+		loadMore,
+		noThing
+	},
+
+	onReachBottom() {
+		this.loadingDate();
+	},
+
+	onNavigationBarButtonTap(e) {
+		console.log(e.index);
+		if (e.index === 0) {
+			this.showMeuo = true;
+		}
+	},
+
+	onLoad(e) {
+		console.log(e.userid)
+		this._loadDate(e.userid);
+	},
+
+	methods: {
+		_loadDate(userid) {
+			this._getUserInfo(userid);
+		},
+
+		async _getUserInfo(userid) {
+			let sexArr = ['不限', '男', '女'];
+			let qgArr = ['秘密', '未婚', '已婚'];
+			let isme, info, isguanzhu, isblack;
+			if (userid == this.user.userinfo.id) {
+				info = this.user.userinfo;
+				isme = true;
+				isguanzhu = false;
+				isblack = false;
+			} else {
+				const [err, res] = this.$http.post(
+					'/getuserinfo',
+					{
+						user_id: userid
+					},
+					{ token: true }
+				);
+				// 错误处理
+				if (!this.$http.errorCheck(err, res)) return;
+				info = res.data.data;
+				isme = false;
+				isguanzhu = !!res.data.data.fens.length;
+				isblack = !!res.data.data.blacklist.length;
 			}
+			let timer = info.create_time ? Time.gettime.dateFormat(new Date(info.create_time * 1000), '{Y}-{MM}-{DD}') : '未知';
+			this.userinfo = {
+				isme: isme,
+				bgimg: '1',
+				userpic: info.userpic,
+				username: info.username,
+				sex: sexArr[info.userinfo.sex] || '不限',
+				age: info.userinfo.age,
+				isguanzhu: isguanzhu,
+				isblack: isblack,
+				regtime: timer,
+				id: info.id,
+				birthday: info.userinfo.birthday || '未知',
+				job: info.userinfo.job || '未知',
+				path: info.userinfo.path || '未知',
+				qg: qgArr[info.userinfo.qg] || '秘密'
+			};
 		},
-		
-		components: {
-			userSpaceHead,
-			homeData,
-			swiperTabHead,
-			userspaceUserinfo,
-			userSpacePopup,
-			newList,
-			loadMore
+
+		tabtap(index) {
+			this.tabIndex = index;
+			this._getData()
 		},
-		
-		onReachBottom() {
-			this.loadingDate()
-		},
-		
-		onNavigationBarButtonTap(e) {
-			console.log(e.index)
-			if(e.index === 0) {
-				this.showMeuo = true
+
+		async _getData() {
+			if(!this.tablist[this.tabIndex].page) return
+			let page = this.tablist[this.tabIndex].page;
+			console.log(page)
+			let url = this.userinfo.isme ? `/user/post/${ page }` : `/user/${this.userinfo.id}/post/${ page }`;
+			let index = this.tabIndex;
+			let [err, res] = await this.$http.get(url, {}, { token: true });
+			if (!this.$http.errorCheck(err, res)) {
+				this.tablist[index].firstload = true;
+				return (this.tablist[index].context = '上拉加载更多');
 			}
-		},
-		
-		methods: {
-			tabtap(index) {
-				this.tabIndex = index
-			},
-			
-			hide() { // 隐藏菜单栏
-				this.showMeuo = false
-			},
-			
-			loadingDate() {
-				// 下拉加载
-				if (this.guangzhu.context !== '下拉加载更多') return;
-				setTimeout(() => {
-					this.guangzhu.context = '正在加载中.......';
-				}, 1000);
-			
-				this.guangzhu.context = '没有更多数据';
+			let arr = [];
+			let list = res.data.data.list;
+			for (let i = 0; i < list.length; i++) {
+				arr.push(this._fomat(list[i]));
 			}
+			this.tablist[index].list = page > 1 ? this.tablist[index].list.concat(arr) : arr;
+			this.tablist[index].firstload = true;
+			this.tablist[index].context = list.length < 10 ? '没有更多数据了' : '上拉加载更多';
+			return;
+		},
+
+		_fomat(item) {
+			let obj = {
+				userid: item.user.id,
+				userpic: item.user.userpic,
+				username: item.user.username,
+				isguanzhu: !!item.user.fens.length,
+				id: item.id,
+				title: item.title,
+				type: 'img', // img:图文,video:视频
+				titlepic: item.titlepic,
+				video: false,
+				path: item.path,
+				share: !!item.share,
+				infonum: {
+					index: item.support.length > 0 ? item.support[0].type + 1 : 0, //0:没有操作，1:顶,2:踩；
+					dingnum: item.ding_count,
+					cainum: item.cai_count
+				},
+				goodnum: item.ding_count,
+				commentnum: item.comment_count,
+				sharenum: item.sharenum,
+				sex: item.user.userinfo.sex,
+				age: item.user.userinfo.age
+			};
+			if (item.user_id === this.User.userinfo.id) {
+				obj.isguanzhu = true;
+			}
+			return obj;
+		},
+
+		hide() {
+			// 隐藏菜单栏
+			this.showMeuo = false;
+		},
+
+		loadingDate() {
+			if(this.tablist[this.tabIndex].context!="上拉加载更多") return;
+			// 修改状态
+			this.tablist[this.tabIndex].context="加载中...";
+			this.tablist[this.tabIndex].page++;
+			this._getData();
 		}
 	}
+};
 </script>
 
 <style lang="scss">
-	.user-space-data {
-		position: relative;
-		top: -35upx;
-		z-index: 10;
-		background: #fff;
-		border-top-left-radius: 20upx;
-		border-top-right-radius: 20upx;
-	}
+.user-space-data {
+	position: relative;
+	top: -35upx;
+	z-index: 10;
+	background: #fff;
+	border-top-left-radius: 20upx;
+	border-top-right-radius: 20upx;
+}
 </style>
