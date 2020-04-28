@@ -88,7 +88,7 @@
 					 	data:true
 					};
 					// 通知父组件
-					this.$emit('changeevent',resdata);
+					this.$emit('changeevent', resdata);
 					// 通知首页
 					uni.$emit('updateData',resdata);
 				}catch(e){ return; }

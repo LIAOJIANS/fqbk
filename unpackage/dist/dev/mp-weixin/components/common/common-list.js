@@ -114,7 +114,10 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var tagSex = function tagSex() {__webpack_require__.e(/*! require.ensure | components/common/tag-sex-age */ "components/common/tag-sex-age").then((function () {return resolve(__webpack_require__(/*! ./tag-sex-age.vue */ 409));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var tagSex = function tagSex() {__webpack_require__.e(/*! require.ensure | components/common/tag-sex-age */ "components/common/tag-sex-age").then((function () {return resolve(__webpack_require__(/*! ./tag-sex-age.vue */ 409));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
 
 
 
@@ -161,9 +164,55 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     item: Object,
     index: Number },
 
-  methods: {},
+
+  computed: {
+    getSex: function getSex() {
+      return this.item.sex;
+    },
+    getAge: function getAge() {
+      return this.item.age;
+    } },
+
+
+  methods: {
+    opendetail: function opendetail() {
+      uni.navigateTo({
+        url: '../../pages/detail/detail?detailData=' + JSON.stringify(this.item) });
+
+      this.user.addHistoryList(this.item);
+    },
+
+    guanzhu: function guanzhu() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$_this$$http$po, _yield$_this$$http$po2, err, res, resdata;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.prev = 0;_context.next = 3;return (
+
+                  _this.$http.post('/follow', {
+                    follow_id: _this.item.userid },
+                  {
+                    token: true,
+                    checkToken: true,
+                    checkAuth: true }));case 3:_yield$_this$$http$po = _context.sent;_yield$_this$$http$po2 = _slicedToArray(_yield$_this$$http$po, 2);err = _yield$_this$$http$po2[0];res = _yield$_this$$http$po2[1];if (
+
+
+                _this.$http.errorCheck(err, res)) {_context.next = 9;break;}return _context.abrupt("return");case 9:
+
+
+                // 通知首页修改数据
+                uni.showToast({ title: '关注成功' });
+                resdata = {
+                  type: "guanzhu",
+                  userid: _this.item.userid,
+                  data: true };
+
+                // 通知父组件
+                _this.$emit('changeevent', resdata);
+                // 通知首页
+                uni.$emit('updateData', resdata);_context.next = 18;break;case 15:_context.prev = 15;_context.t0 = _context["catch"](0);return _context.abrupt("return");case 18:case "end":return _context.stop();}}}, _callee, null, [[0, 15]]);}))();
+
+    } },
+
+
   components: {
     tagSex: tagSex } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

@@ -15,7 +15,7 @@
 				<block v-for="(item, index) in topicList" :key='index'>
 					<template v-if="tabIndex === index">
 						<block v-for="(itemList, listIndex) in item.list" :key='listIndex'>
-							<newList :item='itemList' :index='listIndex'></newList>
+							<newList :item='itemList' :index='listIndex' @changeevent='updateData'></newList>
 						</block>
 						<loadMore :loadtext='item.context' />
 					</template>
@@ -71,6 +71,8 @@
 		onLoad(e) {
 			// 获取路由参数
 			this._initData(JSON.parse(e.detail))
+			// 开启监听
+			uni.$once('updateData',this.updateData);
 		},
 		
 		onReachBottom() {
@@ -88,6 +90,14 @@
 				this._getData()
 			},
 			
+			updateData(resdata) {
+				switch (resdata.type){
+					case "guanzhu":
+						this.guanzhu(resdata)
+						break
+				}
+			},
+			
 			async _getData() {
 				const [err, res] = await this.$http.get(`/topic/${ this.topicInfo.id }/post/${this.topicList[ this.tabIndex ].page}`, {}, {token:true})
 				if(!this.$http.errorCheck(err, res)) return this.topicList[this.tabIndex].context = '下拉加载更多'
@@ -103,6 +113,14 @@
 					this.topicList[this.tabIndex].context = '下拉加载更多'
 				}
 				return
+			},
+			
+			guanzhu(data) {
+				this.topicList[this.tabIndex].list.forEach(item => {
+					if (item.userid === data.userid) {
+						item.isguanzhu = data.data;
+					}
+				})
 			},
 			
 			_fomat(item) {

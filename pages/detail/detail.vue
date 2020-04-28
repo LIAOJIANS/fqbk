@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<detailInfo :item="obj" />
+		<detailInfo :item="obj" @changeevent='updateData'/>
 		<view class="comment-list">
 			<view>最新评论 {{ comment.count }}</view>
 			<block v-for="(item, index) in comment.list" :key='index'>
@@ -31,6 +31,7 @@ export default {
 			},
 			shareshow: false,
 			obj: {}, // 详情对象
+			isguanzhu: false,
 			id: null,
 			comment: {
 				count: 0,
@@ -68,6 +69,7 @@ export default {
 				// 修改头部标题
 				title: obj.title
 			});
+			this.isguanzhu = obj.isguanzhu
 			this._getData(this.id)
 			this._getComment()
 			this.__initShare(obj)
@@ -81,6 +83,10 @@ export default {
 				titlepic: obj.titlepic ? obj.titlepic : 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/app/share-logo@3.png',
 				shareType: 0,
 			}
+		},
+		
+		updateData(data) {
+			this.obj.isguanzhu = data.data
 		},
 		
 		async _getData(id) {
@@ -103,7 +109,7 @@ export default {
 				create_time: time.gettime.gettime(item.create_time),
 				sex: item.user.userinfo.sex,
 				age: item.user.userinfo.age,
-				isguanzhu: false,
+				isguanzhu: this.isguanzhu,
 				title: item.title,
 				titlepic: item.titlepic,
 				morepic: images,

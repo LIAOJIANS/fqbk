@@ -164,10 +164,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
 {
   data: function data() {
     return {
@@ -179,9 +175,11 @@ __webpack_require__.r(__webpack_exports__);
   },
 
   created: function created() {
-    var height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100) - 44;
+    var height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100);
     this.getHeight = "height: ".concat(height, "px;");
     this._getLoadData();
+    // 开启监听
+    uni.$on('updateData', this.updateData);
   },
 
   computed: {
@@ -202,6 +200,42 @@ __webpack_require__.r(__webpack_exports__);
   },
 
   methods: {
+    updateData: function updateData(resdata) {
+      switch (resdata.type) {
+        case "guanzhu":
+          this.guanzhu(resdata);
+          break;
+        case "support":
+          this.support(resdata);
+          break;}
+
+    },
+
+    guanzhu: function guanzhu(data) {
+      this.newslist[this.tabIndex].lists.forEach(function (item, index) {
+        if (item.userid === data.userid) {
+          item.isguanzhu = data.data;
+        }
+      });
+    },
+
+    support: function support(data) {
+      // 拿到当前对象
+      var obj = this.newslist[this.tabIndex].lists.find(function (value) {
+        return value.id === data.post_id;
+      });
+      if (!obj) return;
+      var oldindex = obj.infonum.index; // 操作前的状态
+      obj.infonum.index = data.do == 'ding' ? 1 : 2; // 操作后的状态
+      if (oldindex !== 0) {//之前操作过
+        oldindex == 1 ? obj.infonum.dingnum-- : obj.infonum.cainum--;
+      }
+      if (obj.infonum.index !== 0) {// 当前操作
+        obj.infonum.index == 1 ?
+        obj.infonum.dingnum++ : obj.infonum.cainum++;
+      }
+    },
+
     _getLoadData: function _getLoadData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$_this$$http$ge, _yield$_this$$http$ge2, err, res, arr;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                   _this.$http.get('/postclass'));case 2:_yield$_this$$http$ge = _context.sent;_yield$_this$$http$ge2 = _slicedToArray(_yield$_this$$http$ge, 2);err = _yield$_this$$http$ge2[0];res = _yield$_this$$http$ge2[1];
                 arr = [];

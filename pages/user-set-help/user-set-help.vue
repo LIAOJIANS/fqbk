@@ -40,9 +40,11 @@
 		},
 		methods: {
 			openFeedback(){
-				uni.navigateTo({
-					url: '/pages/user-feedback/user-feedback',
-				});
+				console.log(11)
+				// uni.navigateTo({
+				// 	url: '../user-feedback/user-feedback',
+				// });
+				uni.navigateTo({ url: '../user-feedback/user-feedback' })
 			}
 		}
 	}

@@ -202,6 +202,8 @@ __webpack_require__.r(__webpack_exports__);
   onLoad: function onLoad(e) {
     // 获取路由参数
     this._initData(JSON.parse(e.detail));
+    // 开启监听
+    uni.$once('updateData', this.updateData);
   },
 
   onReachBottom: function onReachBottom() {
@@ -219,6 +221,14 @@ __webpack_require__.r(__webpack_exports__);
       this._getData();
     },
 
+    updateData: function updateData(resdata) {
+      switch (resdata.type) {
+        case "guanzhu":
+          this.guanzhu(resdata);
+          break;}
+
+    },
+
     _getData: function _getData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$_this$$http$ge, _yield$_this$$http$ge2, err, res, arr;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                   _this.$http.get("/topic/".concat(_this.topicInfo.id, "/post/").concat(_this.topicList[_this.tabIndex].page), {}, { token: true }));case 2:_yield$_this$$http$ge = _context.sent;_yield$_this$$http$ge2 = _slicedToArray(_yield$_this$$http$ge, 2);err = _yield$_this$$http$ge2[0];res = _yield$_this$$http$ge2[1];if (
                 _this.$http.errorCheck(err, res)) {_context.next = 8;break;}return _context.abrupt("return", _this.topicList[_this.tabIndex].context = '下拉加载更多');case 8:
@@ -234,6 +244,14 @@ __webpack_require__.r(__webpack_exports__);
                   _this.topicList[_this.tabIndex].context = '下拉加载更多';
                 }return _context.abrupt("return");case 14:case "end":return _context.stop();}}}, _callee);}))();
 
+    },
+
+    guanzhu: function guanzhu(data) {
+      this.topicList[this.tabIndex].list.forEach(function (item) {
+        if (item.userid === data.userid) {
+          item.isguanzhu = data.data;
+        }
+      });
     },
 
     _fomat: function _fomat(item) {

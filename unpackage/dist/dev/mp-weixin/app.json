@@ -20,7 +20,8 @@
     "pages/login/login",
     "pages/user-space/user-space",
     "pages/user-bind-phone/user-bind-phone",
-    "pages/user-safe/user-safe"
+    "pages/user-safe/user-safe",
+    "pages/user-feedback/user-feedback"
   ],
   "subPackages": [],
   "window": {
@@ -61,6 +62,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap86.json"
+  "usingComponents": {}
 }

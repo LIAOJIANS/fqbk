@@ -180,9 +180,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     openFeedback: function openFeedback() {
-      uni.navigateTo({
-        url: '/pages/user-feedback/user-feedback' });
-
+      console.log(11);
+      // uni.navigateTo({
+      // 	url: '../user-feedback/user-feedback',
+      // });
+      uni.navigateTo({ url: '../user-feedback/user-feedback' });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

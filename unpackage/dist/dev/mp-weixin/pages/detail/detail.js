@@ -193,6 +193,7 @@ var _time = _interopRequireDefault(__webpack_require__(/*! ../../common/time.js 
       },
       shareshow: false,
       obj: {}, // 详情对象
+      isguanzhu: false,
       id: null,
       comment: {
         count: 0,
@@ -230,6 +231,7 @@ var _time = _interopRequireDefault(__webpack_require__(/*! ../../common/time.js 
         // 修改头部标题
         title: obj.title });
 
+      this.isguanzhu = obj.isguanzhu;
       this._getData(this.id);
       this._getComment();
       this.__initShare(obj);
@@ -243,6 +245,10 @@ var _time = _interopRequireDefault(__webpack_require__(/*! ../../common/time.js 
         titlepic: obj.titlepic ? obj.titlepic : 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/app/share-logo@3.png',
         shareType: 0 };
 
+    },
+
+    updateData: function updateData(data) {
+      this.obj.isguanzhu = data.data;
     },
 
     _getData: function _getData(id) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _yield$_this$$http$ge, _yield$_this$$http$ge2, err, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
@@ -265,7 +271,7 @@ var _time = _interopRequireDefault(__webpack_require__(/*! ../../common/time.js 
         create_time: _time.default.gettime.gettime(item.create_time),
         sex: item.user.userinfo.sex,
         age: item.user.userinfo.age,
-        isguanzhu: false,
+        isguanzhu: this.isguanzhu,
         title: item.title,
         titlepic: item.titlepic,
         morepic: images,

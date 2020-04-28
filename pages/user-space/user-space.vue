@@ -3,28 +3,36 @@
 		<userSpaceHead :userinfo="userinfo" />
 		<view class="user-space-data"><homeData :homedata="homedata" /></view>
 		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap" scrollStyle="border-bottom: none" scrollItemStyle="width: 33.33%"></swiperTabHead>
-		<block v-for="(item,index) in tablist" :key="index">
-			<template v-if="tabIndex===0 && tabIndex === index">
+		<block v-for="(item, index) in tablist" :key="index">
+			<template v-if="tabIndex === 0 && tabIndex === index">
 				<!-- 主页 -->
 				<userspaceUserinfo :userinfo="userinfo"></userspaceUserinfo>
 			</template>
-			<template v-else-if="tabIndex==index">
+			<template v-else-if="tabIndex == index">
 				<template v-if="item.list.length > 0">
 					<!-- 列表 -->
-					<block v-for="(list,listindex) in item.list" :key="listindex">
-						<newList nonavigate :item="list" :index="listindex"></newList>
-					</block>
+					<block v-for="(list, listindex) in item.list" :key="listindex"><newList nonavigate :item="list" :index="listindex"></newList></block>
 					<!-- 上拉加载 -->
 					<load-more :loadtext="item.loadtext"></load-more>
 				</template>
 				<template v-else-if="!item.firstload">
-					<view style="font-size: 50upx;font-weight: bold;color: #CCCCCC;
-					padding-top: 100upx;" class="u-f-ajc">Loading ...</view>
+					<view
+						style="font-size: 50upx;font-weight: bold;color: #CCCCCC;
+					padding-top: 100upx;"
+						class="u-f-ajc"
+					>
+						Loading ...
+					</view>
 				</template>
 				<template v-else>
 					<!-- 无内容默认 -->
-					<view style="font-size: 50upx;font-weight: bold;color: #CCCCCC;
-					padding-top: 100upx;" class="u-f-ajc">No content~</view>
+					<view
+						style="font-size: 50upx;font-weight: bold;color: #CCCCCC;
+					padding-top: 100upx;"
+						class="u-f-ajc"
+					>
+						No content~
+					</view>
 				</template>
 			</template>
 		</block>
@@ -63,7 +71,7 @@ export default {
 				regtime: '',
 				id: 0
 			},
-			homedata: [{ name: '获赞', num: '12K' }, { name: '关注', num: 24 }, { name: '粉丝', num: 100 }],
+			homedata: [{ name: '获赞', num: 0 }, { name: '关注', num: 0 }, { name: '粉丝', num: 0 }],
 			tabBars: [{ name: '主页', id: 'dangqian' }, { name: '糗事', id: 'zuixin' }, { name: '动态', id: 'dongtai' }],
 			qiushi: {},
 			tablist: [
@@ -107,13 +115,13 @@ export default {
 	},
 
 	onLoad(e) {
-		console.log(e.userid)
 		this._loadDate(e.userid);
 	},
 
 	methods: {
 		_loadDate(userid) {
 			this._getUserInfo(userid);
+			this.getCounts(userid)
 		},
 
 		async _getUserInfo(userid) {
@@ -161,14 +169,13 @@ export default {
 
 		tabtap(index) {
 			this.tabIndex = index;
-			this._getData()
+			this._getData();
 		},
 
 		async _getData() {
-			if(!this.tablist[this.tabIndex].page) return
+			if (!this.tablist[this.tabIndex].page) return;
 			let page = this.tablist[this.tabIndex].page;
-			console.log(page)
-			let url = this.userinfo.isme ? `/user/post/${ page }` : `/user/${this.userinfo.id}/post/${ page }`;
+			let url = this.userinfo.isme ? `/user/post/${page}` : `/user/${this.userinfo.id}/post/${page}`;
 			let index = this.tabIndex;
 			let [err, res] = await this.$http.get(url, {}, { token: true });
 			if (!this.$http.errorCheck(err, res)) {
@@ -222,11 +229,27 @@ export default {
 		},
 
 		loadingDate() {
-			if(this.tablist[this.tabIndex].context!="上拉加载更多") return;
+			if (this.tablist[this.tabIndex].context != '上拉加载更多') return;
 			// 修改状态
-			this.tablist[this.tabIndex].context="加载中...";
+			this.tablist[this.tabIndex].context = '加载中...';
 			this.tablist[this.tabIndex].page++;
 			this._getData();
+		},
+		
+		async getCounts(userid) {
+			let counts
+			if(userid === this.user.userinfo.id) {
+				counts = this.user.counts
+			} else {
+				let [err,res] = await this.$http.get('/user/getcounts/' + this.user.userinfo.id);
+				if (!this.$http.errorCheck(err,res)) return;
+				counts = res.data.data;
+			}
+			if (counts) {
+				this.homedata[0].num = counts.post_count;
+				this.homedata[1].num = counts.withfollow_count;
+				this.homedata[2].num = counts.withfen_count;
+			}
 		}
 	}
 };

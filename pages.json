@@ -277,6 +277,12 @@
 				"navigationBarTitleText": "账号与安全"
 			}
         }
+        ,{
+            "path" : "pages/user-feedback/user-feedback",
+            "style" : {
+				"navigationBarTitleText": "意见反馈"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

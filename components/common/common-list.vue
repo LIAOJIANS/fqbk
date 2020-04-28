@@ -4,14 +4,16 @@
 		<view class="common-list-r">
 			<view class="user-info u-f-ac u-f-jsb">
 				<view class="u-f-ac">{{ item.username }}
-					<tagSex :sex='item.sex' :age='item.age'></tagSex>
+					<tagSex :sex='getSex' :age='getAge'></tagSex>
 				</view>
-				<view class="icon iconfont icon-zengjia" v-show="item.isguanzhu">关注</view>
+				<view class="icon iconfont icon-zengjia" v-show="!item.isguanzhu" @click="guanzhu">关注</view>
 			</view>
-			<view class="common-list-title">{{ item.title }}</view>
+			<view class="common-list-title" @click.stop="opendetail">{{ item.title }}</view>
 			<!-- 视频 -->
-			<view class="common-list-content u-f-ajc">
-				<image :src="item.titlepic" mode="widthFix" lazy-load v-show="item.titlepic"></image>
+			<view class="common-list-content u-f-ajc" @click.stop="opendetail">
+				<template v-if='item.titlepic'>
+					<image :src="item.titlepic" mode="widthFix" lazy-load v-show="item.titlepic"></image>
+				</template>
 				<view class="common-list-play icon iconfont icon-bofang" v-show="item.video"></view>
 				<view class="common-list-playInfo" v-show="item.video">{{ item.video.looknum }}次播放 {{ item.video.long }}</view>
 			</view>
@@ -23,6 +25,7 @@
 			<view class="common-list-bottom u-f-ac u-f-jsb">
 				<view>{{ item.path }}</view>
 				<view class="u-f-ac">
+					
 					<view class="icon iconfont icon-zhuanfa u-f-ac">
 						<view class="common-list-text">{{ item.sharenum }}</view>
 					</view>
@@ -45,7 +48,52 @@ export default {
 		item: Object,
 		index: Number
 	},
-	methods: {},
+	
+	computed: {
+		getSex() {
+			return this.item.sex;
+		},
+		getAge(){
+			return this.item.age;
+		}
+	},
+	
+	methods: {
+		opendetail() {
+			uni.navigateTo({
+				url: '../../pages/detail/detail?detailData=' + JSON.stringify(this.item)
+			})
+			this.user.addHistoryList(this.item)
+		},
+		
+		async guanzhu () {
+			try{
+				let [err,res] = await this.$http.post('/follow',{
+					follow_id:this.item.userid
+				},{
+					token:true,
+					checkToken:true,
+					checkAuth:true
+				});
+				// 错误处理
+				if (!this.$http.errorCheck(err,res)){
+					return;
+				}
+				// 通知首页修改数据
+				uni.showToast({ title: '关注成功' });
+				let resdata = {
+				 	type:"guanzhu",
+				 	userid:this.item.userid,
+				 	data:true
+				};
+				// 通知父组件
+				this.$emit('changeevent', resdata);
+				// 通知首页
+				uni.$emit('updateData',resdata);
+			}catch(e){ return; }
+		}
+	},
+	
 	components: {
 		tagSex
 	}
