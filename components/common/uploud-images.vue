@@ -36,9 +36,11 @@
 		['compressed', 'original']
 	]
 	export default {
+		props: {
+			imageList: Array,
+		},
 		data() {
 			return {
-				imageList: [],
 				sourceTypeIndex: 2,
 				sourceType: ['拍照', '相册', '拍照或相册'],
 				sizeTypeIndex: 2,
@@ -62,8 +64,7 @@
 					sizeType: sizeType[this.sizeTypeIndex],
 					count: this.imageList.length + this.count[this.countIndex] > 9 ? 9 - this.imageList.length : this.count[this.countIndex],
 					success: (res) => {
-						this.imageList = this.imageList.concat(res.tempFilePaths);
-						this.$emit('upload', this.imageList)
+						this.Upload(res.tempFilePaths[0]);
 					},
 					fail: (err) => {
 						// #ifdef APP-PLUS
@@ -106,13 +107,37 @@
 				})
 			},
 			
+			async Upload(filePath){
+				try{
+					let [err2,res2] = await this.$http.upload('/image/uploadmore',{
+						name: 'imglist[]',
+						filePath: filePath,
+						token:true,
+						checkToken:true
+					});
+					
+					let data = JSON.parse(res2.data);
+					// 上传失败
+					if (err2 || data.errorCode) {
+						uni.showToast({ title: data.msg ? data.msg : '上传失败', icon:"none" });
+						return false;
+					}
+					// 上传成功
+					let list = data.data.list;
+					// 通知父组件
+					this.$emit('upload',list[0])
+				}catch(e){
+					return;
+				}
+			},
+			
 			delImg(index) {
 				uni.showModal({
 					content: `是否删除第${ index + 1 }张图片？`,
 					success: (e) => {
-						if(e.cancel) return
-						this.imageList.splice(index, 1)
-						this.$emit('upload', this.imageList)
+						if (res.confirm) {
+							this.$emit('del',index)
+						}
 					}
 				})
 			},

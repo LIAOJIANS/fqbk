@@ -13,7 +13,7 @@
 					<!-- 列表 -->
 					<block v-for="(list, listindex) in item.list" :key="listindex"><newList nonavigate :item="list" :index="listindex"></newList></block>
 					<!-- 上拉加载 -->
-					<load-more :loadtext="item.loadtext"></load-more>
+					<load-more :loadtext="item.context"></load-more>
 				</template>
 				<template v-else-if="!item.firstload">
 					<view
@@ -187,6 +187,7 @@ export default {
 			for (let i = 0; i < list.length; i++) {
 				arr.push(this._fomat(list[i]));
 			}
+			
 			this.tablist[index].list = page > 1 ? this.tablist[index].list.concat(arr) : arr;
 			this.tablist[index].firstload = true;
 			this.tablist[index].context = list.length < 10 ? '没有更多数据了' : '上拉加载更多';
@@ -217,7 +218,7 @@ export default {
 				sex: item.user.userinfo.sex,
 				age: item.user.userinfo.age
 			};
-			if (item.user_id === this.User.userinfo.id) {
+			if (item.user_id === this.user.userinfo.id) {
 				obj.isguanzhu = true;
 			}
 			return obj;

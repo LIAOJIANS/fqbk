@@ -77,6 +77,9 @@ export default {
 				case "support":
 					this.support(resdata)
 					break;
+				case 'updateComment':
+					this.updateComment(resdata)
+					break;
 			}
 		},
 
@@ -86,6 +89,14 @@ export default {
 					item.isguanzhu = data.data;
 				}
 			})
+		},
+		
+		updateComment(data) {
+			let obj = this.newslist[this.tabIndex].lists.find((item,index)=>{
+				return item.id === data.post_id
+			})
+			if(!obj) return 
+			obj.commentnum++
 		},
 
 		support(data) {

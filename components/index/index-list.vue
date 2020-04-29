@@ -3,7 +3,7 @@
 		<view class="index-list1 u-f-ac u-f-jsb">
 			<view class="u-f-ac">
 				<image @tap.stop="openSpace" :src="item.userpic" 
-				mode="widthFix" 
+				mode="aspectFill" 
 				lazy-load></image>
 				{{item.username}}
 			</view>

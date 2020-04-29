@@ -72,7 +72,7 @@
 			// 获取路由参数
 			this._initData(JSON.parse(e.detail))
 			// 开启监听
-			uni.$once('updateData',this.updateData);
+			uni.$on('updateData',this.updateData);
 		},
 		
 		onReachBottom() {
@@ -91,10 +91,17 @@
 			},
 			
 			updateData(resdata) {
+				console.log(resdata)
 				switch (resdata.type){
 					case "guanzhu":
 						this.guanzhu(resdata)
 						break
+					case 'support': 
+						this.support(resdata)
+						break
+					case 'updateComment':
+						this.updateComment(resdata)
+						break;
 				}
 			},
 			
@@ -121,6 +128,25 @@
 						item.isguanzhu = data.data;
 					}
 				})
+			},
+			
+			updateComment(data) {
+				let obj = this.topicList[this.tabIndex].list.find((item,index)=>{
+					return item.id === data.post_id
+				})
+				if(!obj) return 
+				obj.commentnum++
+			},
+			
+			support(data) {
+				let obj = this.topicList[this.tabIndex].list.find(val => {
+					return val.id === data.post_id
+				})
+				if(!obj || obj.infonum.index === 1) return 
+				if(data.do === 'ding') {
+					obj.infonum.index = 1
+					obj.goodnum++
+				}
 			},
 			
 			_fomat(item) {

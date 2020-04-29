@@ -28,17 +28,18 @@
 		},
 		data() {
 			return {
-				title: '',
-				shareText: '',
-				href:"",
-				image: '',
-				shareType: 0, // 1文字 2图片 0图文 5小程序
+				title: this.sharedata.title,
+				shareText: this.sharedata.title,
+				href: this.sharedata.url,
+				image: this.sharedata.titlepic,
+				shareType: this.sharedata.shareType, // 1文字 2图片 0图文 5小程序
 				providerList: []
 			}
 		},
 		
 		watch: {
 			sharedata(newValue, oldValue) {
+				console.log(newValue)
 				this.title = newValue.title;
 				this.shareText = newValue.title;
 				this.href = newValue.url;
@@ -48,7 +49,6 @@
 		},
 		
 		created() {
-			
 			this.getProvider();
 		},
 		
@@ -140,14 +140,12 @@
 					scene: e.type && e.type === 'WXSenceTimeline' ? 'WXSenceTimeline' : 'WXSceneSession', //WXSceneSession”分享到聊天界面，“WXSenceTimeline”分享到朋友圈，“WXSceneFavorite”分享到微信收藏     
 					type: this.shareType,
 					success: (e) => {
-						console.log('success', e);
 						uni.showModal({
 							content: '分享成功',
 							showCancel:false
 						})
 					},
 					fail: (e) => {
-						console.log('fail', e)
 						uni.showModal({
 							content: e.errMsg,
 							showCancel:false

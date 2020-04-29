@@ -1,6 +1,6 @@
 <template>
 	<view class="common-list u-f">
-		<view class="common-list-l"><image :src="item.userpic" mode="widthFix" lazy-load></image></view>
+		<view class="common-list-l"><image :src="item.userpic" mode="aspectFill" lazy-load></image></view>
 		<view class="common-list-r">
 			<view class="user-info u-f-ac u-f-jsb">
 				<view class="u-f-ac">{{ item.username }}
@@ -32,7 +32,7 @@
 					<view class="icon iconfont icon-pinglun u-f-ac">
 						<view class="common-list-text">{{ item.commentnum }}</view>
 					</view>
-					<view class="icon iconfont icon-dianzan u-f-ac">
+					<view class="icon iconfont icon-dianzan u-f-ac" @click="caozuo('ding')">
 						<view class="common-list-text">{{ item.goodnum }}</view>
 					</view>
 				</view>
@@ -91,7 +91,30 @@ export default {
 				// 通知首页
 				uni.$emit('updateData',resdata);
 			}catch(e){ return; }
-		}
+		},
+		
+		async caozuo(type){
+			let index = (type === 'ding') ? 1 : 2; // 当前操作
+			let [err,res] = await this.$http.post('/support',{
+				post_id: this.item.id,
+				type:index-1
+			},{
+				token:true,
+				checkToken:true,
+				checkAuth:true
+			});
+			if (!this.$http.errorCheck(err,res)) return;
+			uni.showToast({ title: "顶成功" });
+			// 通知父组件
+			let resdata = {
+				type:"support",
+				post_id: this.item.id,
+				do:type
+			};
+			this.$emit('changeevent',resdata);
+			// 通知全局
+			return uni.$emit("updateData",resdata);
+		},
 	},
 	
 	components: {

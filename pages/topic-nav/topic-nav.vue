@@ -17,7 +17,7 @@
 						<view class="recent-updates">
 							<block v-for="(item,index1) in items.lists" :key="index1">
 								<view class="recent-updates-list">
-									<topicList :item="item" :index="index1"/>
+									<topicList :item="item" :ischange="ischange" :index="index1"/>
 								</view>
 							</block>
 						</view>
@@ -44,6 +44,7 @@
 	export default {
 		data() {
 			return {
+				ischange:false,
 				getHeight: `height: ${ 500 }px`, // 默认高度
 				tabIndex: 0, // 默认显示第一个
 				tabBars: [],
@@ -51,10 +52,17 @@
 			}
 		},
 		
-		created() {
+		onLoad(e) {
 			let height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100)
 			this.getHeight = `height: ${ height }px`
 			this._getLoadData()
+			if (e.ischange) {
+				this.ischange = true;
+				// 修改页面标题
+				uni.setNavigationBarTitle({
+					title:"选择所属话题"
+				})
+			}
 		},
 		
 		methods: {

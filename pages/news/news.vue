@@ -7,8 +7,18 @@
 		<swiper class="swiper-box" :style="getHeight" :current="tabIndex" @change="tabChange">
 			<swiper-item>
 				<scroll-view scroll-y class="list" :style="getHeight" @scrolltolower="loadingDate()">
-					<block v-for="(item, index) in guangzhu.list" :key="index"><newList :item="item" :index="index"></newList></block>
-					<loadMore :loadtext="guangzhu.context" />
+					<template v-if="guangzhu.list.length > 0">
+						<block v-for="(item, index) in guangzhu.list" :key="index"><newList :item="item" :index="index"></newList></block>
+						<loadMore :loadtext="guangzhu.loadtext" />
+					</template>
+					<template v-else-if="!guangzhu.firstload">
+						<view style="font-size: 50upx;font-weight: bold;color: #CCCCCC;
+						padding-top: 100upx;" class="u-f-ajc">Loading ...</view>
+					</template>
+					<template v-else>
+						<!-- 无内容默认 -->
+						<no-thing></no-thing>
+					</template>
 				</scroll-view>
 			</swiper-item>
 			<swiper-item>
@@ -50,6 +60,7 @@ import topicNav from '../../components/news/topic-nav.vue';
 import topicList from '../../components/news/topic-list.vue';
 import newList from '../../components/common/common-list.vue';
 import loadMore from '../../components/common/load-more.vue';
+import noThing from "../../components/common/no-thing.vue";
 
 export default {
 	data() {
@@ -58,79 +69,10 @@ export default {
 			getHeight: `height: ${500}px`, // 默认高度
 			tabBars: [{ id: 1, name: '关注' }, { id: 2, name: '话题' }],
 			guangzhu: {
-				context: '下拉加载更多',
-				list: [
-					{
-						// 文字
-						userpic: '../../static/common/loginhead.png',
-						username: 'shanJ',
-						sex: 1, // 0男 1女
-						age: 25,
-						isguanzhu: false,
-						title: '我是标题我是标题我是标题我是标题我是标题我是标题',
-						titlepic: false,
-						video: false,
-						share: false,
-						path: '广州 仓头',
-						sharenum: 20,
-						commentnum: 30,
-						goodnum: 40
-					},
-					{
-						// 图文
-						userpic: '../../static/shou.jpg',
-						username: 'shanJ',
-						sex: 0, // 0男 1女
-						age: 25,
-						isguanzhu: false,
-						title: '我是标题',
-						titlepic: '../../static/shou.jpg',
-						video: false,
-						share: false,
-						path: '广州 仓头',
-						sharenum: 20,
-						commentnum: 30,
-						goodnum: 40
-					},
-					{
-						// 视频
-						userpic: '../../static/shou.jpg',
-						username: 'shanJ',
-						sex: 0, // 0男 1女
-						age: 25,
-						isguanzhu: false,
-						title: '我是标题',
-						titlepic: '../../static/shou.jpg',
-						video: {
-							looknum: '20W',
-							long: '2: 47'
-						},
-						share: false,
-						path: '广州 仓头',
-						sharenum: 20,
-						commentnum: 30,
-						goodnum: 40
-					},
-					{
-						// 分享
-						userpic: '../../static/shou.jpg',
-						username: 'shanJ',
-						sex: 0, // 0男 1女
-						age: 25,
-						isguanzhu: false,
-						title: '我是标题',
-						titlepic: '',
-						video: false,
-						share: {
-							title: '我是标题',
-							titlepic: '../../static/shou.jpg'
-						},
-						path: '广州 仓头',
-						sharenum: 20,
-						commentnum: 30,
-						goodnum: 40
-					}
-				]
+				firstload:false,
+				loadtext:"上拉加载更多",
+				page:1,
+				list:[]
 			},
 			topic: {
 				swipers: [],
@@ -138,6 +80,10 @@ export default {
 				list: []
 			}
 		};
+	},
+	
+	onShow() {
+		this.getFollowPostList();
 	},
 
 	created() {
@@ -151,6 +97,92 @@ export default {
 			this._getAdvertising()
 			this._getHotClass()
 			this._getHotH()
+			// 开启监听
+			uni.$on('updateData',this.updateData);
+		},
+		
+		updateData(data){
+			switch (data.type){
+				case "support":
+				this.updateSupport(data);
+					break;
+				case 'updateComment':
+				this.updateComment(data);
+					break;
+			}
+		},
+		
+		// 更新评论数
+		updateComment(data){
+			// 拿到当前对象
+			let obj = this.guangzhu.list.find(value =>{
+				return value.id === data.post_id;
+			});
+			if (!obj) return;
+			obj.commentnum++; // 评论数+1
+		},
+		
+		updateSupport(data){
+			let obj = this.guangzhu.list.find((item)=>{
+				return item.id === data.post_id;
+			})
+			if(!obj || obj.infonum.index === 1) return;
+			if (data.do == 'ding') {
+				obj.infonum.index = 1;
+				obj.goodnum++;
+			}
+		},
+		
+		// 获取动态列表
+		async getFollowPostList(){
+			let url = `/followpost/${this.guangzhu.page}`;
+			let [err,res] = await this.$http.get(url,{},{
+				token:true
+			});
+			if (!this.$http.errorCheck(err,res)) {
+				this.guangzhu.firstload = true;
+				return this.guangzhu.loadtext="上拉加载更多";
+			}
+			let arr = [];
+			let list = res.data.data.list;
+			for (let i = 0; i < list.length; i++) {
+				arr.push(this.__format(list[i]));
+			}
+			this.guangzhu.list = this.guangzhu.page > 1 
+								? this.guangzhu.list.concat(arr) : arr;
+			this.guangzhu.firstload = true;
+			this.guangzhu.loadtext=list.length < 10 ? "没有更多数据了" : "上拉加载更多";
+			return;
+		},
+		
+		__format(item){
+			let obj = {
+				userid:item.user.id,
+				userpic:item.user.userpic,
+				username:item.user.username,
+				isguanzhu:!!item.user.fens.length,
+				id:item.id,
+				title:item.title,
+				type:"img", // img:图文,video:视频
+				titlepic:item.titlepic,
+				video:false,
+				path:item.path,
+				share:!!item.share,
+				infonum:{
+					index:(item.support.length>0) ? (item.support[0].type+1) : 0,//0:没有操作，1:顶,2:踩；
+					dingnum:item.ding_count,
+					cainum:item.cai_count,
+				},
+				sex:item.user.userinfo.sex,
+				age:item.user.userinfo.age,
+				goodnum:item.ding_count,
+				commentnum:item.comment_count,
+				sharenum:item.sharenum,
+			};
+			if (item.user_id === this.user.userinfo.id) {
+				obj.isguanzhu = true;
+			}
+			return obj;
 		},
 		
 		async _getAdvertising() {
@@ -182,7 +214,7 @@ export default {
 					titlepic: item.titlepic,
 					desc: item.desc,
 					totalnum: item.post_count,
-					todaynum: item.todaypost_count
+					todaynum: item.todaypost_count,
 				})
 			})
 		},
@@ -205,13 +237,11 @@ export default {
 		},
 
 		loadingDate() {
-			// 下拉加载
-			if (this.guangzhu.context !== '下拉加载更多') return;
-			setTimeout(() => {
-				this.guangzhu.context = '正在加载中.......';
-			}, 1000);
-
-			this.guangzhu.context = '没有更多数据';
+			if(this.guangzhu.loadtext!="上拉加载更多") return;
+			// 修改状态
+			this.guangzhu.loadtext="加载中...";
+			this.guangzhu.page++;
+			this.getFollowPostList();
 		}
 	},
 	components: {
@@ -219,7 +249,8 @@ export default {
 		loadMore,
 		newNav,
 		topicNav,
-		topicList
+		topicList,
+		noThing
 	}
 };
 </script>

@@ -44,6 +44,8 @@
 		},
 		
 		onLoad(e) {
+			// 开启监听
+			uni.$on('updateData',this.updateData);
 			if(!e) return
 			this.searchType = e.searchType || 'post'
 			// #ifdef APP-PLUS
@@ -88,6 +90,54 @@
 		},
 		
 		methods: {
+			updateData(resdata) {
+				switch (resdata.type){
+					case "guanzhu":
+						this.guanzhu(resdata)
+						break;
+					case "support":
+						this.support(resdata)
+						break;
+					case 'updateComment':
+						this.updateComment(resdata)
+						break;
+				}
+			},
+			
+			guanzhu(data) {
+				this.list.forEach((item,index)=>{
+					if (item.userid === data.userid) {
+						item.isguanzhu = data.data;
+					}
+				})
+			},
+			
+			updateComment(data) {
+				let obj = this.list.find((item,index)=>{
+					return item.id === data.post_id
+				})
+				if(!obj) return 
+				obj.commentnum++
+			},
+			
+			support(data) {
+				// 拿到当前对象
+				let obj = this.list.find(value =>{
+					return value.id === data.post_id;
+				});
+				if (!obj) return;
+				let oldindex = obj.infonum.index; // 操作前的状态
+				obj.infonum.index = (data.do == 'ding') ? 1 : 2; // 操作后的状态
+				if (oldindex !== 0) { //之前操作过
+					oldindex == 1 ? obj.infonum.dingnum-- : obj.infonum.cainum--;
+				}
+				if (obj.infonum.index !== 0) {  // 当前操作
+					obj.infonum.index == 1 
+						? obj.infonum.dingnum++ : obj.infonum.cainum++;
+				}
+			},
+			
+			
 			async _loadData(val) {
 				uni.showLoading({ title: 'Loading...' });
 				// 判断请求类型
