@@ -1,15 +1,15 @@
 <template>
 	<view>
 		<!-- 操作菜单 -->
-		<view class="papar-left-popup-mask" v-show="show" @tap="hidepopup"></view>
+		<view class="papar-left-popup-mask" v-show="show" @click="hidepopup"></view>
 		<view class="papar-left-popup" v-show="show">
-			<view class="u-f-ac" hover-class="papar-left-popup-h" @tap="lahei">
-				<view class="icon iconfont icon-sousuo"></view> 
-				{{isblack ? '移除黑名单' : '加入黑名单'}}
+			<view class="u-f-ac" hover-class="papar-left-popup-h" @click="lahei">
+				<view class="icon iconfont icon-qingchu"></view> 
+				{{isblack ? '移出黑名单' : '加入黑名单'}}
 			</view>
 			<view v-show="!isblack" class="u-f-ac" 
-			hover-class="papar-left-popup-h" @tap="chat">
-				<view class="icon iconfont icon-qingchu"></view> 
+			hover-class="papar-left-popup-h" @click="chat">
+				<view class="icon iconfont icon-sousuo"></view> 
 				聊天
 			</view>
 		</view>

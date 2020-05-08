@@ -46,7 +46,7 @@
 					{ name:"粉丝", num:0 },
 				],
 				list: [
-					{ icon:"liulan",name:"浏览历史",clicktype:"navigateTo",url:"/pages/user-history/user-history"},
+					{ icon:"liulan",name:"浏览历史",clicktype:"navigateTo",url:"../user-history/user-history"},
 					{ icon:"huiyuanvip",name:"糗百认证",clicktype:"nothing",url:"" },
 					{ icon:"keyboard",name:"审核糗事",clicktype:"nothing",url:"" },
 				]
@@ -112,6 +112,6 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 </style>

@@ -14,6 +14,7 @@
     "pages/user-set/user-set",
     "pages/user-set-repassword/user-set-repassword",
     "pages/user-set-email/user-set-email",
+    "pages/user-history/user-history",
     "pages/user-set-userinfo/user-set-userinfo",
     "pages/user-set-help/user-set-help",
     "pages/user-set-about/user-set-about",
@@ -63,5 +64,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap14.json"
+  "sitemapLocation": "sitemap81.json"
 }

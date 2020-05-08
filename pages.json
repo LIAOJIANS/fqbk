@@ -158,7 +158,7 @@
 							"borderRadius": "4px",
 							"placeholder": "搜索好友",
 							"placeholderColor": "#ccc",
-							"disabled": false // 另开一页
+							"disabled": true // 另开一页
 						},
 						"buttons": [{
 							"float": "right",
@@ -224,6 +224,21 @@
 				"navigationBarTitleText": "修改邮箱"
 			}
         }
+		,{
+		    "path" : "pages/user-history/user-history",
+		    "style" : {
+				"navigationBarTitleText": "浏览记录",
+				"app-plus":{
+					"titleNView":{
+						"buttons":[
+							{
+								"type":"close"
+							}
+						]
+					}
+				}
+			}
+		}
         ,{
             "path" : "pages/user-set-userinfo/user-set-userinfo",
             "style" : {

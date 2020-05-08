@@ -4,7 +4,7 @@
   "usingComponents": {
     "bad-ge": "/components/uni-badge/uni-badge",
     "paper-list": "/components/paper/paper-list",
-    "load-more": "/components/common/load-more",
-    "paper-popup": "/components/paper/paper-left-popup"
+    "paper-popup": "/components/paper/paper-left-popup",
+    "no-thing": "/components/common/no-thing"
   }
 }

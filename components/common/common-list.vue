@@ -1,6 +1,6 @@
 <template>
 	<view class="common-list u-f">
-		<view class="common-list-l"><image :src="item.userpic" mode="aspectFill" lazy-load></image></view>
+		<view class="common-list-l" @click="openSpace"><image :src="item.userpic" mode="aspectFill" lazy-load></image></view>
 		<view class="common-list-r">
 			<view class="user-info u-f-ac u-f-jsb">
 				<view class="u-f-ac">{{ item.username }}
@@ -64,6 +64,12 @@ export default {
 				url: '../../pages/detail/detail?detailData=' + JSON.stringify(this.item)
 			})
 			this.user.addHistoryList(this.item)
+		},
+		
+		openSpace(){
+			uni.navigateTo({
+				url:"../../pages/user-space/user-space?userid=" + this.item.id
+			})
 		},
 		
 		async guanzhu () {

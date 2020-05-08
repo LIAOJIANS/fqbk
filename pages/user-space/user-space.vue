@@ -36,7 +36,7 @@
 				</template>
 			</template>
 		</block>
-		<userSpacePopup :show="showMeuo" :isblack="false" @hide="hide"></userSpacePopup>
+		<userSpacePopup :show="showMeuo" :isblack="userinfo.isblack" @hide="hide" @lahei="lahei" @chat="chat"></userSpacePopup>
 	</view>
 </template>
 
@@ -66,6 +66,7 @@ export default {
 				isguanzhu: false,
 				job: '',
 				path: '',
+				isblack: false,
 				qg: '',
 				birthday: '',
 				regtime: '',
@@ -121,20 +122,50 @@ export default {
 	methods: {
 		_loadDate(userid) {
 			this._getUserInfo(userid);
-			this.getCounts(userid)
+			this.getCounts(userid);
+		},
+
+		async lahei() {
+			uni.showLoading({ title: 'Loading....', mask: false });
+			let url = this.userinfo.isblack ? '/removeblack' : '/addblack';
+			let msg = this.userinfo.isblack ? '移除黑名单' : '加入黑名单';
+			let [err, res] = await this.$http.post(url, { id: this.userinfo.id }, { token: true, checkToken: true, checkAuth: true });
+			// 错误处理
+			if (!this.$http.errorCheck(err, res)) {
+				uni.hideLoading();
+				return this.hide();
+			}
+			uni.hideLoading();
+			uni.showToast({
+				title: msg + '成功'
+			});
+			this.userinfo.isblack = !this.userinfo.isblack;
+			this.hide();
+		},
+
+		chat() {
+			let obj = {
+				userid: this.userinfo.id,
+				userpic: this.userinfo.userpic,
+				username: this.userinfo.username
+			};
+			this.user.navigate({
+				url: '/pages/user-chat/user-chat?userinfo=' + JSON.stringify(obj)
+			});
+			this.hide();
 		},
 
 		async _getUserInfo(userid) {
 			let sexArr = ['不限', '男', '女'];
 			let qgArr = ['秘密', '未婚', '已婚'];
 			let isme, info, isguanzhu, isblack;
-			if (userid == this.user.userinfo.id) {
+			if (userid === this.user.userinfo.id) {
 				info = this.user.userinfo;
 				isme = true;
 				isguanzhu = false;
 				isblack = false;
 			} else {
-				const [err, res] = this.$http.post(
+				const [err, res] = await this.$http.post(
 					'/getuserinfo',
 					{
 						user_id: userid
@@ -187,7 +218,7 @@ export default {
 			for (let i = 0; i < list.length; i++) {
 				arr.push(this._fomat(list[i]));
 			}
-			
+
 			this.tablist[index].list = page > 1 ? this.tablist[index].list.concat(arr) : arr;
 			this.tablist[index].firstload = true;
 			this.tablist[index].context = list.length < 10 ? '没有更多数据了' : '上拉加载更多';
@@ -225,6 +256,11 @@ export default {
 		},
 
 		hide() {
+			if (this.userinfo.id === this.user.userinfo.id) {
+				return this.user.navigate({
+					url: '/pages/user-set-userinfo/user-set-userinfo'
+				});
+			}
 			// 隐藏菜单栏
 			this.showMeuo = false;
 		},
@@ -236,16 +272,18 @@ export default {
 			this.tablist[this.tabIndex].page++;
 			this._getData();
 		},
-		
+
 		async getCounts(userid) {
-			let counts
-			if(userid === this.user.userinfo.id) {
-				counts = this.user.counts
+			let counts;
+			if (userid === this.user.userinfo.id) {
+				counts = this.user.counts;
 			} else {
-				let [err,res] = await this.$http.get('/user/getcounts/' + this.user.userinfo.id);
-				if (!this.$http.errorCheck(err,res)) return;
+				let [err, res] = await this.$http.get('/user/getcounts/' + userid);
+				console.log(res.data.data);
+				if (!this.$http.errorCheck(err, res)) return;
 				counts = res.data.data;
 			}
+
 			if (counts) {
 				this.homedata[0].num = counts.post_count;
 				this.homedata[1].num = counts.withfollow_count;

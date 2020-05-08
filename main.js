@@ -11,6 +11,9 @@ Vue.prototype.lib = lib
 import user from 'common/user.js'
 Vue.prototype.user = user
 
+import chat from "./common/chat.js";
+Vue.prototype.$chat = chat;
+
 // 引入全局
 import $http from './common/request.js'
 Vue.prototype.$http = $http

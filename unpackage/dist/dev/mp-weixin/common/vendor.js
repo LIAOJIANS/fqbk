@@ -757,7 +757,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1697,7 +1697,7 @@ var _default = {
   // api请求前缀
   webUrl: 'https://www.liaojs.cn/qfhz/public/api/v1',
   // websocket地址
-  websocketUrl: "wss://api.yuchentt.com/wss",
+  websocketUrl: "wss:/www.liaojs.cn:23481",
   // 消息提示tabbar索引
   TabbarIndex: 2 };exports.default = _default;
 
@@ -1712,20 +1712,6 @@ var _default = {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 17));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -7801,7 +7787,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7822,14 +7808,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7905,7 +7891,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9649,7 +9635,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 370:
+/***/ 390:
 /*!***********************************************************************************************!*\
   !*** C:/Users/dark mirror/Desktop/工作区/防求百科/components/mpvue-citypicker/city-data/province.js ***!
   \***********************************************************************************************/
@@ -9799,7 +9785,7 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 371:
+/***/ 391:
 /*!*******************************************************************************************!*\
   !*** C:/Users/dark mirror/Desktop/工作区/防求百科/components/mpvue-citypicker/city-data/city.js ***!
   \*******************************************************************************************/
@@ -11313,7 +11299,7 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 372:
+/***/ 392:
 /*!*******************************************************************************************!*\
   !*** C:/Users/dark mirror/Desktop/工作区/防求百科/components/mpvue-citypicker/city-data/area.js ***!
   \*******************************************************************************************/
@@ -24783,7 +24769,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": {}, "pages/news/news": {}, "pages/paper/paper": { "enablePullDownRefresh": true, "navigationBarTitleText": "小纸条" }, "pages/home/home": { "navigationBarTitleText": "我的" }, "pages/search/search": { "enablePullDownRefresh": true, "titleNView": { "autoBackButton": false, "searchInput": { "align": "left", "backgroundColor": "#F7F7F7", "borderRadius": "4px", "placeholder": "搜索糗事", "placeholderColor": "#ccc", "disabled": false }, "buttons": [{ "float": "right", "color": "#000", "colorPressed": "#bbb", "fontSize": "16px", "text": "取消" }] } }, "pages/add-input/add-input": {}, "pages/topic-nav/topic-nav": { "navigationBarTitleText": "话题分类" }, "pages/topic-detail/topic-detail": { "enablePullDownRefresh": true, "navigationBarTitleText": "话题详情" }, "pages/user-list/user-list": {}, "pages/user-chat/user-chat": { "navigationBarTitleText": "聊天页" }, "pages/detail/detail": { "navigationBarTitleText": "内容页" }, "pages/user-set/user-set": { "navigationBarTitleText": "设置" }, "pages/user-set-repassword/user-set-repassword": { "navigationBarTitleText": "修改密码" }, "pages/user-set-email/user-set-email": { "navigationBarTitleText": "修改邮箱" }, "pages/user-set-userinfo/user-set-userinfo": { "navigationBarTitleText": "编辑资料" }, "pages/user-set-help/user-set-help": { "navigationBarTitleText": "意见反馈" }, "pages/user-set-about/user-set-about": { "navigationBarTitleText": "关于糗百" }, "pages/login/login": {}, "pages/user-space/user-space": { "navigationBarTitleText": "个人空间" }, "pages/user-bind-phone/user-bind-phone": {}, "pages/user-safe/user-safe": { "navigationBarTitleText": "账号与安全" }, "pages/user-feedback/user-feedback": { "navigationBarTitleText": "意见反馈" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "糗事百科", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": {}, "pages/news/news": {}, "pages/paper/paper": { "enablePullDownRefresh": true, "navigationBarTitleText": "小纸条" }, "pages/home/home": { "navigationBarTitleText": "我的" }, "pages/search/search": { "enablePullDownRefresh": true, "titleNView": { "autoBackButton": false, "searchInput": { "align": "left", "backgroundColor": "#F7F7F7", "borderRadius": "4px", "placeholder": "搜索糗事", "placeholderColor": "#ccc", "disabled": false }, "buttons": [{ "float": "right", "color": "#000", "colorPressed": "#bbb", "fontSize": "16px", "text": "取消" }] } }, "pages/add-input/add-input": {}, "pages/topic-nav/topic-nav": { "navigationBarTitleText": "话题分类" }, "pages/topic-detail/topic-detail": { "enablePullDownRefresh": true, "navigationBarTitleText": "话题详情" }, "pages/user-list/user-list": {}, "pages/user-chat/user-chat": { "navigationBarTitleText": "聊天页" }, "pages/detail/detail": { "navigationBarTitleText": "内容页" }, "pages/user-set/user-set": { "navigationBarTitleText": "设置" }, "pages/user-set-repassword/user-set-repassword": { "navigationBarTitleText": "修改密码" }, "pages/user-set-email/user-set-email": { "navigationBarTitleText": "修改邮箱" }, "pages/user-history/user-history": { "navigationBarTitleText": "浏览记录" }, "pages/user-set-userinfo/user-set-userinfo": { "navigationBarTitleText": "编辑资料" }, "pages/user-set-help/user-set-help": { "navigationBarTitleText": "意见反馈" }, "pages/user-set-about/user-set-about": { "navigationBarTitleText": "关于糗百" }, "pages/login/login": {}, "pages/user-space/user-space": { "navigationBarTitleText": "个人空间" }, "pages/user-bind-phone/user-bind-phone": {}, "pages/user-safe/user-safe": { "navigationBarTitleText": "账号与安全" }, "pages/user-feedback/user-feedback": { "navigationBarTitleText": "意见反馈" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "糗事百科", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
 
 /***/ }),
 

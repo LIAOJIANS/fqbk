@@ -76,12 +76,12 @@
 			let res = uni.getStorageSync('addinput');
 			if (res) {
 				res = JSON.parse(res);
-				this.context = res.context;
+				this.context = res.context || 0;
 				this.imglistIds = res.imglistIds || [];
 				if (this.imglistIds.length) {
 					this.imglist = res.imglist;
 				}
-				this.textValue = res.textValue;
+				this.textValue = res.textValue || '';
 				if (res.postclass) {
 					this.postclass = res.postclass;
 				}

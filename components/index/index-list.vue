@@ -65,6 +65,7 @@
 				uni.navigateTo({
 					url:"../../pages/user-space/user-space?userid=" + this.item.userid
 				})
+				this.user.addHistoryList(this.item)
 			},
 			// 关注
 			async guanzhu(){

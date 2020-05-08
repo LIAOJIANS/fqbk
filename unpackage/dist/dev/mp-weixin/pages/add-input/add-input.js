@@ -172,7 +172,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
-var changeArrs = ['所有人可看', '仅自己可看'];var uploudImages = function uploudImages() {__webpack_require__.e(/*! require.ensure | components/common/uploud-images */ "components/common/uploud-images").then((function () {return resolve(__webpack_require__(/*! ../../components/common/uploud-images.vue */ 295));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniNavBar = function uniNavBar() {__webpack_require__.e(/*! require.ensure | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then((function () {return resolve(__webpack_require__(/*! ../../components/uni-nav-bar/uni-nav-bar.vue */ 302));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniPopup = function uniPopup() {__webpack_require__.e(/*! require.ensure | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then((function () {return resolve(__webpack_require__(/*! ../../components/uni-popup/uni-popup.vue */ 309));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var changeArrs = ['所有人可看', '仅自己可看'];var uploudImages = function uploudImages() {__webpack_require__.e(/*! require.ensure | components/common/uploud-images */ "components/common/uploud-images").then((function () {return resolve(__webpack_require__(/*! ../../components/common/uploud-images.vue */ 308));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniNavBar = function uniNavBar() {__webpack_require__.e(/*! require.ensure | components/uni-nav-bar/uni-nav-bar */ "components/uni-nav-bar/uni-nav-bar").then((function () {return resolve(__webpack_require__(/*! ../../components/uni-nav-bar/uni-nav-bar.vue */ 315));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniPopup = function uniPopup() {__webpack_require__.e(/*! require.ensure | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then((function () {return resolve(__webpack_require__(/*! ../../components/uni-popup/uni-popup.vue */ 322));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -209,12 +209,12 @@ var changeArrs = ['所有人可看', '仅自己可看'];var uploudImages = funct
     var res = uni.getStorageSync('addinput');
     if (res) {
       res = JSON.parse(res);
-      this.context = res.context;
+      this.context = res.context || 0;
       this.imglistIds = res.imglistIds || [];
       if (this.imglistIds.length) {
         this.imglist = res.imglist;
       }
-      this.textValue = res.textValue;
+      this.textValue = res.textValue || '';
       if (res.postclass) {
         this.postclass = res.postclass;
       }

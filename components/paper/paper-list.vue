@@ -8,7 +8,7 @@
 			</view>
 			<view class="u-f-ac u-f-jsb">
 				{{ item.data }}
-				<badGe type="error" :text="item.noreadnum"></badGe>
+				<badGe type="error" :text="getItemNoreadnum"></badGe>
 			</view>
 		</view>
 	</view>
@@ -31,20 +31,16 @@ export default {
 	},
 	methods: {
 		opendetail() {
-			uni.navigateTo({
-				url: '../../pages/user-chat/user-chat'
+			let obj = {
+				userid: this.item.userid,
+				username: this.item.username,
+				userpic: this.item.userpic
+			};
+			this.user.navigate({
+				url: '../../pages/user-chat/user-chat?userinfo=' + JSON.stringify(obj)
 			});
-			
-			// let obj = {
-			// 	userid: this.item.userid,
-			// 	username: this.item.username,
-			// 	userpic: this.item.userpic
-			// };
-			// this.User.navigate({
-			// 	url: '../../pages/user-chat/user-chat?userinfo=' + JSON.stringify(obj)
-			// });
-			// // 更新未读数的状态
-			// this.$chat.Read(this.item);
+			// 更新未读数的状态
+			this.$chat.Read(this.item);
 		}
 	}
 };

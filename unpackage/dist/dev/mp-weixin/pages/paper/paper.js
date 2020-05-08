@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var badGe = function badGe() {__webpack_require__.e(/*! require.ensure | components/uni-badge/uni-badge */ "components/uni-badge/uni-badge").then((function () {return resolve(__webpack_require__(/*! ../../components/uni-badge/uni-badge.vue */ 246));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var paperList = function paperList() {__webpack_require__.e(/*! require.ensure | components/paper/paper-list */ "components/paper/paper-list").then((function () {return resolve(__webpack_require__(/*! ../../components/paper/paper-list.vue */ 253));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var paperPopup = function paperPopup() {__webpack_require__.e(/*! require.ensure | components/paper/paper-left-popup */ "components/paper/paper-left-popup").then((function () {return resolve(__webpack_require__(/*! ../../components/paper/paper-left-popup.vue */ 260));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 204));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -148,28 +148,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+var _time = _interopRequireDefault(__webpack_require__(/*! ../../common/time.js */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var badGe = function badGe() {__webpack_require__.e(/*! require.ensure | components/uni-badge/uni-badge */ "components/uni-badge/uni-badge").then((function () {return resolve(__webpack_require__(/*! ../../components/uni-badge/uni-badge.vue */ 252));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var paperList = function paperList() {__webpack_require__.e(/*! require.ensure | components/paper/paper-list */ "components/paper/paper-list").then((function () {return resolve(__webpack_require__(/*! ../../components/paper/paper-list.vue */ 259));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var paperPopup = function paperPopup() {__webpack_require__.e(/*! require.ensure | components/paper/paper-left-popup */ "components/paper/paper-left-popup").then((function () {return resolve(__webpack_require__(/*! ../../components/paper/paper-left-popup.vue */ 266));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var noThing = function noThing() {__webpack_require__.e(/*! require.ensure | components/common/no-thing */ "components/common/no-thing").then((function () {return resolve(__webpack_require__(/*! ../../components/common/no-thing.vue */ 217));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   data: function data() {
     return {
-      context: '上拉加载更多',
+      firstload: false,
       isShowMenu: false, // 是否显示菜单
-      list: [
-      {
-        userpic: '.../../static/shou.jpg',
-        username: 'shanJ',
-        time: '10:21',
-        noreadnum: 2,
-        data: '我是你爸爸爸爸爸爸' },
-
-      {
-        userpic: '.../../static/shou.jpg',
-        username: 'shanJ',
-        time: '10:21',
-        noreadnum: 2,
-        data: '我是你爸爸爸爸爸爸' }] };
-
-
+      list: [] };
 
   },
   onNavigationBarButtonTap: function onNavigationBarButtonTap(e) {
@@ -182,46 +174,81 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
 
-  onPullDownRefresh: function onPullDownRefresh() {// 下拉
+  onShow: function onShow() {
     this.getdata();
   },
 
-  onReachBottom: function onReachBottom() {// 上拉
-    this.loadingDate();
+  onPullDownRefresh: function onPullDownRefresh() {
+    // 下拉
+    this.getdata();
+  },
+
+  onLoad: function onLoad() {var _this = this;
+    // 开启监听
+    uni.$on('UserChat', function (data) {
+      // 置顶更新
+      var index = _this.list.findIndex(function (val) {
+        return val.userid === data.from_id;
+      });
+      // 会话存在
+      if (index !== -1) {
+        _this.list[index].data = data.data;
+        _this.list[index].time = _time.default.gettime.gettime(data.time);
+        _this.list[index].noreadnum++;
+        // 置顶
+        _this.list = _this.$chat.__toFirst(_this.list, index);
+        return;
+      }
+      // 追加
+      var obj = _this.$chat.__format(data, { type: "chatlist" });
+      // 格式化时间
+      obj.time = _time.default.gettime.gettime(obj.time);
+      obj.noreadnum = 1;
+      _this.list.unshift(obj);
+    });
   },
 
   methods: {
-    getdata: function getdata() {// 获取数据
-      setTimeout(function () {
-        uni.stopPullDownRefresh();
-      }, 1000);
+    getdata: function getdata() {
+      try {
+        var userid = this.user.userinfo.id;
+        if (!userid) {
+          this.firstload = true;
+          return uni.stopPullDownRefresh();
+        }
+        this.list = [];
+        var list = uni.getStorageSync('chatlist' + this.user.userinfo.id);
+        list = list ? JSON.parse(list) : [];
+        for (var i = 0; i < list.length; i++) {
+          list[i].time = _time.default.gettime.gettime(list[i].time);
+        }
+        this.list = list;
+        this.firstload = true;
+      } catch (e) {
+        return uni.stopPullDownRefresh();
+      }
+      uni.stopPullDownRefresh();
     },
 
-    addFirend: function addFirend() {// 添加朋友
+    addFirend: function addFirend() {
+      // 添加朋友
       this.hidAlert();
     },
 
-    clear: function clear() {// 清除缓存
+    clear: function clear() {
+      // 清除缓存
       this.hidAlert();
     },
 
     hidAlert: function hidAlert() {
       this.isShowMenu = false;
-    },
-
-    loadingDate: function loadingDate(index) {var _this = this; // 下拉加载
-      if (this.context !== '下拉加载更多') return;
-      setTimeout(function () {
-        _this.context = '正在加载中.......';
-      }, 1000);
-      this.context = '没有更多数据';
     } },
 
   components: {
     badGe: badGe,
     paperList: paperList,
-    loadMore: loadMore,
-    paperPopup: paperPopup } };exports.default = _default;
+    paperPopup: paperPopup,
+    noThing: noThing } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

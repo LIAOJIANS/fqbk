@@ -1,7 +1,7 @@
 <template>
-	<view class="user-chat-buttom u-f-ac">
-		<input type="text" placeholder="请文明发言" v-model="text" />
-		<view class="icon iconfont icon-fabu" @click="submit"></view>
+	<view class="user-chat-buttom u-f-ac animated fadeInDown fast">
+		<input type="text" placeholder="请文明发言" :focus='focus' @blur="blur" v-model="text" />
+		<view class="icon iconfont icon-fabu u-f-ajc" @click="submit"></view>
 	</view>
 </template>
 

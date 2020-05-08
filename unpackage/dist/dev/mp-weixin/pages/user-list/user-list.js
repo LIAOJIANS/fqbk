@@ -131,7 +131,22 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var swiperTabHead = function swiperTabHead() {__webpack_require__.e(/*! require.ensure | components/index/swiper-tab-head */ "components/index/swiper-tab-head").then((function () {return resolve(__webpack_require__(/*! ../../components/index/swiper-tab-head.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var userList = function userList() {__webpack_require__.e(/*! require.ensure | components/user-list/user-list */ "components/user-list/user-list").then((function () {return resolve(__webpack_require__(/*! ../../components/user-list/user-list */ 323));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var swiperTabHead = function swiperTabHead() {__webpack_require__.e(/*! require.ensure | components/index/swiper-tab-head */ "components/index/swiper-tab-head").then((function () {return resolve(__webpack_require__(/*! ../../components/index/swiper-tab-head.vue */ 203));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var userList = function userList() {__webpack_require__.e(/*! require.ensure | components/user-list/user-list */ "components/user-list/user-list").then((function () {return resolve(__webpack_require__(/*! ../../components/user-list/user-list */ 301));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var loadMore = function loadMore() {__webpack_require__.e(/*! require.ensure | components/common/load-more */ "components/common/load-more").then((function () {return resolve(__webpack_require__(/*! ../../components/common/load-more.vue */ 210));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var noThing = function noThing() {__webpack_require__.e(/*! require.ensure | components/common/no-thing */ "components/common/no-thing").then((function () {return resolve(__webpack_require__(/*! ../../components/common/no-thing.vue */ 217));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -156,40 +171,22 @@ __webpack_require__.r(__webpack_exports__);
       tabBars: [{ name: '互关', id: 'huguan', num: 10 }, { name: '关注', id: 'guanzhu', num: 10 }, { name: '粉丝', id: 'fensi', num: 10 }],
       dataLists: [
       {
+        firstload: false,
+        page: 1,
         context: '上拉加载更多',
-        list: [
-        {
-          userpic: '../../static/shou.jpg',
-          username: 'woshishui',
-          age: 20,
-          sex: 0,
-          isguanzhu: true }] },
-
-
+        list: [] },
 
       {
+        firstload: false,
+        page: 1,
         context: '上拉加载更多',
-        list: [
-        {
-          userpic: '../../static/shou.jpg',
-          username: 'woshishui',
-          age: 20,
-          sex: 0,
-          isguanzhu: true }] },
-
-
+        list: [] },
 
       {
+        firstload: false,
+        page: 1,
         context: '上拉加载更多',
-        list: [
-        {
-          userpic: '../../static/shou.jpg',
-          username: 'woshishui',
-          age: 20,
-          sex: 0,
-          isguanzhu: false }] }] };
-
-
+        list: [] }] };
 
 
 
@@ -204,24 +201,84 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
 
+  onNavigationBarSearchInputClicked: function onNavigationBarSearchInputClicked() {
+    uni.navigateTo({
+      url: '../search/search?searchType=user' });
+
+  },
+
   onReachBottom: function onReachBottom() {
     this.loadingDate();
   },
 
+  onShow: function onShow() {
+    this.__init();
+  },
+
   methods: {
+    __init: function __init() {
+      this.tabBars[0].num = this.user.counts.friend_count > 100 ? '99+' : this.user.counts.friend_count;
+      this.tabBars[1].num = this.user.counts.withfollow_count > 100 ? '99+' : this.user.counts.withfollow_count;
+      this.tabBars[2].num = this.user.counts.withfen_count > 100 ? '99+' : this.user.counts.withfen_count;
+      this.getData();
+    },
+
+    getData: function getData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var currentIndex, _yield$_this$$http$ge, _yield$_this$$http$ge2, err, res, arr, list;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.prev = 0;
+
+                currentIndex = _this.tabIndex;_context.next = 4;return (
+                  _this.$http.get(_this.getUrl(), {}, {
+                    token: true,
+                    checkToken: true }));case 4:_yield$_this$$http$ge = _context.sent;_yield$_this$$http$ge2 = _slicedToArray(_yield$_this$$http$ge, 2);err = _yield$_this$$http$ge2[0];res = _yield$_this$$http$ge2[1];if (
+
+
+                _this.$http.errorCheck(err, res)) {_context.next = 11;break;}
+                _this.dataLists[currentIndex].loadtext = "上拉加载更多";return _context.abrupt("return");case 11:
+
+
+                // 获取成功
+                arr = [];
+                list = res.data.data.list;
+                list.forEach(function (item) {
+                  arr.push(_this.__format(item, currentIndex));
+                });
+                _this.dataLists[currentIndex].list = _this.dataLists[currentIndex].page > 1 ? _this.dataLists[currentIndex].list.concat(arr) : arr;
+                _this.dataLists[currentIndex].firstload = true;
+                _this.dataLists[currentIndex].loadtext = list.length < 10 ? "没有更多数据了" : "上拉加载更多";_context.next = 22;break;case 19:_context.prev = 19;_context.t0 = _context["catch"](0);return _context.abrupt("return");case 22:case "end":return _context.stop();}}}, _callee, null, [[0, 19]]);}))();
+
+
+
+    },
+
+    __format: function __format(item, currentIndex) {
+      return {
+        id: item.userinfo.user_id,
+        userpic: item.userpic,
+        username: item.username,
+        age: item.userinfo.age,
+        sex: item.userinfo.sex,
+        isguanzhu: currentIndex !== 2 };
+
+    },
+
+    getUrl: function getUrl() {
+      var arr = ['/friends/', '/follows/', '/fens/'];
+      return arr[this.tabIndex] + this.dataLists[this.tabIndex].page;
+    },
+
     tabtap: function tabtap(index) {
       this.tabIndex = index;
       this.hidden = false;
+      if (!this.dataLists[this.tabIndex].firstload) {
+        this.getData();
+      }
     },
 
-    loadingDate: function loadingDate() {var _this = this;
+    loadingDate: function loadingDate() {
+      if (this.dataLists[this.tabIndex].loadtext !== "上拉加载更多") return;
+      this.dataLists[this.tabIndex].context = '正在加载中.......';
       // 下拉加载
-      if (this.dataLists[this.tabIndex].context !== '下拉加载更多') return;
-      setTimeout(function () {
-        _this.dataLists[_this.tabIndex].context = '正在加载中.......';
-      }, 1000);
-
-      this.dataLists[this.tabIndex].context = '没有更多数据';
+      this.dataLists[this.tabIndex].page++;
+      this.getData();
     } },
 
 
@@ -235,7 +292,9 @@ __webpack_require__.r(__webpack_exports__);
 
   components: {
     swiperTabHead: swiperTabHead,
-    userList: userList } };exports.default = _default;
+    userList: userList,
+    loadMore: loadMore,
+    noThing: noThing } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

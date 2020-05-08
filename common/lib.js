@@ -19,6 +19,7 @@ const NetWork = {
 		uni.onNetworkStatusChange((res)=>{
 			this.isConnect = res.isConnected;
 			if(!res.isConnected){
+	
 				uni.showToast({
 					icon:"none",
 					title: '您目前处于断网状态',
@@ -32,22 +33,8 @@ const NetWork = {
 const Update = function(showToast = false){
 	// #ifdef APP-PLUS  
 	plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {  
-		/*
-		
-		{
-			"msg": "ok",
-			"data": {
-				"id": 1,
-				"url": "http://www.baidu.com",
-				"version": "1.0.1",
-				"status": 1,
-				"create_time": null
-			}
-		}
-		
-		*/
 		$http.post('/update',{
-			ver:widgetInfo.version, 
+			ver: widgetInfo.version, 
 		}).then((res) => {
 			let [err,result] = res;
 			// 错误处理
@@ -60,7 +47,6 @@ const Update = function(showToast = false){
 					return uni.showToast({ title: '无需更新',icon:"none" })
 				}
 			}
-			
 			uni.showModal({
 				title: '发现新的版本',
 				content: '最新版本：'+data.version,

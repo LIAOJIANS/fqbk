@@ -6,7 +6,7 @@
 			<block v-for="(item, index) in comment.list" :key="index"><commentList :item="item" :index="index" @reply="reply" /></block>
 		</view>
 		<view style="height: 120upx;"></view>
-		<userChatBottom @submit="submit" />
+		<userChatBottom @submit="submit" :focus='focus' @blur='blur'/>
 		<moreShare :show="shareshow" :sharedata="sharedata" @togle="togle" />
 	</view>
 </template>
@@ -20,6 +20,7 @@ import time from '../../common/time.js';
 export default {
 	data() {
 		return {
+			focus: false, // 是否聚焦
 			reply_id: 0, // 回复id
 			sharedata: {
 				title: '',
@@ -248,7 +249,13 @@ export default {
 		},
 
 		reply(id) {
-			console.log(111);
+			this.reply_id = id
+			this.focus = true
+		},
+		
+		blur() {
+			this.focus = false
+			this.reply_id = 0
 		}
 	}
 };

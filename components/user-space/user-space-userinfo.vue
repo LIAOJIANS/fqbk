@@ -29,7 +29,6 @@
 				return t.gettime.sumAge(this.userinfo.regtime)
 			},
 			getXingZuo(){
-				console.log(this.userinfo.birthday)
 				if (!this.userinfo.birthday || this.userinfo.birthday=='未知' || this.userinfo.birthday === '') {
 					return "未知";
 				}

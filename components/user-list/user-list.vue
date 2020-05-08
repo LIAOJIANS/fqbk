@@ -1,5 +1,5 @@
 <template>
-	<view class="user-list u-f-ac animated fadeIn fast">
+	<view class="user-list u-f-ac animated fadeIn fast" @click="openSpace">
 		<image :src="item.userpic" mode="widthFix"></image>
 		<view class="user-list-content">
 			<view class="username">{{ item.username }}</view>
