@@ -21,7 +21,7 @@
 					{ icon:"", name:"小纸条", clicktype:"nothing",url:"" },
 					{ icon:"", name:"清除缓存", clicktype:"clear",url:"" },
 					{ icon:"", name:"意见反馈", clicktype:"navigateTo",url:"../user-set-help/user-set-help" },
-					{ icon:"", name:"关于防糗百科", clicktype:"navigateTo",url:"../user-set-about/user-set-about" }
+					{ icon:"", name:"关于百科", clicktype:"navigateTo",url:"../user-set-about/user-set-about" }
 				]
 			}
 		},

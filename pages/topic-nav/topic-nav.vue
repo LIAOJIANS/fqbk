@@ -1,5 +1,5 @@
 <template>
-	<view class="content">
+	<view class="uni-tab-bar">
 		<swiperTabHead
 		:tabBars="tabBars" 
 		:tabIndex="tabIndex"
@@ -10,7 +10,7 @@
 		:style="getHeight"
 		:current="tabIndex"
 		@change="tabChange">
-			<swiper-item v-for="(items,index) in newslist" :key="index"> 
+			<swiper-item v-for="(items,index) in newslist" :key="index" :style="getHeight"> 
 				<scroll-view scroll-y class="list" @scrolltolower="loadingDate(index)" :style="getHeight">
 					<template v-if="items.lists.length > 0">
 						<!-- 图文列表 -->
@@ -45,7 +45,6 @@
 		data() {
 			return {
 				ischange:false,
-				getHeight: `height: ${ 500 }px`, // 默认高度
 				tabIndex: 0, // 默认显示第一个
 				tabBars: [],
 				newslist: []
@@ -53,8 +52,6 @@
 		},
 		
 		onLoad(e) {
-			let height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100)
-			this.getHeight = `height: ${ height }px`
 			this._getLoadData()
 			if (e.ischange) {
 				this.ischange = true;
@@ -64,6 +61,17 @@
 				})
 			}
 		},
+		
+		computed: {
+			getHeight() {
+				let height = uni.getSystemInfoSync().windowHeight - uni.upx2px(100) - 44;
+				// #ifdef MP-ALIPAY
+				return `height: ${height}px;`;
+				// #endif
+				return `height: ${ height + 44 }px;`;
+			}
+		},
+		
 		
 		methods: {
 			async _getLoadData() { // 请求数据

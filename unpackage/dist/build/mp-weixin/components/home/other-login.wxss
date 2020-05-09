@@ -1,0 +1,1 @@
+.other-login{padding:20rpx 80rpx}.other-login>view>view{width:100rpx;height:100rpx;border-radius:100%;font-size:55rpx!important;color:#fff!important}.other-login .icon-QQ{background:#2caefc}.other-login .icon-weixin{background:#2bd19b}.other-login .icon-xinlangweibo{background:#fc7729}.other-login .icon-changyonglogo30{background:#007aff}

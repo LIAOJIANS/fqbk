@@ -45,6 +45,9 @@ export default {
 	width: 55%;
 	position: absolute;
 	top: 10upx;
+	/* #ifndef APP-PLUS */
+	top: 100upx;
+	/* #endif */
 	right: 0;
 	background: #ffffff;
 	z-index: 2000;

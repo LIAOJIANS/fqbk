@@ -1,7 +1,7 @@
 <template>
 	<view class="animated fadeIn more-share">
 		<template v-if="!isLogin">
-			<view class="u-f-ajc">登录防糗百，体验更多功能</view>
+			<view class="u-f-ajc">登录百科，体验更多功能</view>
 			<!-- 第三方登录 -->
 			<otherLogin :noback="true" @logining='isULogin()'></otherLogin>
 			<!-- 账号密码登陆 -->
@@ -29,6 +29,7 @@
 	import homeInfo from '../../components/home/home-info.vue'
 	import homeData from '../../components/home/home-data.vue'
 	import homeListItem from "../../components/home/home-list-item.vue";
+	
 	export default {
 		data() {
 			return {
@@ -47,8 +48,11 @@
 				],
 				list: [
 					{ icon:"liulan",name:"浏览历史",clicktype:"navigateTo",url:"../user-history/user-history"},
-					{ icon:"huiyuanvip",name:"糗百认证",clicktype:"nothing",url:"" },
-					{ icon:"keyboard",name:"审核糗事",clicktype:"nothing",url:"" },
+					{ icon:"huiyuanvip",name:"百科认证",clicktype:"nothing",url:"" },
+					{ icon:"keyboard",name:"审核百科",clicktype:"nothing",url:"" },
+					// #ifndef APP-PLUS
+					{ icon:"shezhi",name:"我的设置",clicktype:"navigateTo",url:"/pages/user-set/user-set",auth:true,NoCheck:true },
+					// #endif
 				]
 			}
 		},
@@ -59,6 +63,16 @@
 			homeData,
 			homeListItem
 		},
+		
+		// #ifndef APP-PLUS
+		// 微信小程序分享
+		onShareAppMessage(res) {
+			return {
+			  title: this.detail.title,
+			  path: '/pages/detail/detail?detailData='+JSON.stringify(this.detail)
+			}
+		 },
+		// #endif
 		
 		onShow() {
 			this.isULogin()

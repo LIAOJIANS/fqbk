@@ -1697,7 +1697,7 @@ var _default = {
   // api请求前缀
   webUrl: 'https://www.liaojs.cn/qfhz/public/api/v1',
   // websocket地址
-  websocketUrl: "wss:/www.liaojs.cn:23481",
+  websocketUrl: "ws://106.53.70.87:23481",
   // 消息提示tabbar索引
   TabbarIndex: 2 };exports.default = _default;
 
@@ -9163,7 +9163,7 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 17
       _this.IsOpen = false;
       _this.SocketTask = false;
     });
-    // 监听错误
+    // // 监听错误
     this.SocketTask.onError(function (e) {
       _this.IsOpen = false;
       _this.SocketTask = false;
@@ -9245,6 +9245,7 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 17
   // 监听信息
   Message: function Message() {var _this4 = this;
     this.SocketTask.onMessage(function (e) {
+      console.log(e);
       // 字符串转json
       var res = JSON.parse(e.data);
       // 绑定返回结果
@@ -9307,25 +9308,12 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 17
   },
   // 初始化tabbarBadge
   initTabbarBadge: function initTabbarBadge() {
-    console.log('初始化tabbar未读数');
     // 获取总未读数
     var noreadnum = uni.getStorageSync('noreadnum' + _user.default.userinfo.id);
     this.__UpdateTabbarBadge(noreadnum);
   },
   // 存储到chatdetail（我与某位用户的历史记录）
   __UpdateChatdetail: function __UpdateChatdetail(res) {var issend = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    /*
-                                                                                                                                                // 组织格式，本地存储
-                                                                                                                                                {
-                                                                                                                                                	isme:false,
-                                                                                                                                                	userid:17,
-                                                                                                                                                	userpic:"../../static/demo/userpic/11.jpg",
-                                                                                                                                                	type:"text",
-                                                                                                                                                	data:"哈哈哈",
-                                                                                                                                                	time:"1555146412"
-                                                                                                                                                },
-                                                                                                                                                
-                                                                                                                                                */
     var userid = issend ? this.CurrentToUser.userid : res.from_id;
     // 获取旧数据（ chatdetail_[当前用户id]_[聊天对象id] ）
     var list = uni.getStorageSync('chatdetail_' + _user.default.userinfo.id + '_' + userid);
@@ -9344,17 +9332,6 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 17
   },
   // 更新chatlist（将当前会话置顶，修改chatlist中当前会话的data和time显示）
   __UpdateChatlist: function __UpdateChatlist(res) {
-    /*
-                                                    // 组织格式，本地存储
-                                                    {
-                                                    	userid:12,
-                                                    	userpic:"../../static/demo/userpic/12.jpg",
-                                                    	username:"昵称",
-                                                    	time:"10:21",
-                                                    	data:"我是信息",
-                                                    	noreadnum:2
-                                                    }
-                                                    */
     // 获取旧数据
     var chatlist = uni.getStorageSync('chatlist' + _user.default.userinfo.id);
     chatlist = chatlist ? JSON.parse(chatlist) : [];
@@ -9390,12 +9367,6 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 17
   },
   // 发送消息
   send: function send(data) {
-    /**
-                              {
-                             	 type:'text',
-                             	 data:'消息内容'
-                              }
-                              * */
     // 发送的格式
     var senddata = this.__format(data, { type: "send" });
     // 存储到chatdetail
@@ -9407,17 +9378,6 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 17
   },
   // 读取当前会话
   Read: function Read(item) {
-    /*
-                             item的格式
-                             {
-                             	userid:12,
-                             	userpic:"../../static/demo/userpic/12.jpg",
-                             	username:"昵称",
-                             	time:"10:21",
-                             	data:"我是信息",
-                             	noreadnum:2
-                             }
-                             */
     if (!item.noreadnum) return;
     var chatlist = uni.getStorageSync('chatlist' + _user.default.userinfo.id);
     chatlist = chatlist ? JSON.parse(chatlist) : [];
@@ -9439,13 +9399,6 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 17
   },
   // 数据格式转换
   __format: function __format(data) {var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    /**
-                                                                                                                            options = {
-                                                                                                                           	 type:"chatdetail", // 转化类型
-                                                                                                                           	 olddata:olddata,   // 旧数据（chatdetail中必填）
-                                                                                                                           	 isme:true			// （true本人，false聊天对象，chatdetail中必填）
-                                                                                                                            }
-                                                                                                                            * */
     switch (options.type) {
       case "chatlist": // 新增会话用到
         var obj = {
@@ -9635,7 +9588,18 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 390:
+/***/ 4:
+/*!********************************************************!*\
+  !*** C:/Users/dark mirror/Desktop/工作区/防求百科/pages.json ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 404:
 /*!***********************************************************************************************!*\
   !*** C:/Users/dark mirror/Desktop/工作区/防求百科/components/mpvue-citypicker/city-data/province.js ***!
   \***********************************************************************************************/
@@ -9785,7 +9749,7 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 391:
+/***/ 405:
 /*!*******************************************************************************************!*\
   !*** C:/Users/dark mirror/Desktop/工作区/防求百科/components/mpvue-citypicker/city-data/city.js ***!
   \*******************************************************************************************/
@@ -11299,7 +11263,7 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 392:
+/***/ 406:
 /*!*******************************************************************************************!*\
   !*** C:/Users/dark mirror/Desktop/工作区/防求百科/components/mpvue-citypicker/city-data/area.js ***!
   \*******************************************************************************************/
@@ -23849,17 +23813,6 @@ var areaData = [
 
 
 areaData;exports.default = _default;
-
-/***/ }),
-
-/***/ 4:
-/*!********************************************************!*\
-  !*** C:/Users/dark mirror/Desktop/工作区/防求百科/pages.json ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
 
 /***/ }),
 

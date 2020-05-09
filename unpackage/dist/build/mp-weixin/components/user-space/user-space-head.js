@@ -1,0 +1,10 @@
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["components/user-space/user-space-head"],{1529:function(n,t,e){"use strict";e.r(t);var u=e("3716"),i=e("468c");for(var r in i)"default"!==r&&function(n){e.d(t,n,(function(){return i[n]}))}(r);e("ae27");var a,o=e("f0c5"),c=Object(o["a"])(i["default"],u["b"],u["c"],!1,null,"02ce93a1",null,!1,u["a"],a);t["default"]=c.exports},3716:function(n,t,e){"use strict";var u,i=function(){var n=this,t=n.$createElement;n._self._c},r=[];e.d(t,"b",(function(){return i})),e.d(t,"c",(function(){return r})),e.d(t,"a",(function(){return u}))},"468c":function(n,t,e){"use strict";e.r(t);var u=e("4ae9"),i=e.n(u);for(var r in u)"default"!==r&&function(n){e.d(t,n,(function(){return u[n]}))}(r);t["default"]=i.a},"4ae9":function(n,t,e){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var u=function(){e.e("components/common/tag-sex-age").then(function(){return resolve(e("d749"))}.bind(null,e)).catch(e.oe)},i={components:{tagSexAge:u},props:{userinfo:Object},data:function(){return{bgimg:this.userinfo.bgimg}},computed:{getSex:function(){return this.userinfo.sex},getAge:function(){return this.userinfo.age},getBgImg:function(){return"../../static/banner/item"+this.bgimg+".jpg"},getGuanZhuClass:function(){return this.userinfo.isguanzhu?"active":"icon-zengjia"}},methods:{changBgImg:function(){var n=parseInt(this.userinfo.bgimg);this.bgimg=this.userinfo.bgimg=n<5?++n:1},guanzhu:function(){console.log("关注")}}};t.default=i},"5aa6":function(n,t,e){},ae27:function(n,t,e){"use strict";var u=e("5aa6"),i=e.n(u);i.a}}]);
+;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
+    'components/user-space/user-space-head-create-component',
+    {
+        'components/user-space/user-space-head-create-component':(function(module, exports, __webpack_require__){
+            __webpack_require__('543d')['createComponent'](__webpack_require__("1529"))
+        })
+    },
+    [['components/user-space/user-space-head-create-component']]
+]);

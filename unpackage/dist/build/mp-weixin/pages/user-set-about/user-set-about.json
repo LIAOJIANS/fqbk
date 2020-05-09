@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "关于百科",
+  "usingComponents": {
+    "home-list-item": "/components/home/home-list-item"
+  }
+}

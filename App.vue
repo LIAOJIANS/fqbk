@@ -6,6 +6,10 @@
 			this.lib.NetWork.On()
 			// 监听用户是否登录
 			this.user.__init()
+			// #ifdef APP-PLUS
+			// 监听是否有新版本
+			this.lib.Update()
+			// #endif
 			
 		},
 		onShow: function() {

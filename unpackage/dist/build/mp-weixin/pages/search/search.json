@@ -1,0 +1,30 @@
+{
+  "enablePullDownRefresh": true,
+  "titleNView": {
+    "autoBackButton": false,
+    "searchInput": {
+      "align": "left",
+      "backgroundColor": "#F7F7F7",
+      "borderRadius": "4px",
+      "placeholder": "搜索百科",
+      "placeholderColor": "#ccc",
+      "disabled": false
+    },
+    "buttons": [
+      {
+        "float": "right",
+        "color": "#000",
+        "colorPressed": "#bbb",
+        "fontSize": "16px",
+        "text": "取消"
+      }
+    ]
+  },
+  "usingComponents": {
+    "load-more": "/components/common/load-more",
+    "no-thing": "/components/common/no-thing",
+    "index-list": "/components/index/index-list",
+    "topic-list": "/components/news/topic-list",
+    "user-list": "/components/user-list/user-list"
+  }
+}

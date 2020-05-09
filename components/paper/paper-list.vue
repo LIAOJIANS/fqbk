@@ -1,6 +1,6 @@
 <template>
 	<view class="paper-list u-f-ac animated fadeIn fast" @tap="opendetail">
-		<image :src="item.userpic" mode="widthFix" lazy-load></image>
+		<image :src="item.userpic" mode="aspectFill" lazy-load></image>
 		<view class="username">
 			<view class="u-f-ac u-f-jsb">
 				{{ item.username }}

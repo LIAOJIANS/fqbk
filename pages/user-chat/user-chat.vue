@@ -1,7 +1,7 @@
 <template>
 	<view class="user-chat">
 		<!-- 聊天列表 -->
-		<scroll-view id="scrollView" scroll-y :scroll-top="scrollTop" :scroll-with-animation="true" :style="{ height: style.content + 'px' }">
+		<scroll-view id="scrollView" scroll-y :scroll-top="scrollTop" :scroll-with-animation="true" :style="{ height: style.contentH + 'px' }">
 			<view class="u-f-ajc chat-load-more" hover-class="chat-load-more-hover" @tap="loadmore">{{ loadtext }}</view>
 			<block v-for="(item, index) in list" :key="index">
 				<view class="chat-item"><userChatList :item="item" :index="index" /></view>
@@ -141,7 +141,6 @@ export default {
 				checkToken: true,
 				checkAuth: true
 			});
-			console.log(res)
 			if (!this.$http.errorCheck(err, res)) {
 				return uni.showToast({
 					title: '发送失败',

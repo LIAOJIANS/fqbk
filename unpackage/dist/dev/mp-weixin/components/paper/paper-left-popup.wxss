@@ -35,6 +35,7 @@
   width: 55%;
   position: absolute;
   top: 10rpx;
+  top: 100rpx;
   right: 0;
   background: #ffffff;
   z-index: 2000;

@@ -1,5 +1,26 @@
 <template>
 	<view>
+		<!-- 自定义导航 -->
+		<!-- #ifndef APP-PLUS -->
+		<view style="display: flex;
+		align-items: center;
+		padding:0 20upx;height: 88upx;
+		position: fixed;z-index: 9999;
+		left: 0;
+		top: 0;
+		right: 0;
+		background: #FFFFFF;">
+			<view class="iconfont icon-sousuo" 
+			style="position: absolute;left: 30upx;color: #CCCCCC;"></view>
+			<input style="flex: 1;padding: 5upx 0 5upx 50upx;border-radius: 4px;background: #F7F7F7;" 
+			type="text" v-model="serchVal" @confirm="_loadData"
+			:placeholder="getPlaceholder" 
+			placeholder-style="color: #CCCCCC;"/>
+			<text style="padding-left:20upx;"
+			@click="goBack">取消</text>
+		</view>
+		<view style="height: 88upx;"></view>
+		<!-- #endif -->
 		<template v-if="list.length > 0">
 			<block v-for="(item, index) in list" :key="index">
 				<template v-if="searchType === 'post'">
@@ -66,6 +87,20 @@ export default {
 		});
 		// #endif
 	},
+	
+	computed: {
+		getPlaceholder() {
+			let type = '文章'
+			if (this.searchType == 'post') {
+				type = '文章';
+			}else if(this.searchType == 'topic'){
+				type = '话题';
+			}else if(this.searchType == 'user'){
+				type = '用户';
+			}
+			return '搜索'+type;
+		}
+	},
 
 	onNavigationBarButtonTap(e) {
 		// 监听头部按钮点击事件
@@ -89,6 +124,7 @@ export default {
 		// 输入框内容的变化
 		if (e.text) {
 			this.serchVal = e.text;
+			console.log(this.serchVal)
 		}
 	},
 
@@ -100,6 +136,14 @@ export default {
 	},
 
 	methods: {
+		// #ifndef APP-PLUS
+		goBack(){
+			uni.navigateBack({
+				delta: 1
+			});
+		},
+		// #endif
+		
 		updateData(resdata) {
 			switch (resdata.type) {
 				case 'guanzhu':
@@ -149,6 +193,9 @@ export default {
 		},
 
 		async _loadData(val) {
+			// #ifndef APP-PLUS
+				val = val.detail.value
+			// #endif
 			uni.showLoading({ title: 'Loading...' });
 			// 判断请求类型
 			let url ='/search/' + this.searchType;

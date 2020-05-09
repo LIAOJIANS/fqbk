@@ -34,7 +34,6 @@
 			}
 		},
 		created() {
-			console.log(this.providerList)
 			// #ifdef APP-PLUS || MP-ALIPAY
 			this.getLoginAuth();
 			// #endif

@@ -118,6 +118,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     // 监听用户是否登录
     this.user.__init();
 
+
+
+
+
   },
   onShow: function onShow() {
     console.log('App Show');

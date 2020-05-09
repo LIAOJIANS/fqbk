@@ -1,0 +1,1 @@
+.user-chat-buttom{height:120rpx;padding:0 20rpx;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee}.user-chat-buttom input{padding:10rpx 20rpx;border-radius:10rpx;-webkit-box-flex:1;-webkit-flex:1;flex:1;margin-right:20rpx;background:#f7f7f7}.user-chat-buttom view{width:80rpx;font-size:50rpx}

@@ -1,5 +1,19 @@
 <template>
 	<view class="user-list-body">
+		<!-- #ifndef APP-PLUS -->
+		<uni-nav-bar :shadow="false" :border="false" @click-right="clickRight">
+			<!-- 搜索框 -->
+			<view style="display: flex;justify-content: center;align-items: center;border-radius: 4px;margin-left: -120upx;height: 60upx;margin-top: 12upx;color: #CCCCCC;background: #F7F7F7;" @tap="openSearch">
+				<view class="iconfont icon-sousuo" style="margin-right: 6upx;"></view>搜索用户
+			</view>
+			<!-- 右边按钮 -->
+			<block slot="right">
+				<view>取消</view>
+			</block>
+		</uni-nav-bar>
+		<!-- #endif -->
+		
+		
 		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap" scrollStyle="border-bottom: none" scrollItemStyle="width: 33.33%"></swiperTabHead>
 		<block v-for="(item, index) in dataLists" :key="index">
 			<template v-if="tabIndex === index && item.list.length > 0">
@@ -30,6 +44,9 @@ import swiperTabHead from '../../components/index/swiper-tab-head.vue';
 import userList from '../../components/user-list/user-list';
 import loadMore from '../../components/common/load-more.vue';
 import noThing from '../../components/common/no-thing.vue';
+// #ifndef APP-PLUS
+	import uniNavBar from "../../components/uni-nav-bar/uni-nav-bar.vue";
+	// #endif
 export default {
 	data() {
 		return {
@@ -83,6 +100,19 @@ export default {
 	},
 
 	methods: {
+		// #ifndef APP-PLUS
+		clickRight(){
+			uni.navigateBack({
+				delta: 1
+			});
+		},
+		openSearch(){
+			uni.navigateTo({
+				url: '../search/search?searchType=user',
+			});
+		},
+		// #endif
+		
 		__init() {
 			this.tabBars[0].num = this.user.counts.friend_count > 100 ? '99+' : this.user.counts.friend_count;
 			this.tabBars[1].num = this.user.counts.withfollow_count > 100 ? '99+' : this.user.counts.withfollow_count;
@@ -161,7 +191,10 @@ export default {
 		swiperTabHead,
 		userList,
 		loadMore,
-		noThing
+		noThing,
+		// #ifndef APP-PLUS
+		uniNavBar
+		// #endif
 	}
 };
 </script>
